@@ -18,6 +18,8 @@ export default function Navbar() {
           <>
             <NavLink to={ROUTES.CUSTOMERS}>Customers</NavLink>
             <NavLink to={ROUTES.USERS}>Users</NavLink>
+            <NavLink to={ROUTES.ARTICLES}>Artikel</NavLink>
+            <NavLink to={ROUTES.IMAGES}>Bilder</NavLink>
           </>
         )}
 

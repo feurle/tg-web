@@ -6,6 +6,8 @@ import HomePage from '../pages/public/HomePage';
 import NewsPage from '../pages/public/NewsPage';
 import CustomersPage from '../pages/protected/CustomersPage';
 import UsersPage from '../pages/protected/UsersPage';
+import ArticlesPage from '../pages/protected/ArticlesPage';
+import ImagesPage from '../pages/protected/ImagesPage';
 import { ROUTES } from './routes';
 
 const router = createBrowserRouter([
@@ -24,6 +26,8 @@ const router = createBrowserRouter([
         children: [
           { path: ROUTES.CUSTOMERS, element: <CustomersPage /> },
           { path: ROUTES.USERS, element: <UsersPage /> },
+          { path: ROUTES.ARTICLES, element: <ArticlesPage /> },
+          { path: ROUTES.IMAGES, element: <ImagesPage /> },
         ],
       },
     ],
