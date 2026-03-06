@@ -1,7 +1,4 @@
-import { useState } from 'react';
-
-// Minimaler Auth-State ohne externe Bibliothek.
-// Später durch Zustand oder Context ersetzen.
+import { useEffect, useState } from 'react';
 
 export interface AuthUser {
   username: string;
@@ -39,15 +36,15 @@ export const authStore = {
 export function useAuth() {
   const [user, setUser] = useState<AuthUser | null>(authStore.getUser());
 
-  useState(() => {
+  useEffect(() => {
     const unsub = authStore.subscribe(() => setUser(authStore.getUser()));
-    return unsub;
-  });
+    return () => { unsub(); };
+  }, []);
 
   return {
     user,
     isAuthenticated: user !== null,
-    login: authStore.login.bind(authStore),
+    login: (user: AuthUser) => authStore.login(user),
     logout: authStore.logout.bind(authStore),
   };
 }
