@@ -28,24 +28,23 @@ export default function ArticlesPage() {
   const { t } = useTranslation();
 
   useEffect(() => {
-    load();
-  }, []);
-
-  async function load() {
-    try {
-      setError(null);
-      const [articleData, imageData] = await Promise.all([
-        articleApi.getAll(),
-        imageApi.getAll(),
-      ]);
-      setArticles(articleData);
-      setImages(imageData);
-    } catch {
-      setError(t('article.loadError'));
-    } finally {
-      setLoading(false);
+    async function load() {
+      try {
+        setError(null);
+        const [articleData, imageData] = await Promise.all([
+          articleApi.getAll(),
+          imageApi.getAll(),
+        ]);
+        setArticles(articleData);
+        setImages(imageData);
+      } catch {
+        setError(t('article.loadError'));
+      } finally {
+        setLoading(false);
+      }
     }
-  }
+    load();
+  }, [t]);
 
   async function handleCreate(data: CreateArticleRequest) {
     setSaving(true);

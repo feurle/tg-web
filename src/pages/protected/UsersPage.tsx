@@ -22,20 +22,19 @@ export default function UsersPage() {
   const { t } = useTranslation();
 
   useEffect(() => {
-    load();
-  }, []);
-
-  async function load() {
-    try {
-      setError(null);
-      const data = await userApi.getAll();
-      setUsers(data);
-    } catch {
-      setError(t('user.loadError'));
-    } finally {
-      setLoading(false);
+    async function load() {
+      try {
+        setError(null);
+        const data = await userApi.getAll();
+        setUsers(data);
+      } catch {
+        setError(t('user.loadError'));
+      } finally {
+        setLoading(false);
+      }
     }
-  }
+    load();
+  }, [t]);
 
   async function handleCreate(data: CreateUserData) {
     setSaving(true);

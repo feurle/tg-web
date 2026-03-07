@@ -21,20 +21,19 @@ export default function ImagesPage() {
   const { t } = useTranslation();
 
   useEffect(() => {
-    load();
-  }, []);
-
-  async function load() {
-    try {
-      setError(null);
-      const data = await imageApi.getAll();
-      setImages(data);
-    } catch {
-      setError(t('image.loadError'));
-    } finally {
-      setLoading(false);
+    async function load() {
+      try {
+        setError(null);
+        const data = await imageApi.getAll();
+        setImages(data);
+      } catch {
+        setError(t('image.loadError'));
+      } finally {
+        setLoading(false);
+      }
     }
-  }
+    load();
+  }, [t]);
 
   async function handleUpload(file: File) {
     setSaving(true);
