@@ -13,12 +13,14 @@ export default function NewsPage() {
   const loading = fetchedLanguage !== language;
 
   useEffect(() => {
+    let cancelled = false;
     Promise.all([
       articleApi.getPublishedByPage('NEWS_TEASER', language),
       articleApi.getPublishedByPage('NEWS_PAGE', language),
     ])
-      .then(([teasers, full]) => { setArticles([...teasers, ...full]); setFetchedLanguage(language); })
-      .catch(() => { setArticles([]); setFetchedLanguage(language); });
+      .then(([teasers, full]) => { if (!cancelled) { setArticles([...teasers, ...full]); setFetchedLanguage(language); } })
+      .catch(() => { if (!cancelled) { setArticles([]); setFetchedLanguage(language); } });
+    return () => { cancelled = true; };
   }, [language]);
 
   return (
