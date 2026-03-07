@@ -88,12 +88,8 @@ jobs:
             # Fetch newest Image
             docker pull ${{ env.IMAGE_NAME }}:latest
 
-            # Stop old Image
-            docker stop tg-web || true
-            docker rm tg-web || true
-            docker run -d \
-              --name tg-web \
-              --restart unless-stopped \
-              -e BACKEND_URL=${{ secrets.BACKEND_URL }} \
-              -p 8081:80 \
-              ${{ env.IMAGE_NAME }}:latest
+            # Restart container
+            docker compose -f /appbase/tg-app/docker-compose.yml up tg-app -d
+
+            # Cleanup old images
+            docker image prune -f
