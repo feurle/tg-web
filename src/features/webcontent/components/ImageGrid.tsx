@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { imageApi } from '../api';
 import type { ImageResponse } from '../types';
 
@@ -7,8 +8,10 @@ interface Props {
 }
 
 export default function ImageGrid({ images, onDelete }: Props) {
+  const { t } = useTranslation();
+
   if (images.length === 0) {
-    return <p>Keine Bilder vorhanden.</p>;
+    return <p>{t('image.empty')}</p>;
   }
 
   return (
@@ -22,7 +25,7 @@ export default function ImageGrid({ images, onDelete }: Props) {
           />
           <p style={fileName} title={img.fileName}>{img.fileName}</p>
           <button onClick={() => onDelete(img)} style={{ width: '100%' }}>
-            Löschen
+            {t('common.delete')}
           </button>
         </div>
       ))}

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import type { CreateUserData, UpdateUserData, User } from '../types';
 
 const KNOWN_AUTHORITIES = ['ROLE_ADMIN', 'ROLE_USER'];
@@ -57,6 +58,7 @@ export default function UserFormModal(props: Props) {
   const [form, setForm] = useState<FormState>(
     isEdit ? initForm((props as EditProps).user) : initForm()
   );
+  const { t } = useTranslation();
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) {
     const { name, value, type } = e.target;
@@ -107,24 +109,25 @@ export default function UserFormModal(props: Props) {
     <div style={overlay} onClick={props.onCancel}>
       <div style={modal} onClick={(e) => e.stopPropagation()}>
         <h2 style={{ marginBottom: '1rem' }}>
-          {isEdit ? `Benutzer bearbeiten: ${(props as EditProps).user.login}` : 'Neuer Benutzer'}
+          {isEdit
+            ? t('user.editHeading', { login: (props as EditProps).user.login })
+            : t('user.newHeading')}
         </h2>
 
         <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
-          {/* Login nur beim Erstellen */}
           {!isEdit && (
-            <Field label="Login *" name="login" value={form.login} onChange={handleChange} required />
+            <Field label={t('user.form.login')} name="login" value={form.login} onChange={handleChange} required />
           )}
 
           <div style={row}>
-            <Field label="Vorname" name="firstName" value={form.firstName} onChange={handleChange} />
-            <Field label="Nachname" name="lastName" value={form.lastName} onChange={handleChange} />
+            <Field label={t('user.form.firstName')} name="firstName" value={form.firstName} onChange={handleChange} />
+            <Field label={t('user.form.lastName')} name="lastName" value={form.lastName} onChange={handleChange} />
           </div>
 
-          <Field label="E-Mail *" name="email" value={form.email} onChange={handleChange} required type="email" />
+          <Field label={t('user.form.email')} name="email" value={form.email} onChange={handleChange} required type="email" />
 
           <Field
-            label={isEdit ? 'Neues Passwort (leer = unverändert)' : 'Passwort *'}
+            label={isEdit ? t('user.form.passwordEdit') : t('user.form.password')}
             name="password"
             value={form.password}
             onChange={handleChange}
@@ -134,7 +137,7 @@ export default function UserFormModal(props: Props) {
 
           <div style={row}>
             <div style={{ display: 'flex', flexDirection: 'column', flex: 1 }}>
-              <label style={labelStyle}>Sprache</label>
+              <label style={labelStyle}>{t('user.form.language')}</label>
               <select name="langKey" value={form.langKey} onChange={handleChange} style={selectStyle}>
                 <option value="de">Deutsch</option>
                 <option value="en">English</option>
@@ -142,12 +145,11 @@ export default function UserFormModal(props: Props) {
                 <option value="ru">Русский</option>
               </select>
             </div>
-            <Field label="Bild-URL" name="imageUrl" value={form.imageUrl} onChange={handleChange} />
+            <Field label={t('user.form.imageUrl')} name="imageUrl" value={form.imageUrl} onChange={handleChange} />
           </div>
 
-          {/* Rollen */}
           <div>
-            <label style={labelStyle}>Rollen</label>
+            <label style={labelStyle}>{t('user.form.roles')}</label>
             <div style={{ display: 'flex', gap: '1rem', marginTop: '4px' }}>
               {KNOWN_AUTHORITIES.map((role) => (
                 <label key={role} style={{ display: 'flex', alignItems: 'center', gap: '0.3rem', cursor: 'pointer' }}>
@@ -162,7 +164,6 @@ export default function UserFormModal(props: Props) {
             </div>
           </div>
 
-          {/* Aktiviert nur beim Bearbeiten */}
           {isEdit && (
             <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer' }}>
               <input
@@ -171,14 +172,14 @@ export default function UserFormModal(props: Props) {
                 checked={form.activated}
                 onChange={handleChange}
               />
-              Aktiviert
+              {t('user.form.activated')}
             </label>
           )}
 
           <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'flex-end', marginTop: '0.5rem' }}>
-            <button type="button" onClick={props.onCancel} disabled={props.saving}>Abbrechen</button>
+            <button type="button" onClick={props.onCancel} disabled={props.saving}>{t('common.cancel')}</button>
             <button type="submit" disabled={props.saving}>
-              {props.saving ? 'Speichern…' : 'Speichern'}
+              {props.saving ? t('common.saving') : t('common.save')}
             </button>
           </div>
         </form>

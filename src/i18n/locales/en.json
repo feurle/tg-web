@@ -1,0 +1,152 @@
+{
+  "nav": {
+    "home": "Home",
+    "news": "News",
+    "customers": "Customers",
+    "users": "Users",
+    "articles": "Articles",
+    "images": "Images",
+    "login": "Login",
+    "logout": "Logout"
+  },
+  "common": {
+    "save": "Save",
+    "saving": "Saving…",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "loading": "Loading…",
+    "saveError": "Saving failed.",
+    "deleteError": "Deletion failed.",
+    "empty": "—"
+  },
+  "pages": {
+    "home": "Welcome",
+    "news": "News"
+  },
+  "article": {
+    "management": "Article Management",
+    "new": "+ New Article",
+    "newHeading": "New Article",
+    "editHeading": "Edit Article",
+    "deleteConfirm": "Really delete article \"{{title}}\"?",
+    "loadError": "Failed to load articles.",
+    "empty": "No articles found.",
+    "col": {
+      "title": "Title",
+      "page": "Page",
+      "language": "Language",
+      "status": "Status",
+      "published": "Published",
+      "actions": "Actions"
+    },
+    "form": {
+      "title": "Title *",
+      "content": "Content *",
+      "page": "Page",
+      "language": "Language",
+      "status": "Status",
+      "images": "Images"
+    },
+    "page": {
+      "HOME_TEASER": "Home Teaser",
+      "HOME_PAGE": "Home",
+      "NEWS_TEASER": "News Teaser",
+      "NEWS_PAGE": "News"
+    },
+    "language": {
+      "GERMAN": "German",
+      "ENGLISH": "English",
+      "SWEDISH": "Swedish",
+      "RUSSIAN": "Russian"
+    },
+    "state": {
+      "CREATED": "Created",
+      "PUBLISHED": "Published",
+      "CLOSED": "Closed"
+    }
+  },
+  "image": {
+    "management": "Image Management",
+    "upload": "+ Upload Image",
+    "uploadHeading": "Upload Image",
+    "uploading": "Uploading…",
+    "uploadAction": "Upload",
+    "selectFile": "Select file…",
+    "deleteConfirm": "Really delete image \"{{fileName}}\"?",
+    "loadError": "Failed to load images.",
+    "uploadError": "Upload failed.",
+    "empty": "No images found."
+  },
+  "customer": {
+    "management": "Customer Management",
+    "new": "+ New Customer",
+    "newHeading": "New Customer",
+    "editHeading": "Edit Customer",
+    "deleteConfirm": "Really delete customer \"{{firstName}} {{lastName}}\"?",
+    "loadError": "Failed to load customers.",
+    "empty": "No customers found.",
+    "col": {
+      "name": "Name",
+      "email": "Email",
+      "phone": "Phone",
+      "city": "City",
+      "actions": "Actions"
+    },
+    "form": {
+      "firstName": "First Name *",
+      "lastName": "Last Name *",
+      "email": "Email *",
+      "phone": "Phone",
+      "address": "Address",
+      "zip": "ZIP",
+      "city": "City",
+      "state": "State",
+      "country": "Country"
+    }
+  },
+  "user": {
+    "management": "User Management",
+    "new": "+ New User",
+    "newHeading": "New User",
+    "editHeading": "Edit User: {{login}}",
+    "deleteConfirm": "Really delete user \"{{login}}\"?",
+    "loadError": "Failed to load users.",
+    "createError": "Creation failed.",
+    "empty": "No users found.",
+    "col": {
+      "login": "Login",
+      "name": "Name",
+      "email": "Email",
+      "roles": "Roles",
+      "active": "Active",
+      "actions": "Actions"
+    },
+    "form": {
+      "login": "Login *",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "email": "Email *",
+      "password": "Password *",
+      "passwordEdit": "New Password (empty = unchanged)",
+      "language": "Language",
+      "imageUrl": "Image URL",
+      "roles": "Roles",
+      "activated": "Activated"
+    },
+    "active": {
+      "yes": "Yes",
+      "no": "No"
+    }
+  },
+  "auth": {
+    "loginHeading": "Login",
+    "username": "Username",
+    "password": "Password",
+    "login": "Sign In",
+    "loggingIn": "Signing in...",
+    "cancel": "Cancel",
+    "errorInvalid": "Invalid username or password.",
+    "errorGeneral": "Login failed. Please try again."
+  }
+}

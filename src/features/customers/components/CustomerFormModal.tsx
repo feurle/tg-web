@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import type { Customer, CustomerFormData } from '../types';
 
 interface Props {
@@ -29,6 +30,7 @@ function toFormData(c: Customer): CustomerFormData {
 
 export default function CustomerFormModal({ initial, onSave, onCancel, saving }: Props) {
   const [form, setForm] = useState<CustomerFormData>(initial ? toFormData(initial) : EMPTY);
+  const { t } = useTranslation();
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -44,29 +46,29 @@ export default function CustomerFormModal({ initial, onSave, onCancel, saving }:
   return (
     <div style={overlay} onClick={onCancel}>
       <div style={modal} onClick={(e) => e.stopPropagation()}>
-        <h2 style={{ marginBottom: '1rem' }}>{isEdit ? 'Kunde bearbeiten' : 'Neuer Kunde'}</h2>
+        <h2 style={{ marginBottom: '1rem' }}>{isEdit ? t('customer.editHeading') : t('customer.newHeading')}</h2>
 
         <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
           <div style={row}>
-            <Field label="Vorname *" name="firstName" value={form.firstName} onChange={handleChange} required />
-            <Field label="Nachname *" name="lastName" value={form.lastName} onChange={handleChange} required />
+            <Field label={t('customer.form.firstName')} name="firstName" value={form.firstName} onChange={handleChange} required />
+            <Field label={t('customer.form.lastName')} name="lastName" value={form.lastName} onChange={handleChange} required />
           </div>
-          <Field label="E-Mail *" name="email" value={form.email} onChange={handleChange} required type="email" />
-          <Field label="Telefon" name="phone" value={form.phone} onChange={handleChange} />
-          <Field label="Adresse" name="address" value={form.address} onChange={handleChange} />
+          <Field label={t('customer.form.email')} name="email" value={form.email} onChange={handleChange} required type="email" />
+          <Field label={t('customer.form.phone')} name="phone" value={form.phone} onChange={handleChange} />
+          <Field label={t('customer.form.address')} name="address" value={form.address} onChange={handleChange} />
           <div style={row}>
-            <Field label="PLZ" name="zip" value={form.zip} onChange={handleChange} />
-            <Field label="Ort" name="city" value={form.city} onChange={handleChange} />
+            <Field label={t('customer.form.zip')} name="zip" value={form.zip} onChange={handleChange} />
+            <Field label={t('customer.form.city')} name="city" value={form.city} onChange={handleChange} />
           </div>
           <div style={row}>
-            <Field label="Bundesland" name="state" value={form.state} onChange={handleChange} />
-            <Field label="Land" name="country" value={form.country} onChange={handleChange} />
+            <Field label={t('customer.form.state')} name="state" value={form.state} onChange={handleChange} />
+            <Field label={t('customer.form.country')} name="country" value={form.country} onChange={handleChange} />
           </div>
 
           <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'flex-end', marginTop: '0.5rem' }}>
-            <button type="button" onClick={onCancel} disabled={saving}>Abbrechen</button>
+            <button type="button" onClick={onCancel} disabled={saving}>{t('common.cancel')}</button>
             <button type="submit" disabled={saving}>
-              {saving ? 'Speichern…' : 'Speichern'}
+              {saving ? t('common.saving') : t('common.save')}
             </button>
           </div>
         </form>

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import apiClient, { ApiError } from '../../../lib/apiClient';
 import { authStore } from '../authStore';
 
@@ -19,6 +20,7 @@ export default function LoginModal({ onClose }: LoginModalProps) {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const { t } = useTranslation();
 
   async function handleSubmit(e: { preventDefault(): void }) {
     e.preventDefault();
@@ -31,9 +33,9 @@ export default function LoginModal({ onClose }: LoginModalProps) {
       onClose();
     } catch (err) {
       if (err instanceof ApiError && err.status === 401) {
-        setError('Benutzername oder Passwort falsch.');
+        setError(t('auth.errorInvalid'));
       } else {
-        setError('Anmeldung fehlgeschlagen. Bitte versuche es erneut.');
+        setError(t('auth.errorGeneral'));
       }
     } finally {
       setLoading(false);
@@ -52,27 +54,27 @@ export default function LoginModal({ onClose }: LoginModalProps) {
         style={{ background: '#fff', padding: '2rem', borderRadius: '8px', minWidth: '320px' }}
         onClick={(e) => e.stopPropagation()}
       >
-        <h2>Login</h2>
+        <h2>{t('auth.loginHeading')}</h2>
         <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
           <input
             type="text"
-            placeholder="Benutzername"
+            placeholder={t('auth.username')}
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             disabled={loading}
           />
           <input
             type="password"
-            placeholder="Passwort"
+            placeholder={t('auth.password')}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             disabled={loading}
           />
           {error && <p style={{ color: 'red', margin: 0 }}>{error}</p>}
           <button type="submit" disabled={loading}>
-            {loading ? 'Anmelden...' : 'Anmelden'}
+            {loading ? t('auth.loggingIn') : t('auth.login')}
           </button>
-          <button type="button" onClick={onClose} disabled={loading}>Abbrechen</button>
+          <button type="button" onClick={onClose} disabled={loading}>{t('auth.cancel')}</button>
         </form>
       </div>
     </div>

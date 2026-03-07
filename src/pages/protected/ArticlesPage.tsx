@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { articleApi, imageApi } from '../../features/webcontent/api';
 import type {
   ArticleResponse,
@@ -8,7 +9,7 @@ import type {
 } from '../../features/webcontent/types';
 import ArticleTable from '../../features/webcontent/components/ArticleTable';
 import ArticleFormModal from '../../features/webcontent/components/ArticleFormModal';
-import ConfirmDialog from '../../features/customers/components/ConfirmDialog';
+import ConfirmDialog from '../../components/ConfirmDialog';
 import { ApiError } from '../../lib/apiClient';
 
 type Modal =
@@ -24,6 +25,7 @@ export default function ArticlesPage() {
   const [error, setError] = useState<string | null>(null);
   const [modal, setModal] = useState<Modal>(null);
   const [saving, setSaving] = useState(false);
+  const { t } = useTranslation();
 
   useEffect(() => {
     load();
@@ -39,7 +41,7 @@ export default function ArticlesPage() {
       setArticles(articleData);
       setImages(imageData);
     } catch {
-      setError('Artikel konnten nicht geladen werden.');
+      setError(t('article.loadError'));
     } finally {
       setLoading(false);
     }
@@ -52,7 +54,7 @@ export default function ArticlesPage() {
       setArticles((prev) => [...prev, created]);
       setModal(null);
     } catch (err) {
-      const message = err instanceof ApiError ? err.message : 'Speichern fehlgeschlagen.';
+      const message = err instanceof ApiError ? err.message : t('common.saveError');
       setError(message);
     } finally {
       setSaving(false);
@@ -67,7 +69,7 @@ export default function ArticlesPage() {
       setArticles((prev) => prev.map((a) => (a.id === updated.id ? updated : a)));
       setModal(null);
     } catch (err) {
-      const message = err instanceof ApiError ? err.message : 'Speichern fehlgeschlagen.';
+      const message = err instanceof ApiError ? err.message : t('common.saveError');
       setError(message);
     } finally {
       setSaving(false);
@@ -82,7 +84,7 @@ export default function ArticlesPage() {
       setArticles((prev) => prev.filter((a) => a.id !== modal.article.id));
       setModal(null);
     } catch {
-      setError('Löschen fehlgeschlagen.');
+      setError(t('common.deleteError'));
     } finally {
       setSaving(false);
     }
@@ -91,14 +93,14 @@ export default function ArticlesPage() {
   return (
     <div>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem' }}>
-        <h1 style={{ margin: 0 }}>Artikelverwaltung</h1>
-        <button onClick={() => setModal({ kind: 'create' })}>+ Neuer Artikel</button>
+        <h1 style={{ margin: 0 }}>{t('article.management')}</h1>
+        <button onClick={() => setModal({ kind: 'create' })}>{t('article.new')}</button>
       </div>
 
       {error && <p style={{ color: 'red', marginBottom: '1rem' }}>{error}</p>}
 
       {loading ? (
-        <p>Laden…</p>
+        <p>{t('common.loading')}</p>
       ) : (
         <ArticleTable
           articles={articles}
@@ -130,7 +132,7 @@ export default function ArticlesPage() {
 
       {modal?.kind === 'delete' && (
         <ConfirmDialog
-          message={`Artikel „${modal.article.title}" wirklich löschen?`}
+          message={t('article.deleteConfirm', { title: modal.article.title })}
           onConfirm={handleDelete}
           onCancel={() => setModal(null)}
         />

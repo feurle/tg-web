@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { customerApi } from '../../features/customers/api';
 import type { Customer, CustomerFormData } from '../../features/customers/types';
 import CustomerTable from '../../features/customers/components/CustomerTable';
 import CustomerFormModal from '../../features/customers/components/CustomerFormModal';
-import ConfirmDialog from '../../features/customers/components/ConfirmDialog';
+import ConfirmDialog from '../../components/ConfirmDialog';
 import { ApiError } from '../../lib/apiClient';
 
 type Modal =
@@ -18,6 +19,7 @@ export default function CustomersPage() {
   const [error, setError] = useState<string | null>(null);
   const [modal, setModal] = useState<Modal>(null);
   const [saving, setSaving] = useState(false);
+  const { t } = useTranslation();
 
   useEffect(() => {
     load();
@@ -29,7 +31,7 @@ export default function CustomersPage() {
       const data = await customerApi.getAll();
       setCustomers(data);
     } catch {
-      setError('Kunden konnten nicht geladen werden.');
+      setError(t('customer.loadError'));
     } finally {
       setLoading(false);
     }
@@ -47,7 +49,7 @@ export default function CustomersPage() {
       }
       setModal(null);
     } catch (err) {
-      const message = err instanceof ApiError ? err.message : 'Speichern fehlgeschlagen.';
+      const message = err instanceof ApiError ? err.message : t('common.saveError');
       setError(message);
     } finally {
       setSaving(false);
@@ -62,7 +64,7 @@ export default function CustomersPage() {
       setCustomers((prev) => prev.filter((c) => c.id !== modal.customer.id));
       setModal(null);
     } catch {
-      setError('Löschen fehlgeschlagen.');
+      setError(t('common.deleteError'));
     } finally {
       setSaving(false);
     }
@@ -71,8 +73,8 @@ export default function CustomersPage() {
   return (
     <div>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem' }}>
-        <h1 style={{ margin: 0 }}>Kundenverwaltung</h1>
-        <button onClick={() => setModal({ kind: 'create' })}>+ Neuer Kunde</button>
+        <h1 style={{ margin: 0 }}>{t('customer.management')}</h1>
+        <button onClick={() => setModal({ kind: 'create' })}>{t('customer.new')}</button>
       </div>
 
       {error && (
@@ -80,7 +82,7 @@ export default function CustomersPage() {
       )}
 
       {loading ? (
-        <p>Laden…</p>
+        <p>{t('common.loading')}</p>
       ) : (
         <CustomerTable
           customers={customers}
@@ -100,7 +102,10 @@ export default function CustomersPage() {
 
       {modal?.kind === 'delete' && (
         <ConfirmDialog
-          message={`Kunde „${modal.customer.firstName} ${modal.customer.lastName}" wirklich löschen?`}
+          message={t('customer.deleteConfirm', {
+            firstName: modal.customer.firstName,
+            lastName: modal.customer.lastName,
+          })}
           onConfirm={handleDelete}
           onCancel={() => setModal(null)}
         />

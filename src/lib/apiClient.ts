@@ -19,7 +19,14 @@ async function request<T>(path: string, init: RequestInit = {}): Promise<T> {
   const response = await fetch(`${BASE_URL}${path}`, { ...init, headers, credentials: 'include' });
 
   if (!response.ok) {
-    const message = await response.text().catch(() => response.statusText);
+    const body = await response.text().catch(() => '');
+    let message: string;
+    try {
+      const json = JSON.parse(body);
+      message = json.message ?? (body || response.statusText);
+    } catch {
+      message = body || response.statusText;
+    }
     throw new ApiError(response.status, message);
   }
 

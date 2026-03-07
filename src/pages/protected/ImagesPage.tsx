@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { imageApi } from '../../features/webcontent/api';
 import type { ImageResponse } from '../../features/webcontent/types';
 import ImageGrid from '../../features/webcontent/components/ImageGrid';
 import ImageUploadModal from '../../features/webcontent/components/ImageUploadModal';
-import ConfirmDialog from '../../features/customers/components/ConfirmDialog';
+import ConfirmDialog from '../../components/ConfirmDialog';
 import { ApiError } from '../../lib/apiClient';
 
 type Modal =
@@ -17,6 +18,7 @@ export default function ImagesPage() {
   const [error, setError] = useState<string | null>(null);
   const [modal, setModal] = useState<Modal>(null);
   const [saving, setSaving] = useState(false);
+  const { t } = useTranslation();
 
   useEffect(() => {
     load();
@@ -28,7 +30,7 @@ export default function ImagesPage() {
       const data = await imageApi.getAll();
       setImages(data);
     } catch {
-      setError('Bilder konnten nicht geladen werden.');
+      setError(t('image.loadError'));
     } finally {
       setLoading(false);
     }
@@ -41,7 +43,7 @@ export default function ImagesPage() {
       setImages((prev) => [...prev, created]);
       setModal(null);
     } catch (err) {
-      const message = err instanceof ApiError ? err.message : 'Hochladen fehlgeschlagen.';
+      const message = err instanceof ApiError ? err.message : t('image.uploadError');
       setError(message);
     } finally {
       setSaving(false);
@@ -56,7 +58,7 @@ export default function ImagesPage() {
       setImages((prev) => prev.filter((img) => img.id !== modal.image.id));
       setModal(null);
     } catch {
-      setError('Löschen fehlgeschlagen.');
+      setError(t('common.deleteError'));
     } finally {
       setSaving(false);
     }
@@ -65,14 +67,14 @@ export default function ImagesPage() {
   return (
     <div>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem' }}>
-        <h1 style={{ margin: 0 }}>Bildverwaltung</h1>
-        <button onClick={() => setModal({ kind: 'upload' })}>+ Bild hochladen</button>
+        <h1 style={{ margin: 0 }}>{t('image.management')}</h1>
+        <button onClick={() => setModal({ kind: 'upload' })}>{t('image.upload')}</button>
       </div>
 
       {error && <p style={{ color: 'red', marginBottom: '1rem' }}>{error}</p>}
 
       {loading ? (
-        <p>Laden…</p>
+        <p>{t('common.loading')}</p>
       ) : (
         <ImageGrid
           images={images}
@@ -90,7 +92,7 @@ export default function ImagesPage() {
 
       {modal?.kind === 'delete' && (
         <ConfirmDialog
-          message={`Bild „${modal.image.fileName}" wirklich löschen?`}
+          message={t('image.deleteConfirm', { fileName: modal.image.fileName })}
           onConfirm={handleDelete}
           onCancel={() => setModal(null)}
         />

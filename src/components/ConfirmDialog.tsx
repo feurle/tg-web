@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 interface Props {
   message: string;
   onConfirm: () => void;
@@ -5,14 +7,16 @@ interface Props {
 }
 
 export default function ConfirmDialog({ message, onConfirm, onCancel }: Props) {
+  const { t } = useTranslation();
+
   return (
     <div style={overlay} onClick={onCancel}>
       <div style={dialog} onClick={(e) => e.stopPropagation()}>
         <p style={{ marginBottom: '1.5rem' }}>{message}</p>
         <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'flex-end' }}>
-          <button onClick={onCancel}>Abbrechen</button>
+          <button onClick={onCancel}>{t('common.cancel')}</button>
           <button onClick={onConfirm} style={{ color: 'white', background: 'red', border: 'none', padding: '0.4rem 0.8rem', borderRadius: '4px', cursor: 'pointer' }}>
-            Löschen
+            {t('common.delete')}
           </button>
         </div>
       </div>

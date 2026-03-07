@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import type { Customer } from '../types';
 
 interface Props {
@@ -7,19 +8,21 @@ interface Props {
 }
 
 export default function CustomerTable({ customers, onEdit, onDelete }: Props) {
+  const { t } = useTranslation();
+
   if (customers.length === 0) {
-    return <p style={{ color: '#666' }}>Keine Kunden vorhanden.</p>;
+    return <p style={{ color: '#666' }}>{t('customer.empty')}</p>;
   }
 
   return (
     <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.9rem' }}>
       <thead>
         <tr style={{ background: '#f5f5f5', textAlign: 'left' }}>
-          <th style={th}>Name</th>
-          <th style={th}>E-Mail</th>
-          <th style={th}>Telefon</th>
-          <th style={th}>Ort</th>
-          <th style={th}>Aktionen</th>
+          <th style={th}>{t('customer.col.name')}</th>
+          <th style={th}>{t('customer.col.email')}</th>
+          <th style={th}>{t('customer.col.phone')}</th>
+          <th style={th}>{t('customer.col.city')}</th>
+          <th style={th}>{t('customer.col.actions')}</th>
         </tr>
       </thead>
       <tbody>
@@ -27,14 +30,14 @@ export default function CustomerTable({ customers, onEdit, onDelete }: Props) {
           <tr key={c.id} style={{ borderBottom: '1px solid #eee' }}>
             <td style={td}>{c.firstName} {c.lastName}</td>
             <td style={td}>{c.email}</td>
-            <td style={td}>{c.phone ?? '—'}</td>
-            <td style={td}>{c.city ?? '—'}</td>
+            <td style={td}>{c.phone ?? t('common.empty')}</td>
+            <td style={td}>{c.city ?? t('common.empty')}</td>
             <td style={td}>
               <button onClick={() => onEdit(c)} style={{ marginRight: '0.5rem' }}>
-                Bearbeiten
+                {t('common.edit')}
               </button>
               <button onClick={() => onDelete(c)} style={{ color: 'red' }}>
-                Löschen
+                {t('common.delete')}
               </button>
             </td>
           </tr>

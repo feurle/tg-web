@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 interface Props {
   onUpload: (file: File) => void;
@@ -9,6 +10,7 @@ interface Props {
 export default function ImageUploadModal({ onUpload, onCancel, saving }: Props) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const { t } = useTranslation();
 
   function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
     setSelectedFile(e.target.files?.[0] ?? null);
@@ -24,7 +26,7 @@ export default function ImageUploadModal({ onUpload, onCancel, saving }: Props) 
   return (
     <div style={overlay} onClick={onCancel}>
       <div style={modal} onClick={(e) => e.stopPropagation()}>
-        <h2 style={{ marginBottom: '1rem' }}>Bild hochladen</h2>
+        <h2 style={{ marginBottom: '1rem' }}>{t('image.uploadHeading')}</h2>
 
         <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
           <div
@@ -34,7 +36,7 @@ export default function ImageUploadModal({ onUpload, onCancel, saving }: Props) 
             {selectedFile ? (
               <span>{selectedFile.name}</span>
             ) : (
-              <span style={{ color: '#888' }}>Datei auswählen…</span>
+              <span style={{ color: '#888' }}>{t('image.selectFile')}</span>
             )}
             <input
               ref={inputRef}
@@ -46,9 +48,9 @@ export default function ImageUploadModal({ onUpload, onCancel, saving }: Props) 
           </div>
 
           <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'flex-end' }}>
-            <button type="button" onClick={onCancel} disabled={saving}>Abbrechen</button>
+            <button type="button" onClick={onCancel} disabled={saving}>{t('common.cancel')}</button>
             <button type="submit" disabled={!selectedFile || saving}>
-              {saving ? 'Hochladen…' : 'Hochladen'}
+              {saving ? t('image.uploading') : t('image.uploadAction')}
             </button>
           </div>
         </form>

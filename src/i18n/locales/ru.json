@@ -1,0 +1,152 @@
+{
+  "nav": {
+    "home": "Главная",
+    "news": "Новости",
+    "customers": "Клиенты",
+    "users": "Пользователи",
+    "articles": "Статьи",
+    "images": "Изображения",
+    "login": "Войти",
+    "logout": "Выйти"
+  },
+  "common": {
+    "save": "Сохранить",
+    "saving": "Сохранение…",
+    "cancel": "Отмена",
+    "delete": "Удалить",
+    "edit": "Редактировать",
+    "loading": "Загрузка…",
+    "saveError": "Ошибка сохранения.",
+    "deleteError": "Ошибка удаления.",
+    "empty": "—"
+  },
+  "pages": {
+    "home": "Добро пожаловать",
+    "news": "Новости"
+  },
+  "article": {
+    "management": "Управление статьями",
+    "new": "+ Новая статья",
+    "newHeading": "Новая статья",
+    "editHeading": "Редактировать статью",
+    "deleteConfirm": "Удалить статью «{{title}}»?",
+    "loadError": "Не удалось загрузить статьи.",
+    "empty": "Статьи не найдены.",
+    "col": {
+      "title": "Заголовок",
+      "page": "Страница",
+      "language": "Язык",
+      "status": "Статус",
+      "published": "Опубликовано",
+      "actions": "Действия"
+    },
+    "form": {
+      "title": "Заголовок *",
+      "content": "Содержание *",
+      "page": "Страница",
+      "language": "Язык",
+      "status": "Статус",
+      "images": "Изображения"
+    },
+    "page": {
+      "HOME_TEASER": "Тизер главной",
+      "HOME_PAGE": "Главная",
+      "NEWS_TEASER": "Тизер новостей",
+      "NEWS_PAGE": "Новости"
+    },
+    "language": {
+      "GERMAN": "Немецкий",
+      "ENGLISH": "Английский",
+      "SWEDISH": "Шведский",
+      "RUSSIAN": "Русский"
+    },
+    "state": {
+      "CREATED": "Создано",
+      "PUBLISHED": "Опубликовано",
+      "CLOSED": "Закрыто"
+    }
+  },
+  "image": {
+    "management": "Управление изображениями",
+    "upload": "+ Загрузить изображение",
+    "uploadHeading": "Загрузить изображение",
+    "uploading": "Загрузка…",
+    "uploadAction": "Загрузить",
+    "selectFile": "Выбрать файл…",
+    "deleteConfirm": "Удалить изображение «{{fileName}}»?",
+    "loadError": "Не удалось загрузить изображения.",
+    "uploadError": "Ошибка загрузки.",
+    "empty": "Изображения не найдены."
+  },
+  "customer": {
+    "management": "Управление клиентами",
+    "new": "+ Новый клиент",
+    "newHeading": "Новый клиент",
+    "editHeading": "Редактировать клиента",
+    "deleteConfirm": "Удалить клиента «{{firstName}} {{lastName}}»?",
+    "loadError": "Не удалось загрузить клиентов.",
+    "empty": "Клиенты не найдены.",
+    "col": {
+      "name": "Имя",
+      "email": "Email",
+      "phone": "Телефон",
+      "city": "Город",
+      "actions": "Действия"
+    },
+    "form": {
+      "firstName": "Имя *",
+      "lastName": "Фамилия *",
+      "email": "Email *",
+      "phone": "Телефон",
+      "address": "Адрес",
+      "zip": "Индекс",
+      "city": "Город",
+      "state": "Регион",
+      "country": "Страна"
+    }
+  },
+  "user": {
+    "management": "Управление пользователями",
+    "new": "+ Новый пользователь",
+    "newHeading": "Новый пользователь",
+    "editHeading": "Редактировать пользователя: {{login}}",
+    "deleteConfirm": "Удалить пользователя «{{login}}»?",
+    "loadError": "Не удалось загрузить пользователей.",
+    "createError": "Ошибка создания.",
+    "empty": "Пользователи не найдены.",
+    "col": {
+      "login": "Логин",
+      "name": "Имя",
+      "email": "Email",
+      "roles": "Роли",
+      "active": "Активен",
+      "actions": "Действия"
+    },
+    "form": {
+      "login": "Логин *",
+      "firstName": "Имя",
+      "lastName": "Фамилия",
+      "email": "Email *",
+      "password": "Пароль *",
+      "passwordEdit": "Новый пароль (пусто = без изменений)",
+      "language": "Язык",
+      "imageUrl": "URL изображения",
+      "roles": "Роли",
+      "activated": "Активирован"
+    },
+    "active": {
+      "yes": "Да",
+      "no": "Нет"
+    }
+  },
+  "auth": {
+    "loginHeading": "Вход",
+    "username": "Имя пользователя",
+    "password": "Пароль",
+    "login": "Войти",
+    "loggingIn": "Вход...",
+    "cancel": "Отмена",
+    "errorInvalid": "Неверное имя пользователя или пароль.",
+    "errorGeneral": "Ошибка входа. Попробуйте снова."
+  }
+}

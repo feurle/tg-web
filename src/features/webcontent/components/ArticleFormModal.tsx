@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import type {
   ArticleResponse,
   ArticleState,
@@ -29,29 +30,14 @@ interface EditProps {
 
 type Props = CreateProps | EditProps;
 
-const PAGE_OPTIONS: { value: PageType; label: string }[] = [
-  { value: 'HOME_TEASER', label: 'Home Teaser' },
-  { value: 'HOME_PAGE', label: 'Home' },
-  { value: 'NEWS_TEASER', label: 'News Teaser' },
-  { value: 'NEWS_PAGE', label: 'News' },
-];
-
-const LANGUAGE_OPTIONS: { value: Language; label: string }[] = [
-  { value: 'GERMAN', label: 'Deutsch' },
-  { value: 'ENGLISH', label: 'Englisch' },
-  { value: 'SWEDISH', label: 'Schwedisch' },
-  { value: 'RUSSIAN', label: 'Russisch' },
-];
-
-const STATE_OPTIONS: { value: ArticleState; label: string }[] = [
-  { value: 'CREATED', label: 'Erstellt' },
-  { value: 'PUBLISHED', label: 'Veröffentlicht' },
-  { value: 'CLOSED', label: 'Geschlossen' },
-];
+const PAGE_VALUES: PageType[] = ['HOME_TEASER', 'HOME_PAGE', 'NEWS_TEASER', 'NEWS_PAGE'];
+const LANGUAGE_VALUES: Language[] = ['GERMAN', 'ENGLISH', 'SWEDISH', 'RUSSIAN'];
+const STATE_VALUES: ArticleState[] = ['CREATED', 'PUBLISHED', 'CLOSED'];
 
 export default function ArticleFormModal(props: Props) {
   const { mode, images, onCancel, saving } = props;
   const initial = mode === 'edit' ? props.initial : null;
+  const { t } = useTranslation();
 
   const [title, setTitle] = useState(initial?.title ?? '');
   const [content, setContent] = useState(initial?.content ?? '');
@@ -88,12 +74,12 @@ export default function ArticleFormModal(props: Props) {
     <div style={overlay} onClick={onCancel}>
       <div style={modal} onClick={(e) => e.stopPropagation()}>
         <h2 style={{ marginBottom: '1rem' }}>
-          {mode === 'create' ? 'Neuer Artikel' : 'Artikel bearbeiten'}
+          {mode === 'create' ? t('article.newHeading') : t('article.editHeading')}
         </h2>
 
         <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
           <label style={labelStyle}>
-            Titel *
+            {t('article.form.title')}
             <input
               value={title}
               onChange={(e) => setTitle(e.target.value)}
@@ -103,7 +89,7 @@ export default function ArticleFormModal(props: Props) {
           </label>
 
           <label style={labelStyle}>
-            Inhalt *
+            {t('article.form.content')}
             <textarea
               value={content}
               onChange={(e) => setContent(e.target.value)}
@@ -115,42 +101,42 @@ export default function ArticleFormModal(props: Props) {
 
           <div style={{ display: 'flex', gap: '0.75rem' }}>
             <label style={{ ...labelStyle, flex: 1 }}>
-              Seite
+              {t('article.form.page')}
               <select
                 value={page}
                 onChange={(e) => setPage(e.target.value as PageType)}
                 disabled={mode === 'edit'}
                 style={inputStyle}
               >
-                {PAGE_OPTIONS.map((o) => (
-                  <option key={o.value} value={o.value}>{o.label}</option>
+                {PAGE_VALUES.map((v) => (
+                  <option key={v} value={v}>{t(`article.page.${v}`)}</option>
                 ))}
               </select>
             </label>
 
             <label style={{ ...labelStyle, flex: 1 }}>
-              Sprache
+              {t('article.form.language')}
               <select
                 value={language}
                 onChange={(e) => setLanguage(e.target.value as Language)}
                 style={inputStyle}
               >
-                {LANGUAGE_OPTIONS.map((o) => (
-                  <option key={o.value} value={o.value}>{o.label}</option>
+                {LANGUAGE_VALUES.map((v) => (
+                  <option key={v} value={v}>{t(`article.language.${v}`)}</option>
                 ))}
               </select>
             </label>
 
             {mode === 'edit' && (
               <label style={{ ...labelStyle, flex: 1 }}>
-                Status
+                {t('article.form.status')}
                 <select
                   value={state}
                   onChange={(e) => setState(e.target.value as ArticleState)}
                   style={inputStyle}
                 >
-                  {STATE_OPTIONS.map((o) => (
-                    <option key={o.value} value={o.value}>{o.label}</option>
+                  {STATE_VALUES.map((v) => (
+                    <option key={v} value={v}>{t(`article.state.${v}`)}</option>
                   ))}
                 </select>
               </label>
@@ -159,7 +145,7 @@ export default function ArticleFormModal(props: Props) {
 
           {images.length > 0 && (
             <fieldset style={{ border: '1px solid #ccc', borderRadius: '4px', padding: '0.5rem 0.75rem' }}>
-              <legend style={{ fontSize: '0.8rem', fontWeight: 500 }}>Bilder</legend>
+              <legend style={{ fontSize: '0.8rem', fontWeight: 500 }}>{t('article.form.images')}</legend>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.3rem', maxHeight: '150px', overflowY: 'auto' }}>
                 {images.map((img) => (
                   <label key={img.id} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer' }}>
@@ -176,9 +162,9 @@ export default function ArticleFormModal(props: Props) {
           )}
 
           <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'flex-end', marginTop: '0.5rem' }}>
-            <button type="button" onClick={onCancel} disabled={saving}>Abbrechen</button>
+            <button type="button" onClick={onCancel} disabled={saving}>{t('common.cancel')}</button>
             <button type="submit" disabled={saving}>
-              {saving ? 'Speichern…' : 'Speichern'}
+              {saving ? t('common.saving') : t('common.save')}
             </button>
           </div>
         </form>

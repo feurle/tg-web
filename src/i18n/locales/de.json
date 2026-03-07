@@ -1,0 +1,152 @@
+{
+  "nav": {
+    "home": "Home",
+    "news": "News",
+    "customers": "Kunden",
+    "users": "Benutzer",
+    "articles": "Artikel",
+    "images": "Bilder",
+    "login": "Login",
+    "logout": "Logout"
+  },
+  "common": {
+    "save": "Speichern",
+    "saving": "Speichern…",
+    "cancel": "Abbrechen",
+    "delete": "Löschen",
+    "edit": "Bearbeiten",
+    "loading": "Laden…",
+    "saveError": "Speichern fehlgeschlagen.",
+    "deleteError": "Löschen fehlgeschlagen.",
+    "empty": "—"
+  },
+  "pages": {
+    "home": "Willkommen",
+    "news": "Aktuelles"
+  },
+  "article": {
+    "management": "Artikelverwaltung",
+    "new": "+ Neuer Artikel",
+    "newHeading": "Neuer Artikel",
+    "editHeading": "Artikel bearbeiten",
+    "deleteConfirm": "Artikel \u201E{{title}}\u201C wirklich löschen?",
+    "loadError": "Artikel konnten nicht geladen werden.",
+    "empty": "Keine Artikel vorhanden.",
+    "col": {
+      "title": "Titel",
+      "page": "Seite",
+      "language": "Sprache",
+      "status": "Status",
+      "published": "Veröffentlicht",
+      "actions": "Aktionen"
+    },
+    "form": {
+      "title": "Titel *",
+      "content": "Inhalt *",
+      "page": "Seite",
+      "language": "Sprache",
+      "status": "Status",
+      "images": "Bilder"
+    },
+    "page": {
+      "HOME_TEASER": "Home Teaser",
+      "HOME_PAGE": "Home",
+      "NEWS_TEASER": "News Teaser",
+      "NEWS_PAGE": "News"
+    },
+    "language": {
+      "GERMAN": "Deutsch",
+      "ENGLISH": "Englisch",
+      "SWEDISH": "Schwedisch",
+      "RUSSIAN": "Russisch"
+    },
+    "state": {
+      "CREATED": "Erstellt",
+      "PUBLISHED": "Veröffentlicht",
+      "CLOSED": "Geschlossen"
+    }
+  },
+  "image": {
+    "management": "Bildverwaltung",
+    "upload": "+ Bild hochladen",
+    "uploadHeading": "Bild hochladen",
+    "uploading": "Hochladen…",
+    "uploadAction": "Hochladen",
+    "selectFile": "Datei auswählen…",
+    "deleteConfirm": "Bild \u201E{{fileName}}\u201C wirklich löschen?",
+    "loadError": "Bilder konnten nicht geladen werden.",
+    "uploadError": "Hochladen fehlgeschlagen.",
+    "empty": "Keine Bilder vorhanden."
+  },
+  "customer": {
+    "management": "Kundenverwaltung",
+    "new": "+ Neuer Kunde",
+    "newHeading": "Neuer Kunde",
+    "editHeading": "Kunde bearbeiten",
+    "deleteConfirm": "Kunde \u201E{{firstName}} {{lastName}}\u201C wirklich löschen?",
+    "loadError": "Kunden konnten nicht geladen werden.",
+    "empty": "Keine Kunden vorhanden.",
+    "col": {
+      "name": "Name",
+      "email": "E-Mail",
+      "phone": "Telefon",
+      "city": "Ort",
+      "actions": "Aktionen"
+    },
+    "form": {
+      "firstName": "Vorname *",
+      "lastName": "Nachname *",
+      "email": "E-Mail *",
+      "phone": "Telefon",
+      "address": "Adresse",
+      "zip": "PLZ",
+      "city": "Ort",
+      "state": "Bundesland",
+      "country": "Land"
+    }
+  },
+  "user": {
+    "management": "Benutzerverwaltung",
+    "new": "+ Neuer Benutzer",
+    "newHeading": "Neuer Benutzer",
+    "editHeading": "Benutzer bearbeiten: {{login}}",
+    "deleteConfirm": "Benutzer \u201E{{login}}\u201C wirklich löschen?",
+    "loadError": "Benutzer konnten nicht geladen werden.",
+    "createError": "Erstellen fehlgeschlagen.",
+    "empty": "Keine Benutzer vorhanden.",
+    "col": {
+      "login": "Login",
+      "name": "Name",
+      "email": "E-Mail",
+      "roles": "Rollen",
+      "active": "Aktiv",
+      "actions": "Aktionen"
+    },
+    "form": {
+      "login": "Login *",
+      "firstName": "Vorname",
+      "lastName": "Nachname",
+      "email": "E-Mail *",
+      "password": "Passwort *",
+      "passwordEdit": "Neues Passwort (leer = unverändert)",
+      "language": "Sprache",
+      "imageUrl": "Bild-URL",
+      "roles": "Rollen",
+      "activated": "Aktiviert"
+    },
+    "active": {
+      "yes": "Ja",
+      "no": "Nein"
+    }
+  },
+  "auth": {
+    "loginHeading": "Login",
+    "username": "Benutzername",
+    "password": "Passwort",
+    "login": "Anmelden",
+    "loggingIn": "Anmelden...",
+    "cancel": "Abbrechen",
+    "errorInvalid": "Benutzername oder Passwort falsch.",
+    "errorGeneral": "Anmeldung fehlgeschlagen. Bitte versuche es erneut."
+  }
+}

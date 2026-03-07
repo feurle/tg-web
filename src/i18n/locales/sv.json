@@ -1,0 +1,152 @@
+{
+  "nav": {
+    "home": "Hem",
+    "news": "Nyheter",
+    "customers": "Kunder",
+    "users": "Användare",
+    "articles": "Artiklar",
+    "images": "Bilder",
+    "login": "Logga in",
+    "logout": "Logga ut"
+  },
+  "common": {
+    "save": "Spara",
+    "saving": "Sparar\u2026",
+    "cancel": "Avbryt",
+    "delete": "Ta bort",
+    "edit": "Redigera",
+    "loading": "Laddar\u2026",
+    "saveError": "Sparandet misslyckades.",
+    "deleteError": "Borttagningen misslyckades.",
+    "empty": "\u2014"
+  },
+  "pages": {
+    "home": "V\u00e4lkommen",
+    "news": "Nyheter"
+  },
+  "article": {
+    "management": "Artikelhantering",
+    "new": "+ Ny artikel",
+    "newHeading": "Ny artikel",
+    "editHeading": "Redigera artikel",
+    "deleteConfirm": "Vill du verkligen ta bort artikeln \u201E{{title}}\u201C?",
+    "loadError": "Det gick inte att l\u00e4sa in artiklar.",
+    "empty": "Inga artiklar hittades.",
+    "col": {
+      "title": "Titel",
+      "page": "Sida",
+      "language": "Spr\u00e5k",
+      "status": "Status",
+      "published": "Publicerad",
+      "actions": "\u00c5tg\u00e4rder"
+    },
+    "form": {
+      "title": "Titel *",
+      "content": "Inneh\u00e5ll *",
+      "page": "Sida",
+      "language": "Spr\u00e5k",
+      "status": "Status",
+      "images": "Bilder"
+    },
+    "page": {
+      "HOME_TEASER": "Startsida teaser",
+      "HOME_PAGE": "Startsida",
+      "NEWS_TEASER": "Nyheter teaser",
+      "NEWS_PAGE": "Nyheter"
+    },
+    "language": {
+      "GERMAN": "Tyska",
+      "ENGLISH": "Engelska",
+      "SWEDISH": "Svenska",
+      "RUSSIAN": "Ryska"
+    },
+    "state": {
+      "CREATED": "Skapad",
+      "PUBLISHED": "Publicerad",
+      "CLOSED": "St\u00e4ngd"
+    }
+  },
+  "image": {
+    "management": "Bildhantering",
+    "upload": "+ Ladda upp bild",
+    "uploadHeading": "Ladda upp bild",
+    "uploading": "Laddar upp\u2026",
+    "uploadAction": "Ladda upp",
+    "selectFile": "V\u00e4lj fil\u2026",
+    "deleteConfirm": "Vill du verkligen ta bort bilden \u201E{{fileName}}\u201C?",
+    "loadError": "Det gick inte att l\u00e4sa in bilder.",
+    "uploadError": "Uppladdningen misslyckades.",
+    "empty": "Inga bilder hittades."
+  },
+  "customer": {
+    "management": "Kundhantering",
+    "new": "+ Ny kund",
+    "newHeading": "Ny kund",
+    "editHeading": "Redigera kund",
+    "deleteConfirm": "Vill du verkligen ta bort kunden \u201E{{firstName}} {{lastName}}\u201C?",
+    "loadError": "Det gick inte att l\u00e4sa in kunder.",
+    "empty": "Inga kunder hittades.",
+    "col": {
+      "name": "Namn",
+      "email": "E-post",
+      "phone": "Telefon",
+      "city": "Stad",
+      "actions": "\u00c5tg\u00e4rder"
+    },
+    "form": {
+      "firstName": "F\u00f6rnamn *",
+      "lastName": "Efternamn *",
+      "email": "E-post *",
+      "phone": "Telefon",
+      "address": "Adress",
+      "zip": "Postnummer",
+      "city": "Stad",
+      "state": "L\u00e4n/Region",
+      "country": "Land"
+    }
+  },
+  "user": {
+    "management": "Anv\u00e4ndarhantering",
+    "new": "+ Ny anv\u00e4ndare",
+    "newHeading": "Ny anv\u00e4ndare",
+    "editHeading": "Redigera anv\u00e4ndare: {{login}}",
+    "deleteConfirm": "Vill du verkligen ta bort anv\u00e4ndaren \u201E{{login}}\u201C?",
+    "loadError": "Det gick inte att l\u00e4sa in anv\u00e4ndare.",
+    "createError": "Skapandet misslyckades.",
+    "empty": "Inga anv\u00e4ndare hittades.",
+    "col": {
+      "login": "Inloggning",
+      "name": "Namn",
+      "email": "E-post",
+      "roles": "Roller",
+      "active": "Aktiv",
+      "actions": "\u00c5tg\u00e4rder"
+    },
+    "form": {
+      "login": "Inloggning *",
+      "firstName": "F\u00f6rnamn",
+      "lastName": "Efternamn",
+      "email": "E-post *",
+      "password": "L\u00f6senord *",
+      "passwordEdit": "Nytt l\u00f6senord (tomt = of\u00f6r\u00e4ndrat)",
+      "language": "Spr\u00e5k",
+      "imageUrl": "Bild-URL",
+      "roles": "Roller",
+      "activated": "Aktiverad"
+    },
+    "active": {
+      "yes": "Ja",
+      "no": "Nej"
+    }
+  },
+  "auth": {
+    "loginHeading": "Logga in",
+    "username": "Anv\u00e4ndarnamn",
+    "password": "L\u00f6senord",
+    "login": "Logga in",
+    "loggingIn": "Loggar in...",
+    "cancel": "Avbryt",
+    "errorInvalid": "Ogiltigt anv\u00e4ndarnamn eller l\u00f6senord.",
+    "errorGeneral": "Inloggningen misslyckades. F\u00f6rs\u00f6k igen."
+  }
+}
