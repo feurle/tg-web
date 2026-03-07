@@ -22,20 +22,19 @@ export default function CustomersPage() {
   const { t } = useTranslation();
 
   useEffect(() => {
-    load();
-  }, []);
-
-  async function load() {
-    try {
-      setError(null);
-      const data = await customerApi.getAll();
-      setCustomers(data);
-    } catch {
-      setError(t('customer.loadError'));
-    } finally {
-      setLoading(false);
+    async function load() {
+      try {
+        setError(null);
+        const data = await customerApi.getAll();
+        setCustomers(data);
+      } catch {
+        setError(t('customer.loadError'));
+      } finally {
+        setLoading(false);
+      }
     }
-  }
+    load();
+  }, [t]);
 
   async function handleSave(data: CustomerFormData) {
     setSaving(true);

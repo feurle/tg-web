@@ -7,19 +7,18 @@ import { resolveLanguage } from '../../features/webcontent/language';
 
 export default function HomePage() {
   const [articles, setArticles] = useState<ArticleResponse[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [fetchedLanguage, setFetchedLanguage] = useState<string | null>(null);
   const { t, i18n: i18nInstance } = useTranslation();
   const language = resolveLanguage(i18nInstance.language);
+  const loading = fetchedLanguage !== language;
 
   useEffect(() => {
-    setLoading(true);
     Promise.all([
       articleApi.getPublishedByPage('HOME_TEASER', language),
       articleApi.getPublishedByPage('HOME_PAGE', language),
     ])
-      .then(([teasers, full]) => setArticles([...teasers, ...full]))
-      .catch(() => setArticles([]))
-      .finally(() => setLoading(false));
+      .then(([teasers, full]) => { setArticles([...teasers, ...full]); setFetchedLanguage(language); })
+      .catch(() => { setArticles([]); setFetchedLanguage(language); });
   }, [language]);
 
   return (

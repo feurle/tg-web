@@ -28,10 +28,10 @@ jobs:
       - name: Clean install
         run: npm ci
 
-      - name: Lint
+      - name: Type-check Lint
         run: npm run lint
 
-      - name: Type-check & Build
+      - name: Build
         run: npm run build
 
       - uses: actions/upload-artifact@v4
