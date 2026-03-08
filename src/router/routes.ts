@@ -5,4 +5,5 @@ export const ROUTES = {
   USERS: '/users',
   ARTICLES: '/webcontent/articles',
   IMAGES: '/webcontent/images',
+  TAGS: '/webcontent/tags',
 } as const;

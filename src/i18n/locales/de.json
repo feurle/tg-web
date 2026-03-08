@@ -10,6 +10,7 @@
     "users": "Benutzer",
     "articles": "Artikel",
     "images": "Bilder",
+    "tags": "Tags",
     "login": "Anmelden",
     "logout": "Abmelden",
     "sidebar": {
@@ -80,7 +81,8 @@
       "page": "Seite",
       "language": "Sprache",
       "status": "Status",
-      "images": "Bilder"
+      "images": "Bilder",
+      "tags": "Tags"
     },
     "page": {
       "HOME_TEASER": "Home Teaser",
@@ -112,6 +114,21 @@
     "loadError": "Bilder konnten nicht geladen werden.",
     "uploadError": "Hochladen fehlgeschlagen.",
     "empty": "Keine Bilder vorhanden."
+  },
+  "tag": {
+    "management": "Tag-Verwaltung",
+    "subtitle": "Verwalten Sie Ihre Tags",
+    "new": "Neuer Tag",
+    "newHeading": "Neuer Tag",
+    "editHeading": "Tag bearbeiten",
+    "deleteConfirm": "Tag \u201E{{name}}\u201C wirklich löschen?",
+    "loadError": "Tags konnten nicht geladen werden.",
+    "empty": "Keine Tags vorhanden.",
+    "name": "Tag-Name *",
+    "col": {
+      "name": "Name",
+      "actions": "Aktionen"
+    }
   },
   "customer": {
     "management": "Kundenverwaltung",

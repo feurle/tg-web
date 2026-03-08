@@ -176,9 +176,11 @@ export default function UserFormModal(props: Props) {
             </label>
           )}
 
-          <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'flex-end', marginTop: '0.5rem' }}>
-            <button type="button" onClick={props.onCancel} disabled={props.saving}>{t('common.cancel')}</button>
-            <button type="submit" disabled={props.saving}>
+          <div style={{ display: 'flex', gap: '12px', justifyContent: 'flex-end', marginTop: '0.5rem' }}>
+            <button type="button" onClick={props.onCancel} disabled={props.saving} className="btn-secondary">
+              {t('common.cancel')}
+            </button>
+            <button type="submit" disabled={props.saving} className="btn-accent">
               {props.saving ? t('common.saving') : t('common.save')}
             </button>
           </div>

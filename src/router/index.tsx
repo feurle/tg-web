@@ -8,6 +8,7 @@ import CustomersPage from '../pages/protected/CustomersPage';
 import UsersPage from '../pages/protected/UsersPage';
 import ArticlesPage from '../pages/protected/ArticlesPage';
 import ImagesPage from '../pages/protected/ImagesPage';
+import TagsPage from '../pages/protected/TagsPage';
 import { ROUTES } from './routes';
 
 const router = createBrowserRouter([
@@ -28,6 +29,7 @@ const router = createBrowserRouter([
           { path: ROUTES.USERS, element: <UsersPage /> },
           { path: ROUTES.ARTICLES, element: <ArticlesPage /> },
           { path: ROUTES.IMAGES, element: <ImagesPage /> },
+          { path: ROUTES.TAGS, element: <TagsPage /> },
         ],
       },
     ],

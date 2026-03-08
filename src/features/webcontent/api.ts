@@ -2,15 +2,19 @@ import apiClient, { ApiError } from '../../lib/apiClient';
 import type {
   ArticleResponse,
   CreateArticleRequest,
+  CreateTagRequest,
   ImageResponse,
   Language,
   PageType,
+  TagResponse,
   UpdateArticleRequest,
+  UpdateTagRequest,
 } from './types';
 
 const BASE_URL = import.meta.env.VITE_API_URL ?? '';
 const ARTICLES = '/api/webcontent/articles';
 const IMAGES = '/api/webcontent/images';
+const TAGS = '/api/webcontent/tags';
 
 export const articleApi = {
   getAll: () => apiClient.get<ArticleResponse[]>(ARTICLES),
@@ -60,4 +64,16 @@ export const imageApi = {
   },
 
   delete: (id: number) => apiClient.delete<void>(`${IMAGES}/${id}`),
+};
+
+export const tagApi = {
+  getAll: () => apiClient.get<TagResponse[]>(TAGS),
+
+  create: (data: CreateTagRequest) =>
+    apiClient.post<TagResponse>(TAGS, data),
+
+  update: (id: number, data: UpdateTagRequest) =>
+    apiClient.put<TagResponse>(`${TAGS}/${id}`, data),
+
+  delete: (id: number) => apiClient.delete<void>(`${TAGS}/${id}`),
 };

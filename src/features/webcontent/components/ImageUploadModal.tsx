@@ -47,9 +47,11 @@ export default function ImageUploadModal({ onUpload, onCancel, saving }: Props) 
             />
           </div>
 
-          <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'flex-end' }}>
-            <button type="button" onClick={onCancel} disabled={saving}>{t('common.cancel')}</button>
-            <button type="submit" disabled={!selectedFile || saving}>
+          <div style={{ display: 'flex', gap: '12px', justifyContent: 'flex-end' }}>
+            <button type="button" onClick={onCancel} disabled={saving} className="btn-secondary">
+              {t('common.cancel')}
+            </button>
+            <button type="submit" disabled={!selectedFile || saving} className="btn-accent">
               {saving ? t('image.uploading') : t('image.uploadAction')}
             </button>
           </div>

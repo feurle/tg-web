@@ -1,27 +1,23 @@
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { articleApi, imageApi, tagApi } from '../../features/webcontent/api';
+import { tagApi } from '../../features/webcontent/api';
 import type {
-  ArticleResponse,
-  CreateArticleRequest,
-  ImageResponse,
+  CreateTagRequest,
   TagResponse,
-  UpdateArticleRequest,
+  UpdateTagRequest,
 } from '../../features/webcontent/types';
-import ArticleTable from '../../features/webcontent/components/ArticleTable';
-import ArticleFormModal from '../../features/webcontent/components/ArticleFormModal';
+import TagTable from '../../features/webcontent/components/TagTable';
+import TagFormModal from '../../features/webcontent/components/TagFormModal';
 import ConfirmDialog from '../../components/ConfirmDialog';
 import { ApiError } from '../../lib/apiClient';
 
 type Modal =
   | { kind: 'create' }
-  | { kind: 'edit'; article: ArticleResponse }
-  | { kind: 'delete'; article: ArticleResponse }
+  | { kind: 'edit'; tag: TagResponse }
+  | { kind: 'delete'; tag: TagResponse }
   | null;
 
-export default function ArticlesPage() {
-  const [articles, setArticles] = useState<ArticleResponse[]>([]);
-  const [images, setImages] = useState<ImageResponse[]>([]);
+export default function TagsPage() {
   const [tags, setTags] = useState<TagResponse[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -33,16 +29,10 @@ export default function ArticlesPage() {
     async function load() {
       try {
         setError(null);
-        const [articleData, imageData, tagData] = await Promise.all([
-          articleApi.getAll(),
-          imageApi.getAll(),
-          tagApi.getAll(),
-        ]);
-        setArticles(articleData);
-        setImages(imageData);
-        setTags(tagData);
+        const data = await tagApi.getAll();
+        setTags(data);
       } catch {
-        setError(t('article.loadError'));
+        setError(t('tag.loadError'));
       } finally {
         setLoading(false);
       }
@@ -50,11 +40,11 @@ export default function ArticlesPage() {
     load();
   }, [t]);
 
-  async function handleCreate(data: CreateArticleRequest) {
+  async function handleCreate(data: CreateTagRequest) {
     setSaving(true);
     try {
-      const created = await articleApi.create(data);
-      setArticles((prev) => [...prev, created]);
+      const created = await tagApi.create(data);
+      setTags((prev) => [...prev, created]);
       setModal(null);
     } catch (err) {
       const message = err instanceof ApiError ? err.message : t('common.saveError');
@@ -64,12 +54,12 @@ export default function ArticlesPage() {
     }
   }
 
-  async function handleUpdate(data: UpdateArticleRequest) {
+  async function handleUpdate(data: UpdateTagRequest) {
     if (modal?.kind !== 'edit') return;
     setSaving(true);
     try {
-      const updated = await articleApi.update(modal.article.id, data);
-      setArticles((prev) => prev.map((a) => (a.id === updated.id ? updated : a)));
+      const updated = await tagApi.update(modal.tag.id, data);
+      setTags((prev) => prev.map((tg) => (tg.id === updated.id ? updated : tg)));
       setModal(null);
     } catch (err) {
       const message = err instanceof ApiError ? err.message : t('common.saveError');
@@ -83,8 +73,8 @@ export default function ArticlesPage() {
     if (modal?.kind !== 'delete') return;
     setSaving(true);
     try {
-      await articleApi.delete(modal.article.id);
-      setArticles((prev) => prev.filter((a) => a.id !== modal.article.id));
+      await tagApi.delete(modal.tag.id);
+      setTags((prev) => prev.filter((tg) => tg.id !== modal.tag.id));
       setModal(null);
     } catch {
       setError(t('common.deleteError'));
@@ -98,11 +88,11 @@ export default function ArticlesPage() {
       <div className="page-header">
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
           <div>
-            <div className="page-title">{t('article.management')}</div>
-            <div className="page-subtitle">{t('article.subtitle')}</div>
+            <div className="page-title">{t('tag.management')}</div>
+            <div className="page-subtitle">{t('tag.subtitle')}</div>
           </div>
           <button onClick={() => setModal({ kind: 'create' })} className="btn-accent">
-            + {t('article.new')}
+            + {t('tag.new')}
           </button>
         </div>
       </div>
@@ -116,18 +106,16 @@ export default function ArticlesPage() {
       {loading ? (
         <p style={{ marginLeft: '32px' }}>{t('common.loading')}</p>
       ) : (
-        <ArticleTable
-          articles={articles}
-          onEdit={(a) => setModal({ kind: 'edit', article: a })}
-          onDelete={(a) => setModal({ kind: 'delete', article: a })}
+        <TagTable
+          tags={tags}
+          onEdit={(tg) => setModal({ kind: 'edit', tag: tg })}
+          onDelete={(tg) => setModal({ kind: 'delete', tag: tg })}
         />
       )}
 
       {modal?.kind === 'create' && (
-        <ArticleFormModal
+        <TagFormModal
           mode="create"
-          images={images}
-          tags={tags}
           onSave={handleCreate}
           onCancel={() => setModal(null)}
           saving={saving}
@@ -135,11 +123,9 @@ export default function ArticlesPage() {
       )}
 
       {modal?.kind === 'edit' && (
-        <ArticleFormModal
+        <TagFormModal
           mode="edit"
-          initial={modal.article}
-          images={images}
-          tags={tags}
+          initial={modal.tag}
           onSave={handleUpdate}
           onCancel={() => setModal(null)}
           saving={saving}
@@ -148,7 +134,7 @@ export default function ArticlesPage() {
 
       {modal?.kind === 'delete' && (
         <ConfirmDialog
-          message={t('article.deleteConfirm', { title: modal.article.title })}
+          message={t('tag.deleteConfirm', { name: modal.tag.name })}
           onConfirm={handleDelete}
           onCancel={() => setModal(null)}
         />
