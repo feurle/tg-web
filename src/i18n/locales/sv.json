@@ -10,6 +10,7 @@
     "users": "Användare",
     "articles": "Artiklar",
     "images": "Bilder",
+    "tags": "Taggar",
     "login": "Logga in",
     "logout": "Logga ut",
     "sidebar": {
@@ -80,7 +81,8 @@
       "page": "Sida",
       "language": "Språk",
       "status": "Status",
-      "images": "Bilder"
+      "images": "Bilder",
+      "tags": "Taggar"
     },
     "page": {
       "HOME_TEASER": "Startsida teaser",
@@ -112,6 +114,21 @@
     "loadError": "Det gick inte att läsa in bilder.",
     "uploadError": "Uppladdningen misslyckades.",
     "empty": "Inga bilder hittades."
+  },
+  "tag": {
+    "management": "Tagghantering",
+    "subtitle": "Hantera dina taggar",
+    "new": "Ny tagg",
+    "newHeading": "Ny tagg",
+    "editHeading": "Redigera tagg",
+    "deleteConfirm": "Vill du verkligen ta bort taggen \"{{name}}\"?",
+    "loadError": "Det gick inte att läsa in taggar.",
+    "empty": "Inga taggar hittades.",
+    "name": "Taggnamn *",
+    "col": {
+      "name": "Namn",
+      "actions": "Åtgärder"
+    }
   },
   "customer": {
     "management": "Kundhantering",

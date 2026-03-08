@@ -50,6 +50,13 @@ export default function Sidebar() {
         <span className="sidebar-icon">🖼️</span>
         {t('nav.images')}
       </NavLink>
+      <NavLink
+        to={ROUTES.TAGS}
+        className={({ isActive }) => isActive ? 'sidebar-item active' : 'sidebar-item'}
+      >
+        <span className="sidebar-icon">🏷️</span>
+        {t('nav.tags')}
+      </NavLink>
 
       <div className="sidebar-footer">
         <div className="user-chip">

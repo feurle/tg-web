@@ -10,6 +10,7 @@
     "users": "Users",
     "articles": "Articles",
     "images": "Images",
+    "tags": "Tags",
     "login": "Sign In",
     "logout": "Sign Out",
     "sidebar": {
@@ -80,7 +81,8 @@
       "page": "Page",
       "language": "Language",
       "status": "Status",
-      "images": "Images"
+      "images": "Images",
+      "tags": "Tags"
     },
     "page": {
       "HOME_TEASER": "Home Teaser",
@@ -112,6 +114,21 @@
     "loadError": "Failed to load images.",
     "uploadError": "Upload failed.",
     "empty": "No images found."
+  },
+  "tag": {
+    "management": "Tag Management",
+    "subtitle": "Manage your tags",
+    "new": "New Tag",
+    "newHeading": "New Tag",
+    "editHeading": "Edit Tag",
+    "deleteConfirm": "Really delete tag \"{{name}}\"?",
+    "loadError": "Failed to load tags.",
+    "empty": "No tags found.",
+    "name": "Tag Name *",
+    "col": {
+      "name": "Name",
+      "actions": "Actions"
+    }
   },
   "customer": {
     "management": "Customer Management",

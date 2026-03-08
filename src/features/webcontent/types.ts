@@ -9,6 +9,11 @@ export interface ImageResponse {
   createdAt: string;
 }
 
+export interface TagResponse {
+  id: number;
+  name: string;
+}
+
 export interface ArticleResponse {
   id: number;
   title: string;
@@ -18,6 +23,7 @@ export interface ArticleResponse {
   language: Language;
   publishedDate: string | null;
   images: ImageResponse[];
+  tags: TagResponse[];
   createdAt: string;
   updatedAt: string;
 }
@@ -28,6 +34,7 @@ export interface CreateArticleRequest {
   page: PageType;
   language: Language;
   imageIds: number[];
+  tagIds: number[];
 }
 
 export interface UpdateArticleRequest {
@@ -36,4 +43,13 @@ export interface UpdateArticleRequest {
   state: ArticleState;
   language: Language;
   imageIds: number[];
+  tagIds: number[];
+}
+
+export interface CreateTagRequest {
+  name: string;
+}
+
+export interface UpdateTagRequest {
+  name: string;
 }
