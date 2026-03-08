@@ -19,6 +19,13 @@ export default function ArticleCard({ article }: Props) {
 
   return (
     <div className="article-card">
+      {article.tags.length > 0 && (
+        <div className="article-card-tags">
+          {article.tags.map((tag) => (
+            <span key={tag.id} className="badge badge-green">{tag.name}</span>
+          ))}
+        </div>
+      )}
       <div className="article-card-title">{article.title}</div>
       <div className="article-card-excerpt">{excerpt}</div>
       {dateStr && <div className="article-card-date">{dateStr}</div>}

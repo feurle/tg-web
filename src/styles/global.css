@@ -366,6 +366,13 @@ body {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
 }
 
+.article-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
 .article-card-tag {
   font-size: 11px;
   font-weight: 500;
