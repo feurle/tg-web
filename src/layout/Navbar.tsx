@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { ROUTES } from '../router/routes';
 import { useAuth } from '../features/auth/authStore';
 import LoginModal from '../features/auth/components/LoginModal';
+import logoImg from '../assets/logo.png';
 
 const LANGUAGES = [
   { code: 'de', label: 'Deutsch', flag: '🇩🇪' },
@@ -44,7 +45,7 @@ export default function Navbar() {
     <>
       <nav className="navbar">
         <div className="nav-logo">
-          <div className="nav-logo-dot" />
+          <img src={logoImg} alt="Tier Gesund" className="nav-logo-img" />
           {t('app.name')}
         </div>
         <div className="nav-links">
