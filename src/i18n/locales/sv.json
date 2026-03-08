@@ -1,50 +1,84 @@
 {
+  "app": {
+    "name": "Tier Gesund"
+  },
   "nav": {
     "home": "Hem",
     "news": "Nyheter",
+    "administration": "Förvaltning",
     "customers": "Kunder",
     "users": "Användare",
     "articles": "Artiklar",
     "images": "Bilder",
     "login": "Logga in",
-    "logout": "Logga ut"
+    "logout": "Logga ut",
+    "sidebar": {
+      "management": "Hantering",
+      "webcontent": "Webbinnehål",
+      "admin": "Administrator"
+    }
   },
   "common": {
     "save": "Spara",
-    "saving": "Sparar\u2026",
+    "saving": "Sparar…",
     "cancel": "Avbryt",
     "delete": "Ta bort",
     "edit": "Redigera",
-    "loading": "Laddar\u2026",
+    "loading": "Laddar…",
     "saveError": "Sparandet misslyckades.",
     "deleteError": "Borttagningen misslyckades.",
-    "empty": "\u2014"
+    "empty": "—"
   },
   "pages": {
-    "home": "V\u00e4lkommen",
-    "news": "Nyheter"
+    "home": "Välkommen",
+    "news": "Nyheter & Artiklar"
+  },
+  "home": {
+    "tagline": "Djurhälsa i fokus",
+    "title": {
+      "line1": "Friska djur,",
+      "line2": "glada ägare."
+    },
+    "subtitle": "Expertkunskap om djurhälsa, prevention och vård — presenterad på ett enkelt sätt för varje djurägare.",
+    "cta": {
+      "primary": "Utforska artiklar",
+      "secondary": "Läs mer"
+    },
+    "articles": {
+      "title": "Senaste artiklarna",
+      "viewAll": "Visa alla"
+    }
+  },
+  "news": {
+    "subtitle": "Alla inlägg om djurhälsa, nutrition och vård."
+  },
+  "footer": {
+    "privacy": "Integritet",
+    "imprint": "Impressum",
+    "contact": "Kontakt"
   },
   "article": {
     "management": "Artikelhantering",
-    "new": "+ Ny artikel",
+    "subtitle": "Hantera dina artiklar och innehål",
+    "new": "Ny artikel",
     "newHeading": "Ny artikel",
     "editHeading": "Redigera artikel",
-    "deleteConfirm": "Vill du verkligen ta bort artikeln \u201E{{title}}\u201C?",
-    "loadError": "Det gick inte att l\u00e4sa in artiklar.",
+    "deleteConfirm": "Vill du verkligen ta bort artikeln \"{{title}}\"?",
+    "loadError": "Det gick inte att läsa in artiklar.",
     "empty": "Inga artiklar hittades.",
     "col": {
       "title": "Titel",
       "page": "Sida",
-      "language": "Spr\u00e5k",
+      "language": "Språk",
       "status": "Status",
       "published": "Publicerad",
-      "actions": "\u00c5tg\u00e4rder"
+      "actions": "Åtgärder"
     },
     "form": {
       "title": "Titel *",
-      "content": "Inneh\u00e5ll *",
+      "content": "Innehål *",
       "page": "Sida",
-      "language": "Spr\u00e5k",
+      "language": "Språk",
       "status": "Status",
       "images": "Bilder"
     },
@@ -63,73 +97,76 @@
     "state": {
       "CREATED": "Skapad",
       "PUBLISHED": "Publicerad",
-      "CLOSED": "St\u00e4ngd"
+      "CLOSED": "Stängd"
     }
   },
   "image": {
     "management": "Bildhantering",
-    "upload": "+ Ladda upp bild",
+    "subtitle": "Hantera dina bilder och media",
+    "upload": "Ladda upp bild",
     "uploadHeading": "Ladda upp bild",
-    "uploading": "Laddar upp\u2026",
+    "uploading": "Laddar upp…",
     "uploadAction": "Ladda upp",
-    "selectFile": "V\u00e4lj fil\u2026",
-    "deleteConfirm": "Vill du verkligen ta bort bilden \u201E{{fileName}}\u201C?",
-    "loadError": "Det gick inte att l\u00e4sa in bilder.",
+    "selectFile": "Välj fil…",
+    "deleteConfirm": "Vill du verkligen ta bort bilden \"{{fileName}}\"?",
+    "loadError": "Det gick inte att läsa in bilder.",
     "uploadError": "Uppladdningen misslyckades.",
     "empty": "Inga bilder hittades."
   },
   "customer": {
     "management": "Kundhantering",
-    "new": "+ Ny kund",
+    "subtitle": "Alla registrerade kunder och deras djur",
+    "new": "Ny kund",
     "newHeading": "Ny kund",
     "editHeading": "Redigera kund",
-    "deleteConfirm": "Vill du verkligen ta bort kunden \u201E{{firstName}} {{lastName}}\u201C?",
-    "loadError": "Det gick inte att l\u00e4sa in kunder.",
+    "deleteConfirm": "Vill du verkligen ta bort kunden \"{{firstName}} {{lastName}}\"?",
+    "loadError": "Det gick inte att läsa in kunder.",
     "empty": "Inga kunder hittades.",
     "col": {
       "name": "Namn",
       "email": "E-post",
       "phone": "Telefon",
       "city": "Stad",
-      "actions": "\u00c5tg\u00e4rder"
+      "actions": "Åtgärder"
     },
     "form": {
-      "firstName": "F\u00f6rnamn *",
+      "firstName": "Förnamn *",
       "lastName": "Efternamn *",
       "email": "E-post *",
       "phone": "Telefon",
       "address": "Adress",
       "zip": "Postnummer",
       "city": "Stad",
-      "state": "L\u00e4n/Region",
+      "state": "Län/Region",
       "country": "Land"
     }
   },
   "user": {
-    "management": "Anv\u00e4ndarhantering",
-    "new": "+ Ny anv\u00e4ndare",
-    "newHeading": "Ny anv\u00e4ndare",
-    "editHeading": "Redigera anv\u00e4ndare: {{login}}",
-    "deleteConfirm": "Vill du verkligen ta bort anv\u00e4ndaren \u201E{{login}}\u201C?",
-    "loadError": "Det gick inte att l\u00e4sa in anv\u00e4ndare.",
+    "management": "Användarhantering",
+    "subtitle": "Hantera användare och deras roller",
+    "new": "Ny användare",
+    "newHeading": "Ny användare",
+    "editHeading": "Redigera användare: {{login}}",
+    "deleteConfirm": "Vill du verkligen ta bort användaren \"{{login}}\"?",
+    "loadError": "Det gick inte att läsa in användare.",
     "createError": "Skapandet misslyckades.",
-    "empty": "Inga anv\u00e4ndare hittades.",
+    "empty": "Inga användare hittades.",
     "col": {
       "login": "Inloggning",
       "name": "Namn",
       "email": "E-post",
       "roles": "Roller",
       "active": "Aktiv",
-      "actions": "\u00c5tg\u00e4rder"
+      "actions": "Åtgärder"
     },
     "form": {
       "login": "Inloggning *",
-      "firstName": "F\u00f6rnamn",
+      "firstName": "Förnamn",
       "lastName": "Efternamn",
       "email": "E-post *",
-      "password": "L\u00f6senord *",
-      "passwordEdit": "Nytt l\u00f6senord (tomt = of\u00f6r\u00e4ndrat)",
-      "language": "Spr\u00e5k",
+      "password": "Lösenord *",
+      "passwordEdit": "Nytt lösenord (tomt = oförändrat)",
+      "language": "Språk",
       "imageUrl": "Bild-URL",
       "roles": "Roller",
       "activated": "Aktiverad"
@@ -140,13 +177,15 @@
     }
   },
   "auth": {
-    "loginHeading": "Logga in",
-    "username": "Anv\u00e4ndarnamn",
-    "password": "L\u00f6senord",
+    "loginHeading": "Välkommen tillbaka",
+    "loginSub": "Logga in för att fortsätta",
+    "accessNote": "Åtkomst begränsad till auktoriserade användare",
+    "username": "Användarnamn",
+    "password": "Lösenord",
     "login": "Logga in",
     "loggingIn": "Loggar in...",
     "cancel": "Avbryt",
-    "errorInvalid": "Ogiltigt anv\u00e4ndarnamn eller l\u00f6senord.",
-    "errorGeneral": "Inloggningen misslyckades. F\u00f6rs\u00f6k igen."
+    "errorInvalid": "Ogiltigt användarnamn eller lösenord.",
+    "errorGeneral": "Inloggningen misslyckades. Försök igen."
   }
 }

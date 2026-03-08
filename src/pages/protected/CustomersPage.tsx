@@ -70,18 +70,27 @@ export default function CustomersPage() {
   }
 
   return (
-    <div>
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem' }}>
-        <h1 style={{ margin: 0 }}>{t('customer.management')}</h1>
-        <button onClick={() => setModal({ kind: 'create' })}>{t('customer.new')}</button>
+    <>
+      <div className="page-header">
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+          <div>
+            <div className="page-title">{t('customer.management')}</div>
+            <div className="page-subtitle">{t('customer.subtitle')}</div>
+          </div>
+          <button onClick={() => setModal({ kind: 'create' })} className="btn-accent">
+            + {t('customer.new')}
+          </button>
+        </div>
       </div>
 
       {error && (
-        <p style={{ color: 'red', marginBottom: '1rem' }}>{error}</p>
+        <p style={{ color: 'var(--danger)', marginBottom: '1rem', marginLeft: '32px', marginRight: '32px' }}>
+          {error}
+        </p>
       )}
 
       {loading ? (
-        <p>{t('common.loading')}</p>
+        <p style={{ marginLeft: '32px' }}>{t('common.loading')}</p>
       ) : (
         <CustomerTable
           customers={customers}
@@ -109,6 +118,6 @@ export default function CustomersPage() {
           onCancel={() => setModal(null)}
         />
       )}
-    </div>
+    </>
   );
 }

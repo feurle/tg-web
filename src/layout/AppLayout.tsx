@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom';
 import Navbar from './Navbar';
-import Footer from './Footer';
+import Sidebar from './Sidebar';
 import LanguageSync from '../i18n/LanguageSync';
 
 export default function AppLayout() {
@@ -8,10 +8,12 @@ export default function AppLayout() {
     <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
       <LanguageSync />
       <Navbar />
-      <main style={{ flex: 1, padding: '1rem' }}>
-        <Outlet />
-      </main>
-      <Footer />
+      <div className="app-shell">
+        <Sidebar />
+        <main className="main-content">
+          <Outlet />
+        </main>
+      </div>
     </div>
   );
 }

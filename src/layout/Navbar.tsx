@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ROUTES } from '../router/routes';
@@ -6,67 +6,105 @@ import { useAuth } from '../features/auth/authStore';
 import LoginModal from '../features/auth/components/LoginModal';
 
 const LANGUAGES = [
-  { code: 'de', label: 'DE' },
-  { code: 'en', label: 'EN' },
-  { code: 'sv', label: 'SV' },
-  { code: 'ru', label: 'RU' },
+  { code: 'de', label: 'Deutsch', flag: '🇩🇪' },
+  { code: 'en', label: 'English', flag: '🇬🇧' },
+  { code: 'sv', label: 'Svenska', flag: '🇸🇪' },
+  { code: 'ru', label: 'Русский', flag: '🇷🇺' },
 ];
 
 export default function Navbar() {
-  const { isAuthenticated, logout, user } = useAuth();
+  const { isAuthenticated, logout } = useAuth();
   const [showLogin, setShowLogin] = useState(false);
+  const [showLangDropdown, setShowLangDropdown] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
   const { t, i18n: i18nInstance } = useTranslation();
   const currentLang = i18nInstance.language;
+  const currentLangData = LANGUAGES.find((l) => l.code === currentLang);
 
   function switchLanguage(code: string) {
     localStorage.setItem('lang', code);
     i18nInstance.changeLanguage(code);
+    setShowLangDropdown(false);
   }
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setShowLangDropdown(false);
+      }
+    }
+
+    if (showLangDropdown) {
+      document.addEventListener('mousedown', handleClickOutside);
+      return () => document.removeEventListener('mousedown', handleClickOutside);
+    }
+  }, [showLangDropdown]);
 
   return (
     <>
-      <nav style={{ display: 'flex', gap: '1rem', padding: '1rem', borderBottom: '1px solid #ccc' }}>
-        <NavLink to={ROUTES.HOME}>{t('nav.home')}</NavLink>
-        <NavLink to={ROUTES.NEWS}>{t('nav.news')}</NavLink>
-
-        {isAuthenticated && (
-          <>
-            <NavLink to={ROUTES.CUSTOMERS}>{t('nav.customers')}</NavLink>
-            <NavLink to={ROUTES.USERS}>{t('nav.users')}</NavLink>
-            <NavLink to={ROUTES.ARTICLES}>{t('nav.articles')}</NavLink>
-            <NavLink to={ROUTES.IMAGES}>{t('nav.images')}</NavLink>
-          </>
-        )}
-
-        <span style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-          {LANGUAGES.map((lang) => (
-            <button
-              key={lang.code}
-              onClick={() => switchLanguage(lang.code)}
-              style={{
-                fontWeight: currentLang === lang.code ? 'bold' : 'normal',
-                textDecoration: currentLang === lang.code ? 'underline' : 'none',
-                background: 'none',
-                border: 'none',
-                cursor: 'pointer',
-                padding: '0 0.25rem',
-              }}
+      <nav className="navbar">
+        <div className="nav-logo">
+          <div className="nav-logo-dot" />
+          {t('app.name')}
+        </div>
+        <div className="nav-links">
+          <NavLink
+            to={ROUTES.HOME}
+            className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}
+          >
+            {t('nav.home')}
+          </NavLink>
+          <NavLink
+            to={ROUTES.NEWS}
+            className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}
+          >
+            {t('nav.news')}
+          </NavLink>
+          {isAuthenticated && (
+            <NavLink
+              to={ROUTES.CUSTOMERS}
+              className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}
             >
-              {lang.label}
-            </button>
-          ))}
+              {t('nav.administration')}
+            </NavLink>
+          )}
+        </div>
 
-          <span style={{ marginLeft: '0.5rem' }}>
-            {isAuthenticated ? (
-              <>
-                <span style={{ marginRight: '1rem' }}>{user?.username}</span>
-                <button onClick={logout}>{t('nav.logout')}</button>
-              </>
-            ) : (
-              <button onClick={() => setShowLogin(true)}>{t('nav.login')}</button>
+        <div className="nav-right">
+          <div className="lang-dropdown" ref={dropdownRef}>
+            <button
+              onClick={() => setShowLangDropdown(!showLangDropdown)}
+              className="lang-btn-flag"
+              title={currentLangData?.label}
+            >
+              {currentLangData?.flag}
+            </button>
+            {showLangDropdown && (
+              <div className="lang-dropdown-menu">
+                {LANGUAGES.map((lang) => (
+                  <button
+                    key={lang.code}
+                    onClick={() => switchLanguage(lang.code)}
+                    className="lang-dropdown-item"
+                  >
+                    <span className="lang-flag">{lang.flag}</span>
+                    <span className="lang-name">{lang.label}</span>
+                  </button>
+                ))}
+              </div>
             )}
-          </span>
-        </span>
+          </div>
+
+          {isAuthenticated ? (
+            <button onClick={logout} className="btn-secondary">
+              {t('nav.logout')}
+            </button>
+          ) : (
+            <button onClick={() => setShowLogin(true)} className="btn-primary">
+              {t('nav.login')}
+            </button>
+          )}
+        </div>
       </nav>
 
       {showLogin && <LoginModal onClose={() => setShowLogin(false)} />}
