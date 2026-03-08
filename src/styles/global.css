@@ -102,6 +102,12 @@ body {
   gap: 8px;
 }
 
+.nav-logo-img {
+  height: 64px;
+  width: auto;
+  object-fit: contain;
+}
+
 .nav-logo-dot {
   width: 8px;
   height: 8px;
