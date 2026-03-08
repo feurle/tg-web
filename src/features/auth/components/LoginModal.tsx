@@ -44,38 +44,57 @@ export default function LoginModal({ onClose }: LoginModalProps) {
 
   return (
     <div
-      style={{
-        position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.5)',
-        display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 100,
-      }}
+      className="modal-overlay"
       onClick={onClose}
     >
       <div
-        style={{ background: '#fff', padding: '2rem', borderRadius: '8px', minWidth: '320px' }}
+        className="login-card"
         onClick={(e) => e.stopPropagation()}
       >
-        <h2>{t('auth.loginHeading')}</h2>
-        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-          <input
-            type="text"
-            placeholder={t('auth.username')}
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            disabled={loading}
-          />
-          <input
-            type="password"
-            placeholder={t('auth.password')}
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            disabled={loading}
-          />
-          {error && <p style={{ color: 'red', margin: 0 }}>{error}</p>}
-          <button type="submit" disabled={loading}>
+        <div className="login-logo">
+          <div className="nav-logo-dot" />
+          <span style={{ fontWeight: 600, fontSize: 16, color: 'var(--text-primary)' }}>
+            {t('app.name')}
+          </span>
+        </div>
+        <div className="login-title">{t('auth.loginHeading')}</div>
+        <div className="login-sub">{t('auth.loginSub')}</div>
+
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label className="form-label">{t('auth.username')}</label>
+            <input
+              type="text"
+              className="form-input"
+              placeholder={t('auth.username')}
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              disabled={loading}
+            />
+          </div>
+          <div className="form-group">
+            <label className="form-label">{t('auth.password')}</label>
+            <input
+              type="password"
+              className="form-input"
+              placeholder={t('auth.password')}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              disabled={loading}
+            />
+          </div>
+
+          {error && <p style={{ color: 'var(--danger)', marginBottom: '16px', fontSize: '13px' }}>{error}</p>}
+
+          <button type="submit" className="login-submit" disabled={loading}>
             {loading ? t('auth.loggingIn') : t('auth.login')}
           </button>
-          <button type="button" onClick={onClose} disabled={loading}>{t('auth.cancel')}</button>
         </form>
+
+        <div className="divider" />
+        <div style={{ fontSize: 12, color: 'var(--text-muted)', textAlign: 'center' }}>
+          {t('auth.accessNote')}
+        </div>
       </div>
     </div>
   );

@@ -1,13 +1,22 @@
 {
+  "app": {
+    "name": "Tier Gesund"
+  },
   "nav": {
     "home": "Home",
     "news": "News",
+    "administration": "Administration",
     "customers": "Customers",
     "users": "Users",
     "articles": "Articles",
     "images": "Images",
-    "login": "Login",
-    "logout": "Logout"
+    "login": "Sign In",
+    "logout": "Sign Out",
+    "sidebar": {
+      "management": "Management",
+      "webcontent": "Webcontent",
+      "admin": "Administrator"
+    }
   },
   "common": {
     "save": "Save",
@@ -22,11 +31,36 @@
   },
   "pages": {
     "home": "Welcome",
-    "news": "News"
+    "news": "News & Articles"
+  },
+  "home": {
+    "tagline": "Pet Health in Focus",
+    "title": {
+      "line1": "Healthy Pets,",
+      "line2": "Happy Owners."
+    },
+    "subtitle": "Expert knowledge on pet nutrition, prevention and care — clearly presented for every pet owner.",
+    "cta": {
+      "primary": "Discover Articles",
+      "secondary": "Learn More"
+    },
+    "articles": {
+      "title": "Recent Articles",
+      "viewAll": "View all"
+    }
+  },
+  "news": {
+    "subtitle": "All posts about pet health, nutrition and care."
+  },
+  "footer": {
+    "privacy": "Privacy",
+    "imprint": "Imprint",
+    "contact": "Contact"
   },
   "article": {
     "management": "Article Management",
-    "new": "+ New Article",
+    "subtitle": "Manage your articles and content",
+    "new": "New Article",
     "newHeading": "New Article",
     "editHeading": "Edit Article",
     "deleteConfirm": "Really delete article \"{{title}}\"?",
@@ -68,7 +102,8 @@
   },
   "image": {
     "management": "Image Management",
-    "upload": "+ Upload Image",
+    "subtitle": "Manage your images and media",
+    "upload": "Upload Image",
     "uploadHeading": "Upload Image",
     "uploading": "Uploading…",
     "uploadAction": "Upload",
@@ -80,7 +115,8 @@
   },
   "customer": {
     "management": "Customer Management",
-    "new": "+ New Customer",
+    "subtitle": "All registered customers and their pets",
+    "new": "New Customer",
     "newHeading": "New Customer",
     "editHeading": "Edit Customer",
     "deleteConfirm": "Really delete customer \"{{firstName}} {{lastName}}\"?",
@@ -107,7 +143,8 @@
   },
   "user": {
     "management": "User Management",
-    "new": "+ New User",
+    "subtitle": "Manage users and their roles",
+    "new": "New User",
     "newHeading": "New User",
     "editHeading": "Edit User: {{login}}",
     "deleteConfirm": "Really delete user \"{{login}}\"?",
@@ -140,7 +177,9 @@
     }
   },
   "auth": {
-    "loginHeading": "Login",
+    "loginHeading": "Welcome Back",
+    "loginSub": "Sign in to continue",
+    "accessNote": "Access restricted to authorized users",
     "username": "Username",
     "password": "Password",
     "login": "Sign In",

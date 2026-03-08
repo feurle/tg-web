@@ -1,13 +1,22 @@
 {
+  "app": {
+    "name": "Tier Gesund"
+  },
   "nav": {
     "home": "Home",
     "news": "News",
+    "administration": "Verwaltung",
     "customers": "Kunden",
     "users": "Benutzer",
     "articles": "Artikel",
     "images": "Bilder",
-    "login": "Login",
-    "logout": "Logout"
+    "login": "Anmelden",
+    "logout": "Abmelden",
+    "sidebar": {
+      "management": "Verwaltung",
+      "webcontent": "Webcontent",
+      "admin": "Administrator"
+    }
   },
   "common": {
     "save": "Speichern",
@@ -22,11 +31,36 @@
   },
   "pages": {
     "home": "Willkommen",
-    "news": "Aktuelles"
+    "news": "News & Artikel"
+  },
+  "home": {
+    "tagline": "Tiergesundheit im Fokus",
+    "title": {
+      "line1": "Gesunde Tiere,",
+      "line2": "glückliche Halter."
+    },
+    "subtitle": "Expertenwissen rund um Tierernährung, Vorsorge und Pflege — verständlich aufbereitet für jeden Tierhalter.",
+    "cta": {
+      "primary": "Artikel entdecken",
+      "secondary": "Mehr erfahren"
+    },
+    "articles": {
+      "title": "Aktuelle Artikel",
+      "viewAll": "Alle anzeigen"
+    }
+  },
+  "news": {
+    "subtitle": "Alle Beiträge rund um Tiergesundheit, Ernährung und Pflege."
+  },
+  "footer": {
+    "privacy": "Datenschutz",
+    "imprint": "Impressum",
+    "contact": "Kontakt"
   },
   "article": {
     "management": "Artikelverwaltung",
-    "new": "+ Neuer Artikel",
+    "subtitle": "Verwalten Sie Ihre Artikel und Inhalte",
+    "new": "Neuer Artikel",
     "newHeading": "Neuer Artikel",
     "editHeading": "Artikel bearbeiten",
     "deleteConfirm": "Artikel \u201E{{title}}\u201C wirklich löschen?",
@@ -68,7 +102,8 @@
   },
   "image": {
     "management": "Bildverwaltung",
-    "upload": "+ Bild hochladen",
+    "subtitle": "Verwalten Sie Ihre Bilder und Medien",
+    "upload": "Bild hochladen",
     "uploadHeading": "Bild hochladen",
     "uploading": "Hochladen…",
     "uploadAction": "Hochladen",
@@ -80,7 +115,8 @@
   },
   "customer": {
     "management": "Kundenverwaltung",
-    "new": "+ Neuer Kunde",
+    "subtitle": "Alle registrierten Kunden und deren Tiere",
+    "new": "Neuer Kunde",
     "newHeading": "Neuer Kunde",
     "editHeading": "Kunde bearbeiten",
     "deleteConfirm": "Kunde \u201E{{firstName}} {{lastName}}\u201C wirklich löschen?",
@@ -107,7 +143,8 @@
   },
   "user": {
     "management": "Benutzerverwaltung",
-    "new": "+ Neuer Benutzer",
+    "subtitle": "Benutzer und ihre Rollen verwalten",
+    "new": "Neuer Benutzer",
     "newHeading": "Neuer Benutzer",
     "editHeading": "Benutzer bearbeiten: {{login}}",
     "deleteConfirm": "Benutzer \u201E{{login}}\u201C wirklich löschen?",
@@ -140,7 +177,9 @@
     }
   },
   "auth": {
-    "loginHeading": "Login",
+    "loginHeading": "Willkommen zurück",
+    "loginSub": "Melden Sie sich an um fortzufahren",
+    "accessNote": "Zugang nur für autorisierte Benutzer",
     "username": "Benutzername",
     "password": "Passwort",
     "login": "Anmelden",

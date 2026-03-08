@@ -24,15 +24,27 @@ export default function NewsPage() {
   }, [language]);
 
   return (
-    <div>
-      <h1>{t('pages.news')}</h1>
-      {loading ? (
-        <p>{t('common.loading')}</p>
-      ) : (
-        articles.map((article) => (
-          <ArticleCard key={article.id} article={article} />
-        ))
-      )}
+    <div style={{ background: 'var(--bg)', minHeight: 'calc(100vh - 60px)' }}>
+      <div className="hero" style={{ paddingBottom: 32 }}>
+        <h1 className="hero-title" style={{ fontSize: 36 }}>
+          <strong>{t('pages.news')}</strong>
+        </h1>
+        <p className="hero-sub" style={{ marginBottom: 0 }}>
+          {t('news.subtitle')}
+        </p>
+      </div>
+
+      <div className="section">
+        {loading ? (
+          <p>{t('common.loading')}</p>
+        ) : (
+          <div className="article-grid">
+            {articles.map((article) => (
+              <ArticleCard key={article.id} article={article} />
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 }

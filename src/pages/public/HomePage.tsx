@@ -24,15 +24,39 @@ export default function HomePage() {
   }, [language]);
 
   return (
-    <div>
-      <h1>{t('pages.home')}</h1>
-      {loading ? (
-        <p>{t('common.loading')}</p>
-      ) : (
-        articles.map((article) => (
-          <ArticleCard key={article.id} article={article} />
-        ))
-      )}
+    <div style={{ background: 'var(--bg)', minHeight: 'calc(100vh - 60px)' }}>
+      <div className="hero">
+        <div className="hero-tag">
+          <span>🌿</span> {t('home.tagline')}
+        </div>
+        <h1 className="hero-title">
+          {t('home.title.line1')}<br />
+          <strong>{t('home.title.line2')}</strong>
+        </h1>
+        <p className="hero-sub">
+          {t('home.subtitle')}
+        </p>
+        <div className="hero-actions">
+          <button className="btn-primary">{t('home.cta.primary')}</button>
+          <button className="btn-secondary">{t('home.cta.secondary')}</button>
+        </div>
+      </div>
+
+      <div className="section">
+        <div className="section-header">
+          <span className="section-title">{t('home.articles.title')}</span>
+          <span className="section-link">{t('home.articles.viewAll')} →</span>
+        </div>
+        {loading ? (
+          <p>{t('common.loading')}</p>
+        ) : (
+          <div className="article-grid">
+            {articles.map((article) => (
+              <ArticleCard key={article.id} article={article} />
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 }

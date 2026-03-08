@@ -71,3 +71,14 @@ export default defineConfig([
   },
 ])
 ```
+
+
+## Build Docker Image
+
+```shell
+# Build
+docker build -t tg-web .
+
+# Start with Backend-URL
+docker run -p 80:80 -e BACKEND_URL=http://dein-backend:8080 tg-web
+```

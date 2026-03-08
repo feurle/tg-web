@@ -64,16 +64,27 @@ export default function ImagesPage() {
   }
 
   return (
-    <div>
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem' }}>
-        <h1 style={{ margin: 0 }}>{t('image.management')}</h1>
-        <button onClick={() => setModal({ kind: 'upload' })}>{t('image.upload')}</button>
+    <>
+      <div className="page-header">
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+          <div>
+            <div className="page-title">{t('image.management')}</div>
+            <div className="page-subtitle">{t('image.subtitle')}</div>
+          </div>
+          <button onClick={() => setModal({ kind: 'upload' })} className="btn-accent">
+            + {t('image.upload')}
+          </button>
+        </div>
       </div>
 
-      {error && <p style={{ color: 'red', marginBottom: '1rem' }}>{error}</p>}
+      {error && (
+        <p style={{ color: 'var(--danger)', marginBottom: '1rem', marginLeft: '32px', marginRight: '32px' }}>
+          {error}
+        </p>
+      )}
 
       {loading ? (
-        <p>{t('common.loading')}</p>
+        <p style={{ marginLeft: '32px' }}>{t('common.loading')}</p>
       ) : (
         <ImageGrid
           images={images}
@@ -96,6 +107,6 @@ export default function ImagesPage() {
           onCancel={() => setModal(null)}
         />
       )}
-    </div>
+    </>
   );
 }

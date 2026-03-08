@@ -11,55 +11,52 @@ export default function UserTable({ users, onEdit, onDelete }: Props) {
   const { t } = useTranslation();
 
   if (users.length === 0) {
-    return <p style={{ color: '#666' }}>{t('user.empty')}</p>;
+    return (
+      <div style={{ margin: '0 32px' }}>
+        <p style={{ color: 'var(--text-muted)' }}>{t('user.empty')}</p>
+      </div>
+    );
   }
 
   return (
-    <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.9rem' }}>
-      <thead>
-        <tr style={{ background: '#f5f5f5', textAlign: 'left' }}>
-          <th style={th}>{t('user.col.login')}</th>
-          <th style={th}>{t('user.col.name')}</th>
-          <th style={th}>{t('user.col.email')}</th>
-          <th style={th}>{t('user.col.roles')}</th>
-          <th style={th}>{t('user.col.active')}</th>
-          <th style={th}>{t('user.col.actions')}</th>
-        </tr>
-      </thead>
-      <tbody>
-        {users.map((u) => (
-          <tr key={u.id} style={{ borderBottom: '1px solid #eee' }}>
-            <td style={td}><code>{u.login}</code></td>
-            <td style={td}>{[u.firstName, u.lastName].filter(Boolean).join(' ') || t('common.empty')}</td>
-            <td style={td}>{u.email}</td>
-            <td style={td}>{u.authorities.length > 0 ? u.authorities.join(', ') : t('common.empty')}</td>
-            <td style={td}>
-              <span style={{ color: u.activated ? 'green' : '#999' }}>
-                {u.activated ? t('user.active.yes') : t('user.active.no')}
-              </span>
-            </td>
-            <td style={td}>
-              <button onClick={() => onEdit(u)} style={{ marginRight: '0.5rem' }}>
-                {t('common.edit')}
-              </button>
-              <button onClick={() => onDelete(u)} style={{ color: 'red' }}>
-                {t('common.delete')}
-              </button>
-            </td>
+    <div className="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>{t('user.col.login')}</th>
+            <th>{t('user.col.name')}</th>
+            <th>{t('user.col.email')}</th>
+            <th>{t('user.col.roles')}</th>
+            <th>{t('user.col.active')}</th>
+            <th></th>
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {users.map((u) => (
+            <tr key={u.id}>
+              <td style={{ fontWeight: 500 }}><code>{u.login}</code></td>
+              <td className="td-secondary">{[u.firstName, u.lastName].filter(Boolean).join(' ') || t('common.empty')}</td>
+              <td className="td-secondary">{u.email}</td>
+              <td className="td-secondary">{u.authorities.length > 0 ? u.authorities.join(', ') : t('common.empty')}</td>
+              <td className="td-secondary">
+                <span style={{ color: u.activated ? 'var(--accent)' : 'var(--text-muted)' }}>
+                  {u.activated ? t('user.active.yes') : t('user.active.no')}
+                </span>
+              </td>
+              <td>
+                <div className="row-actions">
+                  <button onClick={() => onEdit(u)} className="icon-btn" title={t('common.edit')}>
+                    ✏️
+                  </button>
+                  <button onClick={() => onDelete(u)} className="icon-btn danger" title={t('common.delete')}>
+                    🗑
+                  </button>
+                </div>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 }
-
-const th: React.CSSProperties = {
-  padding: '0.5rem 0.75rem',
-  borderBottom: '2px solid #ddd',
-  fontWeight: 600,
-};
-
-const td: React.CSSProperties = {
-  padding: '0.5rem 0.75rem',
-  verticalAlign: 'middle',
-};
