@@ -32,7 +32,8 @@
   },
   "pages": {
     "home": "Willkommen",
-    "news": "News & Artikel"
+    "news": "News & Artikel",
+    "about": "Über uns"
   },
   "home": {
     "tagline": "Tiergesundheit im Fokus",
@@ -52,6 +53,9 @@
   },
   "news": {
     "subtitle": "Alle Beiträge rund um Tiergesundheit, Ernährung und Pflege."
+  },
+  "about": {
+    "subtitle": "Erfahre mehr über uns und unser Team."
   },
   "footer": {
     "privacy": "Datenschutz",
@@ -86,9 +90,11 @@
     },
     "page": {
       "HOME_TEASER": "Home Teaser",
-      "HOME_PAGE": "Home",
+      "HOME_PAGE": "Home Page",
       "NEWS_TEASER": "News Teaser",
-      "NEWS_PAGE": "News"
+      "NEWS_PAGE": "News Page",
+      "ABOUT_TEASER": "Über mich Teaser",
+      "ABOUT_PAGE": "Über mich Seite"
     },
     "language": {
       "GERMAN": "Deutsch",

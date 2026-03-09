@@ -4,6 +4,7 @@ import AppLayout from '../layout/AppLayout';
 import ProtectedRoute from './ProtectedRoute';
 import HomePage from '../pages/public/HomePage';
 import NewsPage from '../pages/public/NewsPage';
+import AboutPage from '../pages/public/AboutPage';
 import CustomersPage from '../pages/protected/CustomersPage';
 import UsersPage from '../pages/protected/UsersPage';
 import ArticlesPage from '../pages/protected/ArticlesPage';
@@ -17,6 +18,7 @@ const router = createBrowserRouter([
     children: [
       { path: ROUTES.HOME, element: <HomePage /> },
       { path: ROUTES.NEWS, element: <NewsPage /> },
+      { path: ROUTES.ABOUT, element: <AboutPage /> },
     ],
   },
   {
