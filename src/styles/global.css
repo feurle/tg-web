@@ -168,6 +168,37 @@ body {
     border-color: var(--border-strong);
 }
 
+/* Language filter (ArticlesPage) */
+.language-filter {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+}
+
+.language-filter .lang-btn {
+    padding: 4px 8px;
+    font-size: 20px;
+    line-height: 1;
+    background: var(--surface);
+    border-radius: 8px;
+    opacity: 0.45;
+    filter: grayscale(60%);
+    font-family: inherit;
+}
+
+.language-filter .lang-btn:hover {
+    opacity: 0.8;
+    filter: grayscale(0%);
+    border-color: var(--border-strong);
+}
+
+.language-filter .lang-btn--active {
+    opacity: 1;
+    filter: grayscale(0%);
+    border-color: var(--border-strong);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
 /* Language Dropdown */
 .lang-dropdown {
     position: relative;

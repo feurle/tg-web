@@ -28,7 +28,8 @@
     "loading": "Loading…",
     "saveError": "Saving failed.",
     "deleteError": "Deletion failed.",
-    "empty": "—"
+    "empty": "—",
+    "all": "All"
   },
   "pages": {
     "home": "Welcome",

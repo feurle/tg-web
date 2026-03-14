@@ -28,7 +28,8 @@
     "loading": "Laden…",
     "saveError": "Speichern fehlgeschlagen.",
     "deleteError": "Löschen fehlgeschlagen.",
-    "empty": "—"
+    "empty": "—",
+    "all": "Alle"
   },
   "pages": {
     "home": "Willkommen",

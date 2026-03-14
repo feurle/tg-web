@@ -28,7 +28,8 @@
     "loading": "Laddar…",
     "saveError": "Sparandet misslyckades.",
     "deleteError": "Borttagningen misslyckades.",
-    "empty": "—"
+    "empty": "—",
+    "all": "Alla"
   },
   "pages": {
     "home": "Välkommen",

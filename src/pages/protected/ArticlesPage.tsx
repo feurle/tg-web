@@ -5,13 +5,24 @@ import type {
   ArticleResponse,
   CreateArticleRequest,
   ImageResponse,
+  Language,
   TagResponse,
   UpdateArticleRequest,
 } from '../../features/webcontent/types';
+import { LANGUAGE_MAP } from '../../features/webcontent/language';
 import ArticleTable from '../../features/webcontent/components/ArticleTable';
 import ArticleFormModal from '../../features/webcontent/components/ArticleFormModal';
 import ConfirmDialog from '../../components/ConfirmDialog';
 import { ApiError } from '../../lib/apiClient';
+
+const LANGUAGES = Object.entries(LANGUAGE_MAP) as [string, Language][];
+
+const FLAG: Record<string, string> = {
+  de: '🇩🇪',
+  en: '🇬🇧',
+  sv: '🇸🇪',
+  ru: '🇷🇺',
+};
 
 type Modal =
   | { kind: 'create' }
@@ -27,6 +38,7 @@ export default function ArticlesPage() {
   const [error, setError] = useState<string | null>(null);
   const [modal, setModal] = useState<Modal>(null);
   const [saving, setSaving] = useState(false);
+  const [languageFilter, setLanguageFilter] = useState<Language | null>(null);
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -101,6 +113,25 @@ export default function ArticlesPage() {
             <div className="page-title">{t('article.management')}</div>
             <div className="page-subtitle">{t('article.subtitle')}</div>
           </div>
+          <div className="language-filter">
+            <button
+              className={`lang-btn${languageFilter === null ? ' lang-btn--active' : ''}`}
+              onClick={() => setLanguageFilter(null)}
+              title={t('common.all')}
+            >
+              🌐
+            </button>
+            {LANGUAGES.map(([locale, lang]) => (
+              <button
+                key={lang}
+                className={`lang-btn${languageFilter === lang ? ' lang-btn--active' : ''}`}
+                onClick={() => setLanguageFilter(lang)}
+                title={t(`article.language.${lang}`, lang)}
+              >
+                {FLAG[locale]}
+              </button>
+            ))}
+          </div>
           <button onClick={() => setModal({ kind: 'create' })} className="btn-accent">
             + {t('article.new')}
           </button>
@@ -117,7 +148,7 @@ export default function ArticlesPage() {
         <p style={{ marginLeft: '32px' }}>{t('common.loading')}</p>
       ) : (
         <ArticleTable
-          articles={articles}
+          articles={languageFilter ? articles.filter((a) => a.language === languageFilter) : articles}
           onEdit={(a) => setModal({ kind: 'edit', article: a })}
           onDelete={(a) => setModal({ kind: 'delete', article: a })}
         />
