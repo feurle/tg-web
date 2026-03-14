@@ -32,7 +32,8 @@
   },
   "pages": {
     "home": "Welcome",
-    "news": "News & Articles"
+    "news": "News & Articles",
+    "about": "About Us"
   },
   "home": {
     "tagline": "Pet Health in Focus",
@@ -52,6 +53,9 @@
   },
   "news": {
     "subtitle": "All posts about pet health, nutrition and care."
+  },
+  "about": {
+    "subtitle": "Learn more about us and our team."
   },
   "footer": {
     "privacy": "Privacy",

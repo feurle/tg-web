@@ -61,6 +61,12 @@ export default function Navbar() {
           >
             {t('nav.news')}
           </NavLink>
+          <NavLink
+            to={ROUTES.ABOUT}
+            className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}
+          >
+            {t('pages.about')}
+          </NavLink>
           {isAuthenticated && (
             <NavLink
               to={ROUTES.CUSTOMERS}

@@ -32,7 +32,8 @@
   },
   "pages": {
     "home": "Välkommen",
-    "news": "Nyheter & Artiklar"
+    "news": "Nyheter & Artiklar",
+    "about": "Om oss"
   },
   "home": {
     "tagline": "Djurhälsa i fokus",
@@ -52,6 +53,9 @@
   },
   "news": {
     "subtitle": "Alla inlägg om djurhälsa, nutrition och vård."
+  },
+  "about": {
+    "subtitle": "Läs mer om oss och vårt team."
   },
   "footer": {
     "privacy": "Integritet",
