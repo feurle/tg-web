@@ -118,7 +118,10 @@
     "deleteConfirm": "Vill du verkligen ta bort bilden \"{{fileName}}\"?",
     "loadError": "Det gick inte att läsa in bilder.",
     "uploadError": "Uppladdningen misslyckades.",
-    "empty": "Inga bilder hittades."
+    "empty": "Inga bilder hittades.",
+    "editHeading": "Redigera bild",
+    "title": "Titel",
+    "fileName": "Filnamn"
   },
   "tag": {
     "management": "Tagghantering",

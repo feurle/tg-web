@@ -2,7 +2,7 @@ import { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 interface Props {
-  onUpload: (file: File) => void;
+  onUpload: (file: File, title: string) => void;
   onCancel: () => void;
   saving: boolean;
 }
@@ -10,6 +10,7 @@ interface Props {
 export default function ImageUploadModal({ onUpload, onCancel, saving }: Props) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [title, setTitle] = useState('');
   const { t } = useTranslation();
 
   function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -19,7 +20,7 @@ export default function ImageUploadModal({ onUpload, onCancel, saving }: Props) 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (selectedFile) {
-      onUpload(selectedFile);
+      onUpload(selectedFile, title);
     }
   }
 
@@ -47,6 +48,15 @@ export default function ImageUploadModal({ onUpload, onCancel, saving }: Props) 
             />
           </div>
 
+          <label style={labelStyle}>
+            {t('image.title')}
+            <input
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              style={inputStyle}
+            />
+          </label>
+
           <div style={{ display: 'flex', gap: '12px', justifyContent: 'flex-end' }}>
             <button type="button" onClick={onCancel} disabled={saving} className="btn-secondary">
               {t('common.cancel')}
@@ -69,6 +79,14 @@ const overlay: React.CSSProperties = {
 const modal: React.CSSProperties = {
   background: '#fff', padding: '2rem', borderRadius: '8px',
   width: '100%', maxWidth: '400px',
+};
+
+const labelStyle: React.CSSProperties = {
+  display: 'flex', flexDirection: 'column', fontSize: '0.8rem', fontWeight: 500, gap: '2px',
+};
+
+const inputStyle: React.CSSProperties = {
+  padding: '0.35rem 0.5rem', border: '1px solid #ccc', borderRadius: '4px', fontSize: '1rem',
 };
 
 const dropArea: React.CSSProperties = {

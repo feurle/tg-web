@@ -8,6 +8,7 @@ import type {
   PageType,
   TagResponse,
   UpdateArticleRequest,
+  UpdateImageRequest,
   UpdateTagRequest,
 } from './types';
 
@@ -45,9 +46,10 @@ export const imageApi = {
 
   getDownloadUrl: (id: number) => `${BASE_URL}${IMAGES}/${id}/download`,
 
-  upload: async (file: File): Promise<ImageResponse> => {
+  upload: async (file: File, title?: string): Promise<ImageResponse> => {
     const formData = new FormData();
     formData.append('file', file);
+    if (title) formData.append('title', title);
 
     const response = await fetch(`${BASE_URL}${IMAGES}`, {
       method: 'POST',
@@ -62,6 +64,9 @@ export const imageApi = {
 
     return response.json() as Promise<ImageResponse>;
   },
+
+  update: (id: number, data: UpdateImageRequest) =>
+    apiClient.put<ImageResponse>(`${IMAGES}/${id}`, data),
 
   delete: (id: number) => apiClient.delete<void>(`${IMAGES}/${id}`),
 };
