@@ -9,7 +9,7 @@ export default function Footer() {
                 <div className="footer-brand">{t('app.name')}</div>
                 <div className="footer-left">
                     <div className="footer-copy">© {new Date().getFullYear()} {t('app.name')}</div>
-                    <div className="footer-version"> x </div>
+                    <div className="footer-version"> </div>
                 </div>
             </div>
             <div className="footer-right">

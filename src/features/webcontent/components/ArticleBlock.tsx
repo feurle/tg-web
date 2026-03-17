@@ -1,3 +1,4 @@
+import DOMPurify from 'dompurify';
 import type { ArticleResponse } from '../types';
 import { imageApi } from '../api';
 
@@ -6,14 +7,6 @@ interface Props {
 }
 
 export default function ArticleBlock({ article }: Props) {
-  // Format date if it exists
-  const dateStr = article.createdAt
-    ? new Date(article.createdAt).toLocaleDateString('de-DE', {
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit',
-      })
-    : '';
 
   return (
     <div className="article-card">
@@ -37,8 +30,7 @@ export default function ArticleBlock({ article }: Props) {
         </div>
       )}
       <div className="article-card-title">{article.title}</div>
-      <div style={{ whiteSpace: 'pre-wrap' }}>{article.content}</div>
-      {dateStr && <div className="article-card-date">{dateStr}</div>}
+      <div className="article-card-excerpt" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(article.content) }} />
     </div>
   );
 }

@@ -701,7 +701,7 @@ function HomePage({ onNavigate }) {
           <span className="section-title">Aktuelle Artikel</span>
           <span className="section-link" onClick={() => onNavigate("news")}>Alle anzeigen →</span>
         </div>
-        <div className="article-grid">
+        <div className="article-grid-3">
           {articles.map(a => (
             <div key={a.id} className="article-card">
               <div className="article-card-tag">{a.tag}</div>
@@ -724,7 +724,7 @@ function NewsPage() {
         <p className="hero-sub" style={{ marginBottom: 0 }}>Alle Beiträge rund um Tiergesundheit, Ernährung und Pflege.</p>
       </div>
       <div className="section">
-        <div className="article-grid">
+        <div className="article-grid-3">
           {[...articles, ...articles].map((a, i) => (
             <div key={i} className="article-card">
               <div className="article-card-tag">{a.tag}</div>

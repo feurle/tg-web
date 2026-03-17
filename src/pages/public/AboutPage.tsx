@@ -3,6 +3,7 @@ import {useTranslation} from 'react-i18next';
 import {articleApi} from '../../features/webcontent/api';
 import type {ArticleResponse} from '../../features/webcontent/types';
 import ArticleBlock from '../../features/webcontent/components/ArticleBlock';
+import AboutTeaser from '../../features/webcontent/components/AboutTeaser';
 import {resolveLanguage} from '../../features/webcontent/language';
 
 export default function AboutPage() {
@@ -41,25 +42,16 @@ export default function AboutPage() {
     return (
         <div style={{background: 'var(--bg)', minHeight: 'calc(100vh - 60px)'}}>
             <div className="hero" style={{paddingBottom: 32}}>
-
-                <h1 className="hero-title" style={{fontSize: 36}}>
-                    <strong>{t('pages.about')}</strong>
-                </h1>
-                <p className="hero-sub" style={{marginBottom: 0}}>
-                    {t('about.subtitle')}
-                </p>
                 {!loading && teasers.map((article) => (
-                    <ArticleBlock key={article.id} article={article}/>
+                    <AboutTeaser key={article.id} article={article}/>
                 ))}
-
-
             </div>
 
             <div className="section">
                 {loading ? (
                     <p>{t('common.loading')}</p>
                 ) : (
-                    <div className="article-grid" style={{gridTemplateColumns: '1fr'}}>
+                    <div className="article-grid-3" style={{gridTemplateColumns: '1fr'}}>
                         {pages.map((article) => (
                             <ArticleBlock key={article.id} article={article}/>
                         ))}
