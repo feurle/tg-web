@@ -5,6 +5,7 @@ export type Language = 'GERMAN' | 'ENGLISH' | 'SWEDISH' | 'RUSSIAN';
 export interface ImageResponse {
   id: number;
   fileName: string;
+  title: string;
   mimeType: string;
   createdAt: string;
 }
@@ -44,6 +45,10 @@ export interface UpdateArticleRequest {
   language: Language;
   imageIds: number[];
   tagIds: number[];
+}
+
+export interface UpdateImageRequest {
+  title: string;
 }
 
 export interface CreateTagRequest {

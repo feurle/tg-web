@@ -118,7 +118,10 @@
     "deleteConfirm": "Really delete image \"{{fileName}}\"?",
     "loadError": "Failed to load images.",
     "uploadError": "Upload failed.",
-    "empty": "No images found."
+    "empty": "No images found.",
+    "editHeading": "Edit Image",
+    "title": "Title",
+    "fileName": "File name"
   },
   "tag": {
     "management": "Tag Management",

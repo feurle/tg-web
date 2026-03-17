@@ -1,14 +1,16 @@
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { imageApi } from '../../features/webcontent/api';
-import type { ImageResponse } from '../../features/webcontent/types';
+import type { ImageResponse, UpdateImageRequest } from '../../features/webcontent/types';
 import ImageGrid from '../../features/webcontent/components/ImageGrid';
 import ImageUploadModal from '../../features/webcontent/components/ImageUploadModal';
+import ImageFormModal from '../../features/webcontent/components/ImageFormModal';
 import ConfirmDialog from '../../components/ConfirmDialog';
 import { ApiError } from '../../lib/apiClient';
 
 type Modal =
   | { kind: 'upload' }
+  | { kind: 'edit'; image: ImageResponse }
   | { kind: 'delete'; image: ImageResponse }
   | null;
 
@@ -35,15 +37,29 @@ export default function ImagesPage() {
     load();
   }, [t]);
 
-  async function handleUpload(file: File) {
+  async function handleUpload(file: File, title: string) {
     setSaving(true);
     try {
-      const created = await imageApi.upload(file);
+      const created = await imageApi.upload(file, title);
       setImages((prev) => [...prev, created]);
       setModal(null);
     } catch (err) {
       const message = err instanceof ApiError ? err.message : t('image.uploadError');
       setError(message);
+    } finally {
+      setSaving(false);
+    }
+  }
+
+  async function handleEdit(data: UpdateImageRequest) {
+    if (modal?.kind !== 'edit') return;
+    setSaving(true);
+    try {
+      const updated = await imageApi.update(modal.image.id, data);
+      setImages((prev) => prev.map((img) => img.id === updated.id ? updated : img));
+      setModal(null);
+    } catch {
+      setError(t('common.saveError'));
     } finally {
       setSaving(false);
     }
@@ -88,7 +104,17 @@ export default function ImagesPage() {
       ) : (
         <ImageGrid
           images={images}
+          onEdit={(img) => setModal({ kind: 'edit', image: img })}
           onDelete={(img) => setModal({ kind: 'delete', image: img })}
+        />
+      )}
+
+      {modal?.kind === 'edit' && (
+        <ImageFormModal
+          image={modal.image}
+          onSave={handleEdit}
+          onCancel={() => setModal(null)}
+          saving={saving}
         />
       )}
 

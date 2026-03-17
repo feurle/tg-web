@@ -4,10 +4,11 @@ import type { ImageResponse } from '../types';
 
 interface Props {
   images: ImageResponse[];
+  onEdit: (image: ImageResponse) => void;
   onDelete: (image: ImageResponse) => void;
 }
 
-export default function ImageGrid({ images, onDelete }: Props) {
+export default function ImageGrid({ images, onEdit, onDelete }: Props) {
   const { t } = useTranslation();
 
   if (images.length === 0) {
@@ -28,6 +29,15 @@ export default function ImageGrid({ images, onDelete }: Props) {
             style={imgStyle}
           />
           <p style={fileName} title={img.fileName}>{img.fileName}</p>
+          {img.title && <p style={fileName} title={img.title}>{img.title}</p>}
+          <button
+            onClick={() => onEdit(img)}
+            className="icon-btn"
+            title={t('common.edit')}
+            style={{ width: '100%', justifyContent: 'center' }}
+          >
+            ✏️ {t('common.edit')}
+          </button>
           <button
             onClick={() => onDelete(img)}
             className="icon-btn danger"

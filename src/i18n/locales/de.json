@@ -120,7 +120,10 @@
     "deleteConfirm": "Bild \u201E{{fileName}}\u201C wirklich löschen?",
     "loadError": "Bilder konnten nicht geladen werden.",
     "uploadError": "Hochladen fehlgeschlagen.",
-    "empty": "Keine Bilder vorhanden."
+    "empty": "Keine Bilder vorhanden.",
+    "editHeading": "Bild bearbeiten",
+    "title": "Titel",
+    "fileName": "Dateiname"
   },
   "tag": {
     "management": "Tag-Verwaltung",
