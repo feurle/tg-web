@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import RichTextEditor from '../../../components/RichTextEditor';
 import type {
   ArticleResponse,
   ArticleState,
@@ -109,13 +110,7 @@ export default function ArticleFormModal(props: Props) {
 
           <label style={labelStyle}>
             {t('article.form.content')}
-            <textarea
-              value={content}
-              onChange={(e) => setContent(e.target.value)}
-              required
-              rows={8}
-              style={{ ...inputStyle, resize: 'vertical', fontFamily: 'inherit' }}
-            />
+            <RichTextEditor value={content} onChange={setContent} />
           </label>
 
           <div style={{ display: 'flex', gap: '0.75rem' }}>

@@ -44,10 +44,10 @@ export default function Navbar() {
   return (
     <>
       <nav className="navbar">
-        <div className="nav-logo">
+        <NavLink to={ROUTES.HOME} className="nav-logo">
           <img src={logoImg} alt="Tier Gesund" className="nav-logo-img" />
           {t('app.name')}
-        </div>
+        </NavLink>
         <div className="nav-links">
           <NavLink
             to={ROUTES.HOME}

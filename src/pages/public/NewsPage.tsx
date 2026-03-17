@@ -38,7 +38,7 @@ export default function NewsPage() {
         {loading ? (
           <p>{t('common.loading')}</p>
         ) : (
-          <div className="article-grid">
+          <div className="article-grid-3">
             {articles.map((article) => (
               <ArticleCard key={article.id} article={article} />
             ))}

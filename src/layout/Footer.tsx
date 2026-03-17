@@ -5,12 +5,9 @@ export default function Footer() {
 
     return (
         <footer className="footer">
-            <div>
-                <div className="footer-brand">{t('app.name')}</div>
-                <div className="footer-left">
-                    <div className="footer-copy">© {new Date().getFullYear()} {t('app.name')}</div>
-                    <div className="footer-version"> x </div>
-                </div>
+            <div className="footer-left">
+                <div className="footer-copy">© {new Date().getFullYear()} {t('app.name')}</div>
+                <div className="footer-version"></div>
             </div>
             <div className="footer-right">
                 <span className="footer-link">{t('footer.privacy')}</span>
