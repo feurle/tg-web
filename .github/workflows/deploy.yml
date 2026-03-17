@@ -88,8 +88,11 @@ jobs:
             # Fetch newest Image
             docker pull ${{ env.IMAGE_NAME }}:latest
 
-            # Restart container
-            docker compose -f /appbase/tg-app/docker-compose.yml up tg-web -d
+            # Restart container prod
+            docker compose -f /appbase/tg-app/prod-compose.yml up tg-web-prod -d
+
+            # Restart container test
+            docker compose -f /appbase/tg-app/test-compose.yml up tg-web-test -d
 
             # Cleanup old images
             docker image prune -f
