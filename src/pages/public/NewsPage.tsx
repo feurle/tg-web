@@ -40,7 +40,7 @@ export default function NewsPage() {
         {loading ? (
           <p>{t('common.loading')}</p>
         ) : (
-          <div className="article-grid-3">
+          <div className="article-grid-1">
             {articles.map((article) => (
               <ArticleBlock key={article.id} article={article} />
             ))}
