@@ -30,7 +30,7 @@ export default function ArticleCard({ article, onClick }: Readonly<Props>) {
         </div>
       )}
       <div className="article-card-title">{article.title}</div>
-      <div className="article-card-excerpt" dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(excerpt)}} />
+      <div className="article-content article-card-content" dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(excerpt)}} />
       {dateStr && <div className="article-card-date">{dateStr}</div>}
     </div>
   );

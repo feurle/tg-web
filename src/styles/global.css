@@ -427,7 +427,8 @@ body {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
 }
 
-.article-card-tags {
+.article-card-tags,
+.article-modal-tags {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
@@ -452,25 +453,50 @@ body {
     letter-spacing: -0.2px;
 }
 
-.article-card-excerpt {
-    font-size: 13px;
+.article-content {
     color: var(--text-secondary);
     line-height: 1.5;
     font-weight: 300;
 }
 
-.article-card-excerpt ul,
-.article-card-excerpt ol {
+.article-content ul,
+.article-content ol {
     padding-left: 1.5em;
     margin: 0.5em 0;
 }
 
-.article-card-excerpt ul {
+.article-content ul {
     list-style: disc;
 }
 
-.article-card-excerpt ol {
+.article-content ol {
     list-style: decimal;
+}
+
+.article-card-content {
+    font-size: 13px;
+}
+
+.article-block-content {
+    font-size: 15px;
+}
+
+.article-modal-content {
+    font-size: 15px;
+}
+
+.article-title {
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0 0 12px 0;
+}
+
+.article-block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
 }
 
 .article-card-date {

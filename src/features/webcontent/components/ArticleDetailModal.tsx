@@ -1,22 +1,11 @@
 import DOMPurify from 'dompurify';
 import type {ArticleResponse} from '../types';
 import {imageApi} from '../api';
+import {splitContent} from '../utils';
 
 interface Props {
     article: ArticleResponse;
     onClose: () => void;
-}
-
-function splitContent(content: string, count: number): string[] {
-    if (!content || count === 0) return [content || ''];
-
-    const paragraphs = content.split(/(?<=<\/p>)/).filter(p => p.trim());
-    if (paragraphs.length === 0) return [content];
-
-    const perSegment = Math.ceil(paragraphs.length / count);
-    return Array.from({length: count}, (_, i) =>
-        paragraphs.slice(i * perSegment, (i + 1) * perSegment).join('')
-    );
 }
 
 export default function ArticleDetailModal({article, onClose}: Props) {
@@ -33,13 +22,13 @@ export default function ArticleDetailModal({article, onClose}: Props) {
                 <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 20}}>
                     <div>
                         {article.tags.length > 0 && (
-                            <div className="article-card-tags" style={{marginBottom: 8}}>
+                            <div className="article-modal-tags" style={{marginBottom: 8}}>
                                 {article.tags.map((tag) => (
                                     <span key={tag.id} className="badge badge-green">{tag.name}</span>
                                 ))}
                             </div>
                         )}
-                        <h2 style={{margin: 0, fontSize: 22, color: 'var(--text-primary)'}}>{article.title}</h2>
+                        <h2 className="article-title">{article.title}</h2>
                     </div>
                     <button
                         onClick={onClose}
@@ -52,58 +41,40 @@ export default function ArticleDetailModal({article, onClose}: Props) {
 
                 {images.length === 0 && content && (
                     <div
-                        className="article-card-excerpt"
+                        className="article-content article-modal-content"
                         style={{lineHeight: 1.7}}
                         dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(content)}}
                     />
                 )}
 
-                {images.length === 1 && (
-                    <div style={{overflow: 'hidden'}}>
-                        <img
-                            src={imageApi.getDownloadUrl(images[0].id)}
-                            alt={images[0].fileName}
-                            title={images[0].fileName}
-                            style={{float: 'left', width: '40%', height: 'auto', borderRadius: 8, marginRight: 24, marginBottom: 8}}
-                        />
-                        {content && (
-                            <div
-                                className="article-card-excerpt"
-                                style={{lineHeight: 1.7}}
-                                dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(content)}}
-                            />
-                        )}
-                    </div>
-                )}
-
-                {images.length > 1 && (
-                    images.map((image, index) => (
-                        <div
-                            key={image.id}
-                            style={{
-                                display: 'flex',
-                                flexDirection: index % 2 === 0 ? 'row' : 'row-reverse',
-                                gap: 24,
-                                marginBottom: 24,
-                                alignItems: 'flex-start',
-                            }}
-                        >
+                {images.map((image, index) => {
+                    const floatLeft = index % 2 === 0;
+                    return (
+                        <div key={image.id} style={{overflow: 'hidden', marginBottom: 24}}>
                             <img
                                 src={imageApi.getDownloadUrl(image.id)}
                                 alt={image.fileName}
                                 title={image.fileName}
-                                style={{width: '40%', height: 'auto', borderRadius: 8, flexShrink: 0}}
+                                style={{
+                                    float: floatLeft ? 'left' : 'right',
+                                    width: '40%',
+                                    height: 'auto',
+                                    borderRadius: 8,
+                                    marginRight: floatLeft ? 24 : 0,
+                                    marginLeft: floatLeft ? 0 : 24,
+                                    marginBottom: 8,
+                                }}
                             />
                             {segments[index] && (
                                 <div
-                                    className="article-card-excerpt"
-                                    style={{lineHeight: 1.7, flex: 1}}
+                                    className="article-content article-modal-content"
+                                    style={{lineHeight: 1.7}}
                                     dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(segments[index])}}
                                 />
                             )}
                         </div>
-                    ))
-                )}
+                    );
+                })}
             </div>
         </div>
     );
