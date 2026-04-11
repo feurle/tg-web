@@ -4,7 +4,7 @@
   },
   "nav": {
     "home": "Home",
-    "news": "News",
+    "news": "Fachbeiträge",
     "administration": "Verwaltung",
     "customers": "Kunden",
     "users": "Benutzer",
@@ -33,7 +33,7 @@
   },
   "pages": {
     "home": "Willkommen",
-    "news": "News & Artikel",
+    "news": "Fachbeiträge & Publikationen",
     "about": "Über uns"
   },
   "home": {
@@ -57,6 +57,10 @@
   },
   "about": {
     "subtitle": "Erfahre mehr über uns und unser Team."
+  },
+  "contact": {
+    "appointment": "Termin vereinbaren",
+    "message": "Nachricht schreiben"
   },
   "footer": {
     "privacy": "Datenschutz",

@@ -4,12 +4,15 @@ import {articleApi} from '../../features/webcontent/api';
 import type {ArticleResponse} from '../../features/webcontent/types';
 import ArticleCard from '../../features/webcontent/components/ArticleCard';
 import {resolveLanguage} from '../../features/webcontent/language';
-import AboutTeaser from "../../features/webcontent/components/AboutTeaser.tsx";
+import Teaser from '../../features/webcontent/components/Teaser';
+import ContactButton from '../../features/webcontent/components/ContactButton';
+import ArticleDetailModal from '../../features/webcontent/components/ArticleDetailModal';
 
 export default function HomePage() {
     const [teasers, setTeasers] = useState<ArticleResponse[]>([]);
-    const [pages, setPages] = useState<ArticleResponse[]>([]);
+    const [articles, setArticles] = useState<ArticleResponse[]>([]);
     const [fetchedLanguage, setFetchedLanguage] = useState<string | null>(null);
+    const [selectedArticle, setSelectedArticle] = useState<ArticleResponse | null>(null);
     const {t, i18n: i18nInstance} = useTranslation();
     const language = resolveLanguage(i18nInstance.language);
     const loading = fetchedLanguage !== language;
@@ -18,19 +21,19 @@ export default function HomePage() {
         let cancelled = false;
         Promise.all([
             articleApi.getPublishedByPage('HOME_TEASER', language),
-            articleApi.getPublishedByPage('HOME_PAGE', language),
+            articleApi.getPublishedByPage('NEWS_PAGE', language),
         ])
             .then(([teaserData, pageData]) => {
                 if (!cancelled) {
                     setTeasers(teaserData);
-                    setPages(pageData);
+                    setArticles(pageData);
                     setFetchedLanguage(language);
                 }
             })
             .catch(() => {
                 if (!cancelled) {
                     setTeasers([]);
-                    setPages([]);
+                    setArticles([]);
                     setFetchedLanguage(language);
                 }
             });
@@ -44,8 +47,9 @@ export default function HomePage() {
 
             <div className="hero" style={{paddingBottom: 32}}>
                 {!loading && teasers.map((article) => (
-                    <AboutTeaser key={article.id} article={article}/>
+                    <Teaser key={article.id} article={article}/>
                 ))}
+                <ContactButton/>
             </div>
 
             <div className="section">
@@ -57,12 +61,16 @@ export default function HomePage() {
                     <p>{t('common.loading')}</p>
                 ) : (
                     <div className="article-grid-3">
-                        {pages.map((article) => (
-                            <ArticleCard key={article.id} article={article}/>
+                        {articles.map((article) => (
+                            <ArticleCard key={article.id} article={article} onClick={() => setSelectedArticle(article)}/>
                         ))}
                     </div>
                 )}
             </div>
+
+            {selectedArticle && (
+                <ArticleDetailModal article={selectedArticle} onClose={() => setSelectedArticle(null)}/>
+            )}
         </div>
     );
 }

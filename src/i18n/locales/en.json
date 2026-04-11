@@ -4,7 +4,7 @@
   },
   "nav": {
     "home": "Home",
-    "news": "News",
+    "news": "Articles",
     "administration": "Administration",
     "customers": "Customers",
     "users": "Users",
@@ -33,7 +33,7 @@
   },
   "pages": {
     "home": "Welcome",
-    "news": "News & Articles",
+    "news": "Articles & Publications",
     "about": "About Us"
   },
   "home": {
@@ -57,6 +57,10 @@
   },
   "about": {
     "subtitle": "Learn more about us and our team."
+  },
+  "contact": {
+    "appointment": "Book Appointment",
+    "message": "Send Message"
   },
   "footer": {
     "privacy": "Privacy",
