@@ -6,10 +6,9 @@ interface Props {
     article: ArticleResponse;
 }
 
-export default function AboutTeaser({article}: Props) {
+export default function Teaser({article}: Props) {
     return (
         <>
-
             {article.tags.length > 0 && (
                 <div className="hero-tag"><span>🌿</span>
                     {article.tags.map((tag) => (
@@ -17,8 +16,6 @@ export default function AboutTeaser({article}: Props) {
                     ))}
                 </div>
             )}
-
-
             <h1 className="hero-title">
                 <span dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(article.title)}}/>
             </h1>
@@ -29,6 +26,7 @@ export default function AboutTeaser({article}: Props) {
                             key={image.id}
                             src={imageApi.getDownloadUrl(image.id)}
                             alt={image.fileName}
+                            title={image.fileName}
                             style={{maxWidth: '100%', height: 'auto', display: 'inline-block', marginBottom: 8}}
                         />
                     ))}
@@ -37,11 +35,6 @@ export default function AboutTeaser({article}: Props) {
             {article.content && (
                 <p className="hero-sub" dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(article.content)}}/>
             )}
-
-            <div className="hero-actions">
-                <button className="btn-primary">Button</button>
-                <button className="btn-secondary">Button</button>
-            </div>
         </>
     );
 }

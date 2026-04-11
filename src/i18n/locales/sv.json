@@ -4,7 +4,7 @@
   },
   "nav": {
     "home": "Hem",
-    "news": "Nyheter",
+    "news": "Fackartiklar",
     "administration": "Förvaltning",
     "customers": "Kunder",
     "users": "Användare",
@@ -33,7 +33,7 @@
   },
   "pages": {
     "home": "Välkommen",
-    "news": "Nyheter & Artiklar",
+    "news": "Fackartiklar & Publikationer",
     "about": "Om oss"
   },
   "home": {
@@ -57,6 +57,10 @@
   },
   "about": {
     "subtitle": "Läs mer om oss och vårt team."
+  },
+  "contact": {
+    "appointment": "Boka tid",
+    "message": "Skicka meddelande"
   },
   "footer": {
     "privacy": "Integritet",

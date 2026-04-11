@@ -459,6 +459,20 @@ body {
     font-weight: 300;
 }
 
+.article-card-excerpt ul,
+.article-card-excerpt ol {
+    padding-left: 1.5em;
+    margin: 0.5em 0;
+}
+
+.article-card-excerpt ul {
+    list-style: disc;
+}
+
+.article-card-excerpt ol {
+    list-style: decimal;
+}
+
 .article-card-date {
     margin-top: 14px;
     font-size: 12px;

@@ -2,8 +2,9 @@ import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { articleApi } from '../../features/webcontent/api';
 import type { ArticleResponse } from '../../features/webcontent/types';
-import ArticleCard from '../../features/webcontent/components/ArticleCard';
+import ArticleBlock from '../../features/webcontent/components/ArticleBlock';
 import { resolveLanguage } from '../../features/webcontent/language';
+import ContactButton from '../../features/webcontent/components/ContactButton';
 
 export default function NewsPage() {
   const [articles, setArticles] = useState<ArticleResponse[]>([]);
@@ -32,6 +33,7 @@ export default function NewsPage() {
         <p className="hero-sub" style={{ marginBottom: 0 }}>
           {t('news.subtitle')}
         </p>
+        <ContactButton/>
       </div>
 
       <div className="section">
@@ -40,7 +42,7 @@ export default function NewsPage() {
         ) : (
           <div className="article-grid-3">
             {articles.map((article) => (
-              <ArticleCard key={article.id} article={article} />
+              <ArticleBlock key={article.id} article={article} />
             ))}
           </div>
         )}

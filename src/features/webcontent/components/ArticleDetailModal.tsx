@@ -7,7 +7,22 @@ interface Props {
     onClose: () => void;
 }
 
+function splitContent(content: string, count: number): string[] {
+    if (!content || count === 0) return [content || ''];
+
+    const paragraphs = content.split(/(?<=<\/p>)/).filter(p => p.trim());
+    if (paragraphs.length === 0) return [content];
+
+    const perSegment = Math.ceil(paragraphs.length / count);
+    return Array.from({length: count}, (_, i) =>
+        paragraphs.slice(i * perSegment, (i + 1) * perSegment).join('')
+    );
+}
+
 export default function ArticleDetailModal({article, onClose}: Props) {
+    const {images, content} = article;
+    const segments = splitContent(content ?? '', images.length);
+
     return (
         <div className="modal-overlay" onClick={onClose}>
             <div
@@ -35,26 +50,59 @@ export default function ArticleDetailModal({article, onClose}: Props) {
                     </button>
                 </div>
 
-                {article.images.length > 0 && (
-                    <div style={{marginBottom: 20}}>
-                        {article.images.map((image) => (
-                            <img
-                                key={image.id}
-                                src={imageApi.getDownloadUrl(image.id)}
-                                alt={image.fileName}
-                                title={image.fileName}
-                                style={{maxWidth: '100%', height: 'auto', display: 'block', marginBottom: 8, borderRadius: 8}}
-                            />
-                        ))}
-                    </div>
-                )}
-
-                {article.content && (
+                {images.length === 0 && content && (
                     <div
                         className="article-card-excerpt"
                         style={{lineHeight: 1.7}}
-                        dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(article.content)}}
+                        dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(content)}}
                     />
+                )}
+
+                {images.length === 1 && (
+                    <div style={{overflow: 'hidden'}}>
+                        <img
+                            src={imageApi.getDownloadUrl(images[0].id)}
+                            alt={images[0].fileName}
+                            title={images[0].fileName}
+                            style={{float: 'left', width: '40%', height: 'auto', borderRadius: 8, marginRight: 24, marginBottom: 8}}
+                        />
+                        {content && (
+                            <div
+                                className="article-card-excerpt"
+                                style={{lineHeight: 1.7}}
+                                dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(content)}}
+                            />
+                        )}
+                    </div>
+                )}
+
+                {images.length > 1 && (
+                    images.map((image, index) => (
+                        <div
+                            key={image.id}
+                            style={{
+                                display: 'flex',
+                                flexDirection: index % 2 === 0 ? 'row' : 'row-reverse',
+                                gap: 24,
+                                marginBottom: 24,
+                                alignItems: 'flex-start',
+                            }}
+                        >
+                            <img
+                                src={imageApi.getDownloadUrl(image.id)}
+                                alt={image.fileName}
+                                title={image.fileName}
+                                style={{width: '40%', height: 'auto', borderRadius: 8, flexShrink: 0}}
+                            />
+                            {segments[index] && (
+                                <div
+                                    className="article-card-excerpt"
+                                    style={{lineHeight: 1.7, flex: 1}}
+                                    dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(segments[index])}}
+                                />
+                            )}
+                        </div>
+                    ))
                 )}
             </div>
         </div>

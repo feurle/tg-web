@@ -1,12 +1,15 @@
 import type { ArticleResponse } from '../types';
+import DOMPurify from "dompurify";
 
 interface Props {
   article: ArticleResponse;
+  onClick?: () => void;
 }
 
-export default function ArticleCard({ article }: Props) {
+export default function ArticleCard({ article, onClick }: Readonly<Props>) {
   // Extract excerpt from content (first 150 chars)
-  const excerpt = article.content?.split('\n')[0]?.substring(0, 150) || '';
+  const rawExcerpt = article.content?.split('\n')[0]?.substring(0, 150) || '';
+  const excerpt = rawExcerpt ? rawExcerpt + ' ...' : '';
 
   // Format date if it exists
   const dateStr = article.createdAt
@@ -18,7 +21,7 @@ export default function ArticleCard({ article }: Props) {
     : '';
 
   return (
-    <div className="article-card">
+    <div className="article-card" onClick={onClick} style={onClick ? {cursor: 'pointer'} : undefined}>
       {article.tags.length > 0 && (
         <div className="article-card-tags">
           {article.tags.map((tag) => (
@@ -27,7 +30,7 @@ export default function ArticleCard({ article }: Props) {
         </div>
       )}
       <div className="article-card-title">{article.title}</div>
-      <div className="article-card-excerpt">{excerpt}</div>
+      <div className="article-card-excerpt" dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(excerpt)}} />
       {dateStr && <div className="article-card-date">{dateStr}</div>}
     </div>
   );
