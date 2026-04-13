@@ -4,7 +4,8 @@ export const ROUTES = {
   ABOUT: '/about',
   CUSTOMERS: '/customers',
   USERS: '/users',
-  ARTICLES: '/webcontent/articles',
+  ARTICLES_HOME: '/webcontent/articles/home',
+  ARTICLES_NEWS: '/webcontent/articles/news',
   IMAGES: '/webcontent/images',
   TAGS: '/webcontent/tags',
 } as const;

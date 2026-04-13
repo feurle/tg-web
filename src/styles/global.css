@@ -379,19 +379,27 @@ body {
 
 .section-header {
     display: flex;
-    align-items: baseline;
-    justify-content: space-between;
+    flex-direction: column;
     margin-bottom: 24px;
+    padding-top: 16px;
     padding-bottom: 16px;
-    border-bottom: 1px solid var(--border);
+    border-top: 1px solid var(--border);
 }
 
 .section-title {
-    font-size: 20px;
+    font-size: 24px;
     font-weight: 600;
     color: var(--text-primary);
     letter-spacing: -0.4px;
 }
+
+.section-sub {
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--text-secondary);
+    letter-spacing: -0.4px;
+}
+
 
 .section-link {
     font-size: 13px;
@@ -410,6 +418,75 @@ body {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 16px;
+}
+
+.article-grid-4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+}
+
+
+.contact-info-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+}
+
+.contact-info-col {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.contact-info-label {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: var(--text-secondary);
+    margin-bottom: 6px;
+}
+
+.contact-info-value {
+    font-size: 15px;
+    color: var(--text-primary);
+    line-height: 1.5;
+}
+
+.contact-info-link {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+.contact-info-link:hover {
+    text-decoration: underline;
+}
+
+.contact-info-hours-row {
+    display: flex;
+    gap: 12px;
+    align-items: baseline;
+}
+
+.contact-info-hours-day {
+    font-size: 15px;
+    color: var(--text-secondary);
+    min-width: 140px;
+    flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+    .contact-info-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+    }
+}
+
+@media (max-width: 480px) {
+    .contact-info-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 .article-card {

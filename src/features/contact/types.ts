@@ -1,0 +1,15 @@
+export interface OfficeHour {
+    label: string;
+    hours: string;
+}
+
+export interface ContactInfoResponse {
+    id: number;
+    phone: string;
+    email: string;
+    street: string;
+    city: string;
+    zip: string;
+    officeHours: OfficeHour[];
+    updatedAt: string;
+}
