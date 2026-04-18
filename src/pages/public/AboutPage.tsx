@@ -3,7 +3,7 @@ import {useTranslation} from 'react-i18next';
 import {articleApi} from '../../features/webcontent/api';
 import type {ArticleResponse} from '../../features/webcontent/types';
 import ArticleBlock from '../../features/webcontent/components/ArticleBlock';
-import Teaser from '../../features/webcontent/components/Teaser';
+import Teaser from '../../features/webcontent/components/home/Teaser.tsx';
 import ContactButton from '../../features/webcontent/components/ContactButton';
 import {resolveLanguage} from '../../features/webcontent/language';
 

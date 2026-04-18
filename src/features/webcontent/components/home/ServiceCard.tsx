@@ -1,11 +1,11 @@
-import type { ArticleResponse } from '../types';
+import type { ArticleResponse } from '../../types.ts';
 import DOMPurify from "dompurify";
 
 interface Props {
   article: ArticleResponse;
 }
 
-export default function ArticleCard({ article }: Readonly<Props>) {
+export default function ServiceCard({ article }: Readonly<Props>) {
   return (
     <div className="article-card">
       <div className="article-card-title">{article.title}</div>

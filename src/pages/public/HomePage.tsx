@@ -2,9 +2,9 @@ import {useEffect, useState} from 'react';
 import {useTranslation} from 'react-i18next';
 import {articleApi} from '../../features/webcontent/api';
 import type {ArticleResponse} from '../../features/webcontent/types';
-import ServiceCard from '../../features/webcontent/components/ServiceCard';
+import ServiceCard from '../../features/webcontent/components/home/ServiceCard.tsx';
 import {resolveLanguage} from '../../features/webcontent/language';
-import Teaser from '../../features/webcontent/components/Teaser';
+import Teaser from '../../features/webcontent/components/home/Teaser.tsx';
 import ContactButton from '../../features/webcontent/components/ContactButton';
 import ContactInfo from '../../features/contact/components/ContactInfo';
 
@@ -69,7 +69,9 @@ export default function HomePage() {
 
             <ContactInfo />
 
-
+            <div className="hero">
+                <ContactButton/>
+            </div>
         </div>
     );
 }

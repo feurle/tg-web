@@ -324,8 +324,7 @@ body {
 
 /* Public Page */
 .hero {
-    padding: 80px 32px 64px;
-    max-width: 900px;
+    padding: 80px 64px 64px;
     margin: 0 auto;
 }
 
@@ -372,18 +371,18 @@ body {
 
 /* Article Grid */
 .section {
-    padding: 0 32px 64px;
-    max-width: 900px;
+    padding: 0 64px 64px;
     margin: 0 auto;
+    border-top: 1px solid var(--border);
 }
 
 .section-header {
     display: flex;
     flex-direction: column;
+    align-items: center;
     margin-bottom: 24px;
     padding-top: 16px;
     padding-bottom: 16px;
-    border-top: 1px solid var(--border);
 }
 
 .section-title {
@@ -436,6 +435,7 @@ body {
 .contact-info-col {
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 4px;
 }
 
@@ -446,6 +446,7 @@ body {
     letter-spacing: 0.6px;
     color: var(--text-secondary);
     margin-bottom: 6px;
+    margin-top: 6px;
 }
 
 .contact-info-value {
