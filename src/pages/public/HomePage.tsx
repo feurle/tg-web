@@ -6,7 +6,7 @@ import ServiceCard from '../../features/webcontent/components/home/ServiceCard.t
 import {resolveLanguage} from '../../features/webcontent/language';
 import Teaser from '../../features/webcontent/components/home/Teaser.tsx';
 import ContactButton from '../../features/webcontent/components/ContactButton';
-import ContactInfo from '../../features/contact/components/ContactInfo';
+import ContactSection from '../../features/contact/components/ContactSection.tsx';
 
 export default function HomePage() {
     const [teasers, setTeasers] = useState<ArticleResponse[]>([]);
@@ -67,7 +67,7 @@ export default function HomePage() {
                 )}
             </div>
 
-            <ContactInfo />
+            <ContactSection />
 
             <div className="hero">
                 <ContactButton/>

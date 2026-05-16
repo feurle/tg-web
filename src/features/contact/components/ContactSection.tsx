@@ -3,7 +3,7 @@ import {useTranslation} from 'react-i18next';
 import {contactApi} from '../api';
 import type {ContactInfoResponse} from '../types';
 
-export default function ContactInfo() {
+export default function ContactSection() {
     const {t} = useTranslation();
     const [info, setInfo] = useState<ContactInfoResponse | null>(null);
 
