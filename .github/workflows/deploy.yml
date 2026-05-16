@@ -89,7 +89,7 @@ jobs:
             docker pull ${{ env.IMAGE_NAME }}:latest
 
             # Restart container prod
-            docker compose -f /appbase/tg-app/prod-compose.yml up tg-web-prod -d
+            docker compose -f /appbase/tg-app/prod-compose.yml up tg-web -d
 
             # Restart container test
             docker compose -f /appbase/tg-app/test-compose.yml up tg-web-test -d
