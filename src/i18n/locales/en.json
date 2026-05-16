@@ -50,6 +50,10 @@
     "articles": {
       "title": "Recent Articles",
       "viewAll": "View all"
+    },
+    "contact": {
+      "title": "Contact & Office Hours",
+      "sub": "We are here for you and your pet"
     }
   },
   "news": {
@@ -61,6 +65,12 @@
   "contact": {
     "appointment": "Book Appointment",
     "message": "Send Message"
+  },
+  "contactInfo": {
+    "phone": "Phone",
+    "email": "Email",
+    "address": "Address",
+    "officeHours": "Office Hours"
   },
   "footer": {
     "privacy": "Privacy",

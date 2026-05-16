@@ -1,6 +1,6 @@
 import DOMPurify from 'dompurify';
-import type {ArticleResponse} from '../types';
-import {imageApi} from '../api';
+import type {ArticleResponse} from '../../types.ts';
+import {imageApi} from '../../api.ts';
 
 interface Props {
     article: ArticleResponse;

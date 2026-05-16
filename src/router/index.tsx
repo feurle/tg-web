@@ -29,7 +29,8 @@ const router = createBrowserRouter([
         children: [
           { path: ROUTES.CUSTOMERS, element: <CustomersPage /> },
           { path: ROUTES.USERS, element: <UsersPage /> },
-          { path: ROUTES.ARTICLES, element: <ArticlesPage /> },
+          { path: ROUTES.ARTICLES_HOME, element: <ArticlesPage section="home" /> },
+          { path: ROUTES.ARTICLES_NEWS, element: <ArticlesPage section="news" /> },
           { path: ROUTES.IMAGES, element: <ImagesPage /> },
           { path: ROUTES.TAGS, element: <TagsPage /> },
         ],

@@ -48,8 +48,12 @@
       "secondary": "Kontakt"
     },
     "articles": {
-      "title": "Aktuelle Artikel",
-      "viewAll": "Alle anzeigen"
+      "title": "Unsere Behandlungsmethoden",
+      "sub": "Ein individueller Ansatz für jedes Tier"
+    },
+    "contact": {
+      "title": "Kontakt & Spechzeiten",
+      "sub": "Wir sind für Sie und Ihr Tier da"
     }
   },
   "news": {
@@ -61,6 +65,12 @@
   "contact": {
     "appointment": "Termin vereinbaren",
     "message": "Nachricht schreiben"
+  },
+  "contactInfo": {
+    "phone": "Telefon",
+    "email": "E-Mail",
+    "address": "Adresse",
+    "officeHours": "Sprechzeiten"
   },
   "footer": {
     "privacy": "Datenschutz",

@@ -30,7 +30,11 @@ type Modal =
   | { kind: 'delete'; article: ArticleResponse }
   | null;
 
-export default function ArticlesPage() {
+interface Props {
+  section: 'home' | 'news';
+}
+
+export default function ArticlesPage({ section }: Props) {
   const [articles, setArticles] = useState<ArticleResponse[]>([]);
   const [images, setImages] = useState<ImageResponse[]>([]);
   const [tags, setTags] = useState<TagResponse[]>([]);
@@ -148,7 +152,9 @@ export default function ArticlesPage() {
         <p style={{ marginLeft: '32px' }}>{t('common.loading')}</p>
       ) : (
         <ArticleTable
-          articles={languageFilter ? articles.filter((a) => a.language === languageFilter) : articles}
+          articles={articles
+            .filter((a) => a.page.toUpperCase().startsWith(section.toUpperCase()))
+            .filter((a) => !languageFilter || a.language === languageFilter)}
           onEdit={(a) => setModal({ kind: 'edit', article: a })}
           onDelete={(a) => setModal({ kind: 'delete', article: a })}
         />
