@@ -5,48 +5,50 @@ import type { ArticleResponse } from '../../features/webcontent/types';
 import ArticleBlock from '../../features/webcontent/components/ArticleBlock';
 import { resolveLanguage } from '../../features/webcontent/language';
 import ContactButton from '../../features/webcontent/components/ContactButton';
+import HeroComponent from "../../features/webcontent/components/HeroComponent.tsx";
+import Col3Component from "../../features/webcontent/components/Col3Component.tsx";
+import Col4Component from "../../features/webcontent/components/Col4Component.tsx";
 
 export default function NewsPage() {
   const [articles, setArticles] = useState<ArticleResponse[]>([]);
   const [fetchedLanguage, setFetchedLanguage] = useState<string | null>(null);
-  const { t, i18n: i18nInstance } = useTranslation();
+  const { i18n: i18nInstance } = useTranslation();
   const language = resolveLanguage(i18nInstance.language);
   const loading = fetchedLanguage !== language;
 
   useEffect(() => {
     let cancelled = false;
-    Promise.all([
-      articleApi.getPublishedByPageType('NEWS_TEASER', language),
-      articleApi.getPublishedByPageType('NEWS_PAGE', language),
-    ])
-      .then(([teasers, full]) => { if (!cancelled) { setArticles([...teasers, ...full]); setFetchedLanguage(language); } })
-      .catch(() => { if (!cancelled) { setArticles([]); setFetchedLanguage(language); } });
-    return () => { cancelled = true; };
+    articleApi.getPublishedByPage('news', language)
+        .then((data) => {
+          if (!cancelled) {
+            setArticles([...data].sort((a, b) => a.order - b.order));
+            setFetchedLanguage(language);
+          }
+        })
+        .catch(() => {
+          if (!cancelled) {
+            setArticles([]);
+            setFetchedLanguage(language);
+          }
+        });
+    return () => {
+      cancelled = true;
+    };
   }, [language]);
 
   return (
-    <div style={{ background: 'var(--bg)', minHeight: 'calc(100vh - 60px)' }}>
-      <div className="hero" style={{ paddingBottom: 32 }}>
-        <h1 className="hero-title" style={{ fontSize: 36 }}>
-          <strong>{t('pages.news')}</strong>
-        </h1>
-        <p className="hero-sub" style={{ marginBottom: 0 }}>
-          {t('news.subtitle')}
-        </p>
-        <ContactButton/>
-      </div>
+      <div style={{background: 'var(--bg)', minHeight: 'calc(100vh - 60px)'}}>
+        {!loading && articles.map((article) => {
+          if (article.articleType === 'HERO') return <HeroComponent key={article.id} article={article} />;
+          if (article.articleType === 'COL3') return <Col3Component key={article.id} article={article} />;
+          if (article.articleType === 'COL4') return <Col4Component key={article.id} article={article} />;
+          if (article.articleType === 'TEXT') return <ArticleBlock key={article.id} article={article} />;
+          return null;
+        })}
 
-      <div className="section">
-        {loading ? (
-          <p>{t('common.loading')}</p>
-        ) : (
-          <div className="article-grid-1">
-            {articles.map((article) => (
-              <ArticleBlock key={article.id} article={article} />
-            ))}
-          </div>
-        )}
+        <div className="hero">
+          <ContactButton/>
+        </div>
       </div>
-    </div>
   );
 }

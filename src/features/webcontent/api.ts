@@ -7,7 +7,7 @@ import type {
   ImageResponse,
   Language,
   PageResponse,
-  PageType,
+  ArticleType,
   SectionResponse,
   TagResponse,
   UpdateArticleRequest,
@@ -28,10 +28,17 @@ export const articleApi = {
   getByPage: (slug: string) =>
       apiClient.get<ArticleResponse[]>(`${ARTICLES}/page/${slug}`),
 
-  getByPageType: (pageType: PageType) =>
+  getPublishedByPage: (slug: string, language?: Language) => {
+    const url = language
+      ? `${ARTICLES}/page/${slug}/published?language=${language}`
+      : `${ARTICLES}/page/${slug}/published`;
+    return apiClient.get<ArticleResponse[]>(url);
+  },
+
+  getByPageType: (pageType: ArticleType) =>
     apiClient.get<ArticleResponse[]>(`${ARTICLES}/pagetype/${pageType}`),
 
-  getPublishedByPageType: (pageType: PageType, language?: Language) => {
+  getPublishedByPageType: (pageType: ArticleType, language?: Language) => {
     const url = language
       ? `${ARTICLES}/pagetype/${pageType}/published?language=${language}`
       : `${ARTICLES}/pagetype/${pageType}/published`;

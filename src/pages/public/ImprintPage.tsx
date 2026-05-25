@@ -36,17 +36,13 @@ export default function ImprintPage() {
 
   return (
     <div style={{ background: 'var(--bg)', minHeight: 'calc(100vh - 60px)' }}>
-      <div className="section">
         {loading ? (
           <p>{t('common.loading')}</p>
         ) : (
-          <div className="article-grid-1">
-            {articles.map((article) => (
+            articles.map((article) => (
               <ArticleBlock key={article.id} article={article} />
-            ))}
-          </div>
+            ))
         )}
-      </div>
     </div>
   );
 }

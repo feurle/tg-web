@@ -3,13 +3,14 @@ import {useTranslation} from 'react-i18next';
 import {articleApi} from '../../features/webcontent/api';
 import type {ArticleResponse} from '../../features/webcontent/types';
 import ArticleBlock from '../../features/webcontent/components/ArticleBlock';
-import Teaser from '../../features/webcontent/components/home/Teaser.tsx';
+import HeroComponent from '../../features/webcontent/components/HeroComponent.tsx';
 import ContactButton from '../../features/webcontent/components/ContactButton';
 import {resolveLanguage} from '../../features/webcontent/language';
+import Col3Component from "../../features/webcontent/components/Col3Component.tsx";
+import Col4Component from "../../features/webcontent/components/Col4Component.tsx";
 
 export default function AboutPage() {
-    const [teasers, setTeasers] = useState<ArticleResponse[]>([]);
-    const [pages, setPages] = useState<ArticleResponse[]>([]);
+    const [articles, setArticles] = useState<ArticleResponse[]>([]);
     const [fetchedLanguage, setFetchedLanguage] = useState<string | null>(null);
     const {t, i18n: i18nInstance} = useTranslation();
     const language = resolveLanguage(i18nInstance.language);
@@ -17,21 +18,16 @@ export default function AboutPage() {
 
     useEffect(() => {
         let cancelled = false;
-        Promise.all([
-            articleApi.getPublishedByPageType('ABOUT_TEASER', language),
-            articleApi.getPublishedByPageType('ABOUT_PAGE', language),
-        ])
-            .then(([teaserData, pageData]) => {
+        articleApi.getPublishedByPage('about', language)
+            .then((data) => {
                 if (!cancelled) {
-                    setTeasers(teaserData);
-                    setPages(pageData);
+                    setArticles([...data].sort((a, b) => a.order - b.order));
                     setFetchedLanguage(language);
                 }
             })
             .catch(() => {
                 if (!cancelled) {
-                    setTeasers([]);
-                    setPages([]);
+                    setArticles([]);
                     setFetchedLanguage(language);
                 }
             });
@@ -42,23 +38,16 @@ export default function AboutPage() {
 
     return (
         <div style={{background: 'var(--bg)', minHeight: 'calc(100vh - 60px)'}}>
-            <div className="hero" style={{paddingBottom: 32}}>
-                {!loading && teasers.map((article) => (
-                    <Teaser key={article.id} article={article}/>
-                ))}
-                <ContactButton/>
-            </div>
+            {!loading && articles.map((article) => {
+                if (article.articleType === 'HERO') return <HeroComponent key={article.id} article={article} />;
+                if (article.articleType === 'COL3') return <Col3Component key={article.id} article={article} />;
+                if (article.articleType === 'COL4') return <Col4Component key={article.id} article={article} />;
+                if (article.articleType === 'TEXT') return <ArticleBlock key={article.id} article={article} />;
+                return null;
+            })}
 
-            <div className="section">
-                {loading ? (
-                    <p>{t('common.loading')}</p>
-                ) : (
-                    <div className="article-grid-1">
-                        {pages.map((article) => (
-                            <ArticleBlock key={article.id} article={article}/>
-                        ))}
-                    </div>
-                )}
+            <div className="hero">
+                <ContactButton/>
             </div>
         </div>
     );

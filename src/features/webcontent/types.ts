@@ -1,5 +1,5 @@
 export type ArticleState = 'CREATED' | 'PUBLISHED' | 'CLOSED';
-export type PageType = 'DEFAULT' | 'HERO' | 'HOME_TEASER' | 'HOME_PAGE' | 'NEWS_TEASER' | 'NEWS_PAGE' | 'ABOUT_TEASER' | 'ABOUT_PAGE';
+export type ArticleType = 'DEFAULT' | 'HERO' | 'COL3' | 'COL4' | 'TEXT' | 'NEWS_TEASER' | 'NEWS_PAGE' | 'ABOUT_TEASER' | 'ABOUT_PAGE';
 export type Language = 'GERMAN' | 'ENGLISH' | 'SWEDISH' | 'RUSSIAN';
 
 export interface ImageResponse {
@@ -24,11 +24,12 @@ export interface SectionResponse {
 
 export interface ArticleResponse {
   id: number;
+  order: number;
   title: string;
   content: string;
   sections: SectionResponse[];
   state: ArticleState;
-  pageType: PageType;
+  articleType: ArticleType;
   language: Language;
   publishedDate: string | null;
   images: ImageResponse[];
@@ -41,7 +42,7 @@ export interface ArticleResponse {
 export interface CreateArticleRequest {
   title: string;
   content: string;
-  pageType: PageType;
+  pageType: ArticleType;
   language: Language;
   imageIds: number[];
   tagIds: number[];

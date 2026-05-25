@@ -7,7 +7,7 @@ import type {
   CreateArticleRequest,
   ImageResponse,
   Language,
-  PageType,
+  ArticleType,
   TagResponse,
   UpdateArticleRequest,
 } from '../types';
@@ -35,7 +35,7 @@ interface EditProps {
 
 type Props = CreateProps | EditProps;
 
-const PAGE_TYPE_VALUES: PageType[] = ['DEFAULT', 'HERO',  'HOME_TEASER', 'HOME_PAGE', 'NEWS_TEASER', 'NEWS_PAGE', 'ABOUT_TEASER', 'ABOUT_PAGE'];
+const PAGE_TYPE_VALUES: ArticleType[] = ['DEFAULT', 'HERO', 'COL3', 'COL4', 'TEXT', 'NEWS_TEASER', 'NEWS_PAGE', 'ABOUT_TEASER', 'ABOUT_PAGE'];
 const LANGUAGE_VALUES: Language[] = ['GERMAN', 'ENGLISH', 'SWEDISH', 'RUSSIAN'];
 const STATE_VALUES: ArticleState[] = ['CREATED', 'PUBLISHED', 'CLOSED'];
 
@@ -46,7 +46,7 @@ export default function ArticleFormModal(props: Props) {
 
   const [title, setTitle] = useState(initial?.title ?? '');
   const [content, setContent] = useState(initial?.content ?? '');
-  const [pageType, setPageType] = useState<PageType>(initial?.pageType ?? 'DEFAULT');
+  const [pageType, setPageType] = useState<ArticleType>(initial?.articleType ?? 'DEFAULT');
   const [language, setLanguage] = useState<Language>(initial?.language ?? 'GERMAN');
   const [state, setState] = useState<ArticleState>(initial?.state ?? 'CREATED');
   const [selectedImageIds, setSelectedImageIds] = useState<Set<number>>(
@@ -112,7 +112,7 @@ export default function ArticleFormModal(props: Props) {
               <select
                 className="form-input"
                 value={pageType}
-                onChange={(e) => setPageType(e.target.value as PageType)}
+                onChange={(e) => setPageType(e.target.value as ArticleType)}
                 disabled={mode === 'edit'}
               >
                 {PAGE_TYPE_VALUES.map((v) => (

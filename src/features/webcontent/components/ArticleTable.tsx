@@ -53,7 +53,7 @@ export default function ArticleTable({ articles, onView, onEdit, onDelete, onAdd
                   <span className="expand-chevron">{expanded.has(a.id) ? '▾' : '▸'}</span>
                   {a.title}
                 </td>
-                <td className="td-secondary">{t(`article.pageType.${a.pageType}`, a.pageType)}</td>
+                <td className="td-secondary">{t(`article.pageType.${a.articleType}`, a.articleType)}</td>
                 <td className="td-secondary">{t(`article.language.${a.language}`, a.language)}</td>
                 <td className="td-secondary">{t(`article.state.${a.state}`, a.state)}</td>
                 <td className="td-secondary">
