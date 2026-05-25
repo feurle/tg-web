@@ -18,8 +18,8 @@ export default function AboutPage() {
     useEffect(() => {
         let cancelled = false;
         Promise.all([
-            articleApi.getPublishedByPage('ABOUT_TEASER', language),
-            articleApi.getPublishedByPage('ABOUT_PAGE', language),
+            articleApi.getPublishedByPageType('ABOUT_TEASER', language),
+            articleApi.getPublishedByPageType('ABOUT_PAGE', language),
         ])
             .then(([teaserData, pageData]) => {
                 if (!cancelled) {

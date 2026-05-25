@@ -11,12 +11,17 @@
     "articles": "Artikel",
     "images": "Bilder",
     "tags": "Tags",
+    "about": "Über uns",
+    "privacy": "Datenschutz",
+    "imprint": "Impressum",
+    "contact": "Kontakt",
     "login": "Anmelden",
     "logout": "Abmelden",
     "sidebar": {
       "management": "Verwaltung",
       "webcontent": "Webcontent",
-      "admin": "Administrator"
+      "admin": "Administrator",
+      "pages": "Seiten"
     }
   },
   "common": {
@@ -24,6 +29,7 @@
     "saving": "Speichern…",
     "cancel": "Abbrechen",
     "delete": "Löschen",
+    "view": "Ansehen",
     "edit": "Bearbeiten",
     "loading": "Laden…",
     "saveError": "Speichern fehlgeschlagen.",
@@ -77,9 +83,35 @@
     "imprint": "Impressum",
     "contact": "Kontakt"
   },
+  "section": {
+    "add": "Abschnitt hinzufügen",
+    "addHeading": "Abschnitt hinzufügen",
+    "editHeading": "Abschnitt bearbeiten",
+    "deleteConfirm": "Abschnitt „{{title}}“ wirklich löschen?",
+    "empty": "Keine Abschnitte vorhanden.",
+    "col": {
+      "title": "Titel",
+      "content": "Inhalt",
+      "order": "Nr.",
+      "actions": "Aktionen"
+    },
+    "form": {
+      "order": "Reihenfolge",
+      "title": "Titel *",
+      "content": "Inhalt"
+    }
+  },
   "article": {
     "management": "Artikelverwaltung",
     "subtitle": "Verwalten Sie Ihre Artikel und Inhalte",
+    "page": {
+      "home":    { "title": "Home-Inhalte",   "subtitle": "Teaser und Seiteninhalte für die Startseite" },
+      "news":    { "title": "Fachbeiträge",   "subtitle": "Artikel und Teaser für den News-Bereich" },
+      "about":   { "title": "Über uns",       "subtitle": "Inhalte der Über-uns-Seite" },
+      "privacy": { "title": "Datenschutz",    "subtitle": "Datenschutzerklärung" },
+      "imprint": { "title": "Impressum",      "subtitle": "Impressum und rechtliche Angaben" },
+      "contact": { "title": "Kontakt",        "subtitle": "Kontaktseite und Sprechzeiten" }
+    },
     "new": "Neuer Artikel",
     "newHeading": "Neuer Artikel",
     "editHeading": "Artikel bearbeiten",
@@ -88,7 +120,7 @@
     "empty": "Keine Artikel vorhanden.",
     "col": {
       "title": "Titel",
-      "page": "Seite",
+      "pageType": "Seiten Typ",
       "language": "Sprache",
       "status": "Status",
       "published": "Veröffentlicht",
@@ -97,13 +129,15 @@
     "form": {
       "title": "Titel *",
       "content": "Inhalt *",
-      "page": "Seite",
+      "pageType": "Seiten Typ",
       "language": "Sprache",
       "status": "Status",
       "images": "Bilder",
       "tags": "Tags"
     },
-    "page": {
+    "pageType": {
+      "DEFAULT": "Standard",
+      "HERO": "Hero (teaser) Komponente",
       "HOME_TEASER": "Home Teaser",
       "HOME_PAGE": "Home Page",
       "NEWS_TEASER": "News Teaser",

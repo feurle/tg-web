@@ -56,6 +56,20 @@ export default function ArticleBlock({ article }: Props) {
           </div>
         );
       })}
+
+      {[...article.sections]
+        .sort((a, b) => a.order - b.order)
+        .map((section) => (
+          <div key={section.id} className="article-section">
+            {section.title && <h3 className="article-section-title">{section.title}</h3>}
+            {section.content && (
+              <div
+                className="article-content article-block-content"
+                dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(section.content) }}
+              />
+            )}
+          </div>
+        ))}
     </div>
   );
 }

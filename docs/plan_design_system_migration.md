@@ -121,7 +121,7 @@ Remove `padding: '1rem'` from `<main>` — pages manage own spacing.
 | `src/features/auth/components/LoginModal.tsx` | `.modal-overlay` + `.login-card` (380px, not `.modal-card`) |
 | `src/components/ConfirmDialog.tsx` | `.modal-overlay` (zIndex: 200) + `.modal-card` + `.btn-danger` |
 | `src/pages/protected/UsersPage.tsx` + UserTable | Same pattern as Customers |
-| `src/pages/protected/ArticlesPage.tsx` + components | Same pattern |
+| `src/pages/protected/ArticlesOldPage.tsx` + components | Same pattern |
 | `src/pages/protected/ImagesPage.tsx` | `.page-header` + `.page-title` |
 
 ---
@@ -161,7 +161,7 @@ New keys: `home.tagline`, `home.title.*`, `home.subtitle`, `home.cta.*`, `home.a
 - `src/features/customers/components/CustomerTable.tsx`, `CustomerFormModal.tsx`
 - `src/features/webcontent/components/ArticleCard.tsx`
 - `src/pages/public/HomePage.tsx`, `NewsPage.tsx`
-- `src/pages/protected/CustomersPage.tsx`, `UsersPage.tsx`, `ArticlesPage.tsx`, `ImagesPage.tsx`
+- `src/pages/protected/CustomersPage.tsx`, `UsersPage.tsx`, `ArticlesOldPage.tsx`, `ImagesPage.tsx`
 - `src/components/ConfirmDialog.tsx`
 - `src/i18n/locales/de.json`, `en.json`, `sv.json`, `ru.json`
 

@@ -2,13 +2,17 @@ import apiClient, { ApiError } from '../../lib/apiClient';
 import type {
   ArticleResponse,
   CreateArticleRequest,
+  CreateSectionRequest,
   CreateTagRequest,
   ImageResponse,
   Language,
+  PageResponse,
   PageType,
+  SectionResponse,
   TagResponse,
   UpdateArticleRequest,
   UpdateImageRequest,
+  UpdateSectionRequest,
   UpdateTagRequest,
 } from './types';
 
@@ -16,17 +20,21 @@ const BASE_URL = import.meta.env.VITE_API_URL ?? '';
 const ARTICLES = '/api/webcontent/articles';
 const IMAGES = '/api/webcontent/images';
 const TAGS = '/api/webcontent/tags';
+const PAGES = '/api/webcontent/pages';
 
 export const articleApi = {
   getAll: () => apiClient.get<ArticleResponse[]>(ARTICLES),
 
-  getByPage: (page: PageType) =>
-    apiClient.get<ArticleResponse[]>(`${ARTICLES}/page/${page}`),
+  getByPage: (slug: string) =>
+      apiClient.get<ArticleResponse[]>(`${ARTICLES}/page/${slug}`),
 
-  getPublishedByPage: (page: PageType, language?: Language) => {
+  getByPageType: (pageType: PageType) =>
+    apiClient.get<ArticleResponse[]>(`${ARTICLES}/pagetype/${pageType}`),
+
+  getPublishedByPageType: (pageType: PageType, language?: Language) => {
     const url = language
-      ? `${ARTICLES}/page/${page}/published?language=${language}`
-      : `${ARTICLES}/page/${page}/published`;
+      ? `${ARTICLES}/pagetype/${pageType}/published?language=${language}`
+      : `${ARTICLES}/pagetype/${pageType}/published`;
     return apiClient.get<ArticleResponse[]>(url);
   },
 
@@ -81,4 +89,21 @@ export const tagApi = {
     apiClient.put<TagResponse>(`${TAGS}/${id}`, data),
 
   delete: (id: number) => apiClient.delete<void>(`${TAGS}/${id}`),
+};
+
+export const pageApi = {
+  getBySlug: (slug: string) => apiClient.get<PageResponse>(`${PAGES}/${slug}`),
+};
+
+const SECTIONS = '/api/webcontent/sections';
+
+export const sectionApi = {
+  create: (articleId: number, data: CreateSectionRequest) =>
+    apiClient.post<SectionResponse>(`${ARTICLES}/${articleId}/sections`, data),
+
+  update: (sectionId: number, data: UpdateSectionRequest) =>
+    apiClient.put<SectionResponse>(`${SECTIONS}/${sectionId}`, data),
+
+  delete: (sectionId: number) =>
+    apiClient.delete<void>(`${SECTIONS}/${sectionId}`),
 };

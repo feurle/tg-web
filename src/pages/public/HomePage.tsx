@@ -19,8 +19,8 @@ export default function HomePage() {
     useEffect(() => {
         let cancelled = false;
         Promise.all([
-            articleApi.getPublishedByPage('HOME_TEASER', language),
-            articleApi.getPublishedByPage('HOME_PAGE', language),
+            articleApi.getPublishedByPageType('HOME_TEASER', language),
+            articleApi.getPublishedByPageType('HOME_PAGE', language),
         ])
             .then(([teaserData, pageData]) => {
                 if (!cancelled) {

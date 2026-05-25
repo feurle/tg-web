@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { articleApi } from '../../features/webcontent/api';
+import { pageApi } from '../../features/webcontent/api';
 import type { ArticleResponse } from '../../features/webcontent/types';
 import ArticleBlock from '../../features/webcontent/components/ArticleBlock';
 import { resolveLanguage } from '../../features/webcontent/language';
-import ContactButton from '../../features/webcontent/components/ContactButton';
 
-export default function NewsPage() {
+export default function ContactPage() {
   const [articles, setArticles] = useState<ArticleResponse[]>([]);
   const [fetchedLanguage, setFetchedLanguage] = useState<string | null>(null);
   const { t, i18n: i18nInstance } = useTranslation();
@@ -15,27 +14,28 @@ export default function NewsPage() {
 
   useEffect(() => {
     let cancelled = false;
-    Promise.all([
-      articleApi.getPublishedByPageType('NEWS_TEASER', language),
-      articleApi.getPublishedByPageType('NEWS_PAGE', language),
-    ])
-      .then(([teasers, full]) => { if (!cancelled) { setArticles([...teasers, ...full]); setFetchedLanguage(language); } })
-      .catch(() => { if (!cancelled) { setArticles([]); setFetchedLanguage(language); } });
+    pageApi.getBySlug('contact')
+      .then((page) => {
+        if (!cancelled) {
+          setArticles(
+            page.articles.filter(
+              (a) => a.state === 'PUBLISHED' && a.language === language,
+            ),
+          );
+          setFetchedLanguage(language);
+        }
+      })
+      .catch(() => {
+        if (!cancelled) {
+          setArticles([]);
+          setFetchedLanguage(language);
+        }
+      });
     return () => { cancelled = true; };
   }, [language]);
 
   return (
     <div style={{ background: 'var(--bg)', minHeight: 'calc(100vh - 60px)' }}>
-      <div className="hero" style={{ paddingBottom: 32 }}>
-        <h1 className="hero-title" style={{ fontSize: 36 }}>
-          <strong>{t('pages.news')}</strong>
-        </h1>
-        <p className="hero-sub" style={{ marginBottom: 0 }}>
-          {t('news.subtitle')}
-        </p>
-        <ContactButton/>
-      </div>
-
       <div className="section">
         {loading ? (
           <p>{t('common.loading')}</p>
