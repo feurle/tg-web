@@ -12,7 +12,7 @@ import Col4Component from "../../features/webcontent/components/Col4Component.ts
 export default function AboutPage() {
     const [articles, setArticles] = useState<ArticleResponse[]>([]);
     const [fetchedLanguage, setFetchedLanguage] = useState<string | null>(null);
-    const {t, i18n: i18nInstance} = useTranslation();
+    const {i18n: i18nInstance} = useTranslation();
     const language = resolveLanguage(i18nInstance.language);
     const loading = fetchedLanguage !== language;
 
