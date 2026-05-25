@@ -1,4 +1,6 @@
+import { Link } from 'react-router-dom';
 import {useTranslation} from 'react-i18next';
+import { ROUTES } from '../router/routes';
 
 export default function Footer() {
     const {t} = useTranslation();
@@ -10,9 +12,9 @@ export default function Footer() {
                 <div className="footer-version"></div>
             </div>
             <div className="footer-right">
-                <span className="footer-link">{t('footer.privacy')}</span>
-                <span className="footer-link">{t('footer.imprint')}</span>
-                <span className="footer-link">{t('footer.contact')}</span>
+                <Link className="footer-link" to={ROUTES.PRIVACY}>{t('footer.privacy')}</Link>
+                <Link className="footer-link" to={ROUTES.IMPRESS}>{t('footer.imprint')}</Link>
+                <Link className="footer-link" to={ROUTES.CONTACT}>{t('footer.contact')}</Link>
             </div>
         </footer>
     );

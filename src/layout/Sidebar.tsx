@@ -37,23 +37,6 @@ export default function Sidebar() {
 
             <div className="sidebar-section-label">{t('nav.sidebar.webcontent')}</div>
             <NavLink
-                to={ROUTES.ARTICLES_HOME}
-                className={({isActive}) => isActive ? 'sidebar-item active' : 'sidebar-item'}
-            >
-                <span className="sidebar-icon">🏠</span>
-                {t('nav.home')}
-            </NavLink>
-
-            <NavLink
-                to={ROUTES.ARTICLES_NEWS}
-                className={({isActive}) => isActive ? 'sidebar-item active' : 'sidebar-item'}
-            >
-                <span className="sidebar-icon">📰</span>
-                {t('nav.news')}
-            </NavLink>
-
-
-            <NavLink
                 to={ROUTES.IMAGES}
                 className={({isActive}) => isActive ? 'sidebar-item active' : 'sidebar-item'}
             >
@@ -67,6 +50,52 @@ export default function Sidebar() {
                 <span className="sidebar-icon">🏷️</span>
                 {t('nav.tags')}
             </NavLink>
+
+            <div className="sidebar-section-label">{t('nav.sidebar.pages')}</div>
+            <NavLink
+                to={ROUTES.PAGE_HOME}
+                className={({isActive}) => isActive ? 'sidebar-item active' : 'sidebar-item'}
+            >
+                <span className="sidebar-icon">🏠</span>
+                {t('nav.home')}
+            </NavLink>
+            <NavLink
+                to={ROUTES.PAGE_NEWS}
+                className={({isActive}) => isActive ? 'sidebar-item active' : 'sidebar-item'}
+            >
+                <span className="sidebar-icon">📰</span>
+                {t('nav.news')}
+            </NavLink>
+            <NavLink
+                to={ROUTES.PAGE_ABOUT}
+                className={({isActive}) => isActive ? 'sidebar-item active' : 'sidebar-item'}
+            >
+                <span className="sidebar-icon">🐾</span>
+                {t('nav.about')}
+            </NavLink>
+            <NavLink
+                to={ROUTES.PAGE_PRIVACY}
+                className={({isActive}) => isActive ? 'sidebar-item active' : 'sidebar-item'}
+            >
+                <span className="sidebar-icon">🔒</span>
+                {t('nav.privacy')}
+            </NavLink>
+            <NavLink
+                to={ROUTES.PAGE_IMPRINT}
+                className={({isActive}) => isActive ? 'sidebar-item active' : 'sidebar-item'}
+            >
+                <span className="sidebar-icon">📄</span>
+                {t('nav.imprint')}
+            </NavLink>
+            <NavLink
+                to={ROUTES.PAGE_CONTACT}
+                className={({isActive}) => isActive ? 'sidebar-item active' : 'sidebar-item'}
+            >
+                <span className="sidebar-icon">✉️</span>
+                {t('nav.contact')}
+            </NavLink>
+
+
 
             <div className="sidebar-footer">
                 <div className="user-chip">

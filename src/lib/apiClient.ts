@@ -15,6 +15,7 @@ async function request<T>(path: string, init: RequestInit = {}): Promise<T> {
   const headers = new Headers(init.headers);
 
   headers.set('Content-Type', 'application/json');
+//  headers.set('X-Requested-With', 'XMLHttpRequest');
 
   const response = await fetch(`${BASE_URL}${path}`, { ...init, headers, credentials: 'include' });
 

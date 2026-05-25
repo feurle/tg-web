@@ -1,4 +1,4 @@
-import type { ArticleResponse } from '../../types.ts';
+import type { ArticleResponse } from '../types.ts';
 import DOMPurify from "dompurify";
 
 interface Props {

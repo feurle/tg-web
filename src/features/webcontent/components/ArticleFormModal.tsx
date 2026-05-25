@@ -7,7 +7,7 @@ import type {
   CreateArticleRequest,
   ImageResponse,
   Language,
-  PageType,
+  ArticleType,
   TagResponse,
   UpdateArticleRequest,
 } from '../types';
@@ -20,6 +20,7 @@ interface CreateProps {
   onSave: (data: CreateArticleRequest) => void;
   onCancel: () => void;
   saving: boolean;
+  pageId?: number;
 }
 
 interface EditProps {
@@ -34,7 +35,7 @@ interface EditProps {
 
 type Props = CreateProps | EditProps;
 
-const PAGE_VALUES: PageType[] = ['HOME_TEASER', 'HOME_PAGE', 'NEWS_TEASER', 'NEWS_PAGE', 'ABOUT_TEASER', 'ABOUT_PAGE'];
+const PAGE_TYPE_VALUES: ArticleType[] = ['DEFAULT', 'HERO', 'COL3', 'COL4', 'TEXT', 'NEWS_TEASER', 'NEWS_PAGE', 'ABOUT_TEASER', 'ABOUT_PAGE'];
 const LANGUAGE_VALUES: Language[] = ['GERMAN', 'ENGLISH', 'SWEDISH', 'RUSSIAN'];
 const STATE_VALUES: ArticleState[] = ['CREATED', 'PUBLISHED', 'CLOSED'];
 
@@ -45,7 +46,7 @@ export default function ArticleFormModal(props: Props) {
 
   const [title, setTitle] = useState(initial?.title ?? '');
   const [content, setContent] = useState(initial?.content ?? '');
-  const [page, setPage] = useState<PageType>(initial?.page ?? 'HOME_TEASER');
+  const [pageType, setPageType] = useState<ArticleType>(initial?.articleType ?? 'DEFAULT');
   const [language, setLanguage] = useState<Language>(initial?.language ?? 'GERMAN');
   const [state, setState] = useState<ArticleState>(initial?.state ?? 'CREATED');
   const [selectedImageIds, setSelectedImageIds] = useState<Set<number>>(
@@ -58,11 +59,7 @@ export default function ArticleFormModal(props: Props) {
   function toggleImage(id: number) {
     setSelectedImageIds((prev) => {
       const next = new Set(prev);
-      if (next.has(id)) {
-        next.delete(id);
-      } else {
-        next.add(id);
-      }
+      if (next.has(id)) next.delete(id); else next.add(id);
       return next;
     });
   }
@@ -70,11 +67,7 @@ export default function ArticleFormModal(props: Props) {
   function toggleTag(id: number) {
     setSelectedTagIds((prev) => {
       const next = new Set(prev);
-      if (next.has(id)) {
-        next.delete(id);
-      } else {
-        next.add(id);
-      }
+      if (next.has(id)) next.delete(id); else next.add(id);
       return next;
     });
   }
@@ -84,56 +77,56 @@ export default function ArticleFormModal(props: Props) {
     const imageIds = Array.from(selectedImageIds);
     const tagIds = Array.from(selectedTagIds);
     if (mode === 'create') {
-      props.onSave({ title, content, page, language, imageIds, tagIds });
+      props.onSave({ title, content, pageType, language, imageIds, tagIds, ...(props.pageId !== undefined && { pageId: props.pageId }) });
     } else {
       props.onSave({ title, content, state, language, imageIds, tagIds });
     }
   }
 
   return (
-    <div style={overlay} onClick={onCancel}>
-      <div style={modal} onClick={(e) => e.stopPropagation()}>
-        <h2 style={{ marginBottom: '1rem' }}>
+    <div className="modal-overlay" onClick={onCancel}>
+      <div className="modal-card" style={{ maxWidth: 640 }} onClick={(e) => e.stopPropagation()}>
+        <h2 style={{ marginBottom: '1.25rem' }}>
           {mode === 'create' ? t('article.newHeading') : t('article.editHeading')}
         </h2>
 
         <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-          <label style={labelStyle}>
+          <label className="form-label">
             {t('article.form.title')}
             <input
+              className="form-input"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               required
-              style={inputStyle}
             />
           </label>
 
-          <label style={labelStyle}>
+          <label className="form-label">
             {t('article.form.content')}
             <RichTextEditor value={content} onChange={setContent} />
           </label>
 
           <div style={{ display: 'flex', gap: '0.75rem' }}>
-            <label style={{ ...labelStyle, flex: 1 }}>
-              {t('article.form.page')}
+            <label className="form-label" style={{ flex: 1 }}>
+              {t('article.form.pageType')}
               <select
-                value={page}
-                onChange={(e) => setPage(e.target.value as PageType)}
+                className="form-input"
+                value={pageType}
+                onChange={(e) => setPageType(e.target.value as ArticleType)}
                 disabled={mode === 'edit'}
-                style={inputStyle}
               >
-                {PAGE_VALUES.map((v) => (
-                  <option key={v} value={v}>{t(`article.page.${v}`)}</option>
+                {PAGE_TYPE_VALUES.map((v) => (
+                  <option key={v} value={v}>{t(`article.pageType.${v}`, v)}</option>
                 ))}
               </select>
             </label>
 
-            <label style={{ ...labelStyle, flex: 1 }}>
+            <label className="form-label" style={{ flex: 1 }}>
               {t('article.form.language')}
               <select
+                className="form-input"
                 value={language}
                 onChange={(e) => setLanguage(e.target.value as Language)}
-                style={inputStyle}
               >
                 {LANGUAGE_VALUES.map((v) => (
                   <option key={v} value={v}>{t(`article.language.${v}`)}</option>
@@ -142,12 +135,12 @@ export default function ArticleFormModal(props: Props) {
             </label>
 
             {mode === 'edit' && (
-              <label style={{ ...labelStyle, flex: 1 }}>
+              <label className="form-label" style={{ flex: 1 }}>
                 {t('article.form.status')}
                 <select
+                  className="form-input"
                   value={state}
                   onChange={(e) => setState(e.target.value as ArticleState)}
-                  style={inputStyle}
                 >
                   {STATE_VALUES.map((v) => (
                     <option key={v} value={v}>{t(`article.state.${v}`)}</option>
@@ -158,17 +151,17 @@ export default function ArticleFormModal(props: Props) {
           </div>
 
           {images.length > 0 && (
-            <fieldset style={{ border: '1px solid #ccc', borderRadius: '4px', padding: '0.5rem 0.75rem' }}>
-              <legend style={{ fontSize: '0.8rem', fontWeight: 500 }}>{t('article.form.images')}</legend>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.3rem', maxHeight: '150px', overflowY: 'auto' }}>
+            <fieldset className="form-fieldset">
+              <legend>{t('article.form.images')}</legend>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.3rem', maxHeight: 150, overflowY: 'auto' }}>
                 {images.map((img) => (
-                  <label key={img.id} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer' }}>
+                  <label key={img.id} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer', fontSize: '0.875rem' }}>
                     <input
                       type="checkbox"
                       checked={selectedImageIds.has(img.id)}
                       onChange={() => toggleImage(img.id)}
                     />
-                    <span style={{ fontSize: '0.875rem' }}>{img.fileName}</span>
+                    {img.title || img.fileName}
                   </label>
                 ))}
               </div>
@@ -176,26 +169,17 @@ export default function ArticleFormModal(props: Props) {
           )}
 
           {tags.length > 0 && (
-            <fieldset style={{ border: '1px solid #ccc', borderRadius: '4px', padding: '0.5rem 0.75rem' }}>
-              <legend style={{ fontSize: '0.8rem', fontWeight: 500 }}>{t('article.form.tags')}</legend>
+            <fieldset className="form-fieldset">
+              <legend>{t('article.form.tags')}</legend>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
                 {tags.map((tag) => (
                   <button
                     key={tag.id}
                     type="button"
                     onClick={() => toggleTag(tag.id)}
-                    style={{
-                      padding: '0.3rem 0.75rem',
-                      borderRadius: '4px',
-                      border: selectedTagIds.has(tag.id) ? '2px solid var(--accent)' : '1px solid var(--border)',
-                      background: selectedTagIds.has(tag.id) ? 'var(--accent-light)' : 'transparent',
-                      color: selectedTagIds.has(tag.id) ? 'var(--accent)' : 'var(--text-primary)',
-                      cursor: 'pointer',
-                      fontSize: '0.875rem',
-                      fontWeight: selectedTagIds.has(tag.id) ? 600 : 400,
-                    }}
+                    className={selectedTagIds.has(tag.id) ? 'badge badge-green' : 'badge'}
                   >
-                    {selectedTagIds.has(tag.id) ? '✓ ' : ''}{tag.name}
+                    {tag.name}
                   </button>
                 ))}
               </div>
@@ -215,21 +199,3 @@ export default function ArticleFormModal(props: Props) {
     </div>
   );
 }
-
-const overlay: React.CSSProperties = {
-  position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.4)',
-  display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 100,
-};
-
-const modal: React.CSSProperties = {
-  background: '#fff', padding: '2rem', borderRadius: '8px',
-  width: '100%', maxWidth: '640px', maxHeight: '90vh', overflowY: 'auto',
-};
-
-const labelStyle: React.CSSProperties = {
-  display: 'flex', flexDirection: 'column', fontSize: '0.8rem', fontWeight: 500, gap: '2px',
-};
-
-const inputStyle: React.CSSProperties = {
-  padding: '0.35rem 0.5rem', border: '1px solid #ccc', borderRadius: '4px', fontSize: '1rem',
-};

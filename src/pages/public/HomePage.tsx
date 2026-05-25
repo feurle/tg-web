@@ -2,36 +2,31 @@ import {useEffect, useState} from 'react';
 import {useTranslation} from 'react-i18next';
 import {articleApi} from '../../features/webcontent/api';
 import type {ArticleResponse} from '../../features/webcontent/types';
-import ServiceCard from '../../features/webcontent/components/home/ServiceCard.tsx';
 import {resolveLanguage} from '../../features/webcontent/language';
-import Teaser from '../../features/webcontent/components/home/Teaser.tsx';
+import HeroComponent from '../../features/webcontent/components/HeroComponent.tsx';
+import Col3Component from '../../features/webcontent/components/Col3Component.tsx';
+import Col4Component from '../../features/webcontent/components/Col4Component.tsx';
 import ContactButton from '../../features/webcontent/components/ContactButton';
-import ContactSection from '../../features/contact/components/ContactSection.tsx';
+import ArticleBlock from "../../features/webcontent/components/ArticleBlock.tsx";
 
 export default function HomePage() {
-    const [teasers, setTeasers] = useState<ArticleResponse[]>([]);
     const [articles, setArticles] = useState<ArticleResponse[]>([]);
     const [fetchedLanguage, setFetchedLanguage] = useState<string | null>(null);
-    const {t, i18n: i18nInstance} = useTranslation();
+    const {i18n: i18nInstance} = useTranslation();
     const language = resolveLanguage(i18nInstance.language);
     const loading = fetchedLanguage !== language;
 
     useEffect(() => {
         let cancelled = false;
-        Promise.all([
-            articleApi.getPublishedByPage('HOME_TEASER', language),
-            articleApi.getPublishedByPage('HOME_PAGE', language),
-        ])
-            .then(([teaserData, pageData]) => {
+        articleApi.getPublishedByPage('home', language)
+            .then((data) => {
                 if (!cancelled) {
-                    setTeasers(teaserData);
-                    setArticles(pageData);
+                    setArticles([...data].sort((a, b) => a.order - b.order));
                     setFetchedLanguage(language);
                 }
             })
             .catch(() => {
                 if (!cancelled) {
-                    setTeasers([]);
                     setArticles([]);
                     setFetchedLanguage(language);
                 }
@@ -43,31 +38,13 @@ export default function HomePage() {
 
     return (
         <div style={{background: 'var(--bg)', minHeight: 'calc(100vh - 60px)'}}>
-
-            <div className="hero" style={{paddingBottom: 32}}>
-                {!loading && teasers.map((article) => (
-                    <Teaser key={article.id} article={article}/>
-                ))}
-                <ContactButton/>
-            </div>
-
-            <div className="section">
-                <div className="section-header">
-                    <span className="section-title">{t('home.articles.title')}</span>
-                    <span className="section-sub">{t('home.articles.sub')}</span>
-                </div>
-                {loading ? (
-                    <p>{t('common.loading')}</p>
-                ) : (
-                    <div className="article-grid-3">
-                        {articles.map((article) => (
-                            <ServiceCard key={article.id} article={article} />
-                        ))}
-                    </div>
-                )}
-            </div>
-
-            <ContactSection />
+            {!loading && articles.map((article) => {
+                if (article.articleType === 'HERO') return <HeroComponent key={article.id} article={article} />;
+                if (article.articleType === 'COL3') return <Col3Component key={article.id} article={article} />;
+                if (article.articleType === 'COL4') return <Col4Component key={article.id} article={article} />;
+                if (article.articleType === 'TEXT') return <ArticleBlock key={article.id} article={article} />;
+                return null;
+            })}
 
             <div className="hero">
                 <ContactButton/>
