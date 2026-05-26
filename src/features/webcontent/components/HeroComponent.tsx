@@ -8,7 +8,7 @@ interface Props {
 
 export default function HeroComponent({article}: Props) {
     return (
-        <>
+        <div className="hero">
             {article.tags.length > 0 && (
                 <div className="hero-tag"><span>🌿</span>
                     {article.tags.map((tag) => (
@@ -35,6 +35,6 @@ export default function HeroComponent({article}: Props) {
             {article.content && (
                 <p className="hero-sub" dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(article.content)}}/>
             )}
-        </>
+        </div>
     );
 }
