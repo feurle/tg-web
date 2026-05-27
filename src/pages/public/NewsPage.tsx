@@ -2,53 +2,62 @@ import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { articleApi } from '../../features/webcontent/api';
 import type { ArticleResponse } from '../../features/webcontent/types';
-import ArticleBlock from '../../features/webcontent/components/ArticleBlock';
 import { resolveLanguage } from '../../features/webcontent/language';
+import ArticleCard from '../../features/webcontent/components/ArticleCard';
+import ArticleDetailModal from '../../features/webcontent/components/ArticleDetailModal';
 import ContactButton from '../../features/webcontent/components/ContactButton';
-import HeroComponent from "../../features/webcontent/components/HeroComponent.tsx";
-import Col3Component from "../../features/webcontent/components/Col3Component.tsx";
-import Col4Component from "../../features/webcontent/components/Col4Component.tsx";
+import PageSkeleton from '../../components/PageSkeleton';
 
 export default function NewsPage() {
-  const [articles, setArticles] = useState<ArticleResponse[]>([]);
-  const [fetchedLanguage, setFetchedLanguage] = useState<string | null>(null);
-  const { i18n: i18nInstance } = useTranslation();
-  const language = resolveLanguage(i18nInstance.language);
-  const loading = fetchedLanguage !== language;
+    const [articles, setArticles] = useState<ArticleResponse[]>([]);
+    const [selected, setSelected] = useState<ArticleResponse | null>(null);
+    const [fetchedLanguage, setFetchedLanguage] = useState<string | null>(null);
+    const { i18n: i18nInstance } = useTranslation();
+    const language = resolveLanguage(i18nInstance.language);
+    const loading = fetchedLanguage !== language;
 
-  useEffect(() => {
-    let cancelled = false;
-    articleApi.getPublishedByPage('news', language)
-        .then((data) => {
-          if (!cancelled) {
-            setArticles([...data].sort((a, b) => a.order - b.order));
-            setFetchedLanguage(language);
-          }
-        })
-        .catch(() => {
-          if (!cancelled) {
-            setArticles([]);
-            setFetchedLanguage(language);
-          }
-        });
-    return () => {
-      cancelled = true;
-    };
-  }, [language]);
+    useEffect(() => {
+        let cancelled = false;
+        articleApi.getPublishedByPage('news', language)
+            .then((data) => {
+                if (!cancelled) {
+                    setArticles([...data].sort((a, b) => a.order - b.order));
+                    setFetchedLanguage(language);
+                }
+            })
+            .catch(() => {
+                if (!cancelled) {
+                    setArticles([]);
+                    setFetchedLanguage(language);
+                }
+            });
+        return () => {
+            cancelled = true;
+        };
+    }, [language]);
 
-  return (
-      <div style={{background: 'var(--bg)', minHeight: 'calc(100vh - 60px)'}}>
-        {!loading && articles.map((article) => {
-          if (article.articleType === 'HERO') return <HeroComponent key={article.id} article={article} />;
-          if (article.articleType === 'COL3') return <Col3Component key={article.id} article={article} />;
-          if (article.articleType === 'COL4') return <Col4Component key={article.id} article={article} />;
-          if (article.articleType === 'TEXT') return <ArticleBlock key={article.id} article={article} />;
-          return null;
-        })}
-
-        <div className="hero">
-          <ContactButton/>
+    return (
+        <div style={{ background: 'var(--bg)', minHeight: 'calc(100vh - 72px)' }}>
+            <div className="news-feed">
+                {loading && <PageSkeleton />}
+                {!loading && (
+                    <div className="article-grid-2">
+                        {articles.map((article) => (
+                            <ArticleCard
+                                key={article.id}
+                                article={article}
+                                onClick={() => setSelected(article)}
+                            />
+                        ))}
+                    </div>
+                )}
+            </div>
+            {selected && (
+                <ArticleDetailModal article={selected} onClose={() => setSelected(null)} />
+            )}
+            <div className="cta-section">
+                <ContactButton />
+            </div>
         </div>
-      </div>
-  );
+    );
 }

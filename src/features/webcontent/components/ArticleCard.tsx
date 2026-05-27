@@ -7,9 +7,11 @@ interface Props {
 }
 
 export default function ArticleCard({ article, onClick }: Readonly<Props>) {
-  // Extract excerpt from content (first 150 chars)
-  const rawExcerpt = article.content?.split('\n')[0]?.substring(0, 150) || '';
-  const excerpt = rawExcerpt ? rawExcerpt + ' ...' : '';
+  const rawText = article.content
+    || [...article.sections].sort((a, b) => a.order - b.order)[0]?.content
+    || '';
+  const plainText = rawText.replace(/<[^>]*>/g, '').trim();
+  const excerpt = plainText.length > 150 ? plainText.substring(0, 150) + ' ...' : plainText;
 
   // Format date if it exists
   const dateStr = article.createdAt
@@ -21,7 +23,11 @@ export default function ArticleCard({ article, onClick }: Readonly<Props>) {
     : '';
 
   return (
-    <div className="article-card" onClick={onClick} style={onClick ? {cursor: 'pointer'} : undefined}>
+    <div
+      className={`article-card${onClick ? ' article-card--interactive' : ''}`}
+      onClick={onClick}
+      style={onClick ? {cursor: 'pointer'} : undefined}
+    >
       {article.tags.length > 0 && (
         <div className="article-card-tags">
           {article.tags.map((tag) => (
