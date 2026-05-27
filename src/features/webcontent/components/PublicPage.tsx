@@ -17,13 +17,12 @@ interface Props {
 export default function PublicPage({ pageSlug }: Props) {
     const [articles, setArticles] = useState<ArticleResponse[]>([]);
     const [fetchedLanguage, setFetchedLanguage] = useState<string | null>(null);
-    const { i18n: i18nInstance } = useTranslation();
+    const { t, i18n: i18nInstance } = useTranslation();
     const language = resolveLanguage(i18nInstance.language);
     const loading = fetchedLanguage !== language;
 
     useEffect(() => {
         let cancelled = false;
-        setFetchedLanguage(null);
         articleApi.getPublishedByPage(pageSlug, language)
             .then((data) => {
                 if (!cancelled) {
@@ -53,6 +52,7 @@ export default function PublicPage({ pageSlug }: Props) {
                 return null;
             })}
             <div className="cta-section">
+                <p className="cta-tagline">{t('home.contact.sub')}</p>
                 <ContactButton />
             </div>
         </div>

@@ -18,7 +18,6 @@ export default function NewsPage() {
 
     useEffect(() => {
         let cancelled = false;
-        setFetchedLanguage(null);
         articleApi.getPublishedByPage('news', language)
             .then((data) => {
                 if (!cancelled) {

@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ROUTES } from '../router/routes';
-import logoImg from '../assets/logo.png';
+import logoFooter from '../assets/logo-footer.png';
 
 export default function Footer() {
     const { t } = useTranslation();
@@ -10,7 +10,7 @@ export default function Footer() {
         <footer className="footer">
             <div className="footer-brand-col">
                 <Link to={ROUTES.HOME} className="footer-brand-name">
-                    <img src={logoImg} alt="Tier Gesund" className="footer-brand-img" />
+                    <img src={logoFooter} alt="" className="footer-brand-img" />
                     {t('app.name')}
                 </Link>
                 <p className="footer-tagline">{t('home.tagline')}</p>

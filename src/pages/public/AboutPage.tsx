@@ -19,7 +19,6 @@ export default function AboutPage() {
 
     useEffect(() => {
         let cancelled = false;
-        setFetchedLanguage(null);
         articleApi.getPublishedByPage('about', language)
             .then((data) => {
                 if (!cancelled) {
