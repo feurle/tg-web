@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ROUTES } from '../router/routes';
 import { useAuth } from '../features/auth/authStore';
@@ -22,7 +22,6 @@ export default function Navbar() {
   const { t, i18n: i18nInstance } = useTranslation();
   const currentLang = i18nInstance.language;
   const currentLangData = LANGUAGES.find((l) => l.code === currentLang);
-  const location = useLocation();
 
   function switchLanguage(code: string) {
     localStorage.setItem('lang', code);
@@ -30,8 +29,6 @@ export default function Navbar() {
     setShowLangDropdown(false);
     setMenuOpen(false);
   }
-
-  useEffect(() => { setMenuOpen(false); }, [location.pathname]);
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? 'hidden' : '';
@@ -123,17 +120,17 @@ export default function Navbar() {
       {menuOpen && (
         <div className="mobile-overlay" role="dialog" aria-modal="true" aria-label="Navigation">
           <nav className="mobile-overlay-links">
-            <NavLink to={ROUTES.HOME} className={({ isActive }) => isActive ? 'mobile-overlay-link active' : 'mobile-overlay-link'}>
+            <NavLink to={ROUTES.HOME} onClick={() => setMenuOpen(false)} className={({ isActive }) => isActive ? 'mobile-overlay-link active' : 'mobile-overlay-link'}>
               {t('nav.home')}
             </NavLink>
-            <NavLink to={ROUTES.NEWS} className={({ isActive }) => isActive ? 'mobile-overlay-link active' : 'mobile-overlay-link'}>
+            <NavLink to={ROUTES.NEWS} onClick={() => setMenuOpen(false)} className={({ isActive }) => isActive ? 'mobile-overlay-link active' : 'mobile-overlay-link'}>
               {t('nav.news')}
             </NavLink>
-            <NavLink to={ROUTES.ABOUT} className={({ isActive }) => isActive ? 'mobile-overlay-link active' : 'mobile-overlay-link'}>
+            <NavLink to={ROUTES.ABOUT} onClick={() => setMenuOpen(false)} className={({ isActive }) => isActive ? 'mobile-overlay-link active' : 'mobile-overlay-link'}>
               {t('pages.about')}
             </NavLink>
             {isAuthenticated && (
-              <NavLink to={ROUTES.CUSTOMERS} className={({ isActive }) => isActive ? 'mobile-overlay-link active' : 'mobile-overlay-link'}>
+              <NavLink to={ROUTES.CUSTOMERS} onClick={() => setMenuOpen(false)} className={({ isActive }) => isActive ? 'mobile-overlay-link active' : 'mobile-overlay-link'}>
                 {t('nav.administration')}
               </NavLink>
             )}
