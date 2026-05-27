@@ -8,6 +8,7 @@ import Col3Component from './Col3Component';
 import Col4Component from './Col4Component';
 import ArticleBlock from './ArticleBlock';
 import ContactButton from './ContactButton';
+import PageSkeleton from '../../../components/PageSkeleton';
 
 interface Props {
     pageSlug: string;
@@ -42,7 +43,8 @@ export default function PublicPage({ pageSlug }: Props) {
     }, [pageSlug, language]);
 
     return (
-        <div style={{ background: 'var(--bg)', minHeight: 'calc(100vh - 60px)' }}>
+        <div style={{ background: 'var(--bg)', minHeight: 'calc(100vh - 72px)' }}>
+            {loading && <PageSkeleton />}
             {!loading && articles.map((article) => {
                 if (article.articleType === 'HERO') return <HeroComponent key={article.id} article={article} />;
                 if (article.articleType === 'COL3') return <Col3Component key={article.id} article={article} />;

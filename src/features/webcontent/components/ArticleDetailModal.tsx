@@ -75,6 +75,22 @@ export default function ArticleDetailModal({article, onClose}: Props) {
                         </div>
                     );
                 })}
+                {[...article.sections]
+                    .sort((a, b) => a.order - b.order)
+                    .map((section) => (
+                        <div key={section.id} className="article-section">
+                            {section.title && (
+                                <h3 className="article-section-title">{section.title}</h3>
+                            )}
+                            {section.content && (
+                                <div
+                                    className="article-content article-modal-content"
+                                    style={{ lineHeight: 1.7 }}
+                                    dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(section.content) }}
+                                />
+                            )}
+                        </div>
+                    ))}
             </div>
         </div>
     );
