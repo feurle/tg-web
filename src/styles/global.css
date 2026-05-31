@@ -2124,3 +2124,227 @@ tbody tr:hover td {
 .skeleton-line--short {
     width: 65%;
 }
+
+/* ─── About Page ──────────────────────────────────────────────────── */
+
+.about-page {
+    background: var(--bg);
+    min-height: calc(100vh - 72px);
+}
+
+.about-feed {
+    padding: 72px 64px 0;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* COL2 — two-column split: content left, image right */
+.col2-block {
+    padding-bottom: 72px;
+    margin-bottom: 72px;
+    border-bottom: 1px solid var(--border);
+    animation: about-fade-in 0.5s ease both;
+}
+
+.col2-block--with-image {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 72px;
+    align-items: start;
+}
+
+@keyframes about-fade-in {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.col2-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 22px;
+}
+
+.col2-title {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 38px;
+    font-weight: 400;
+    color: var(--text-primary);
+    letter-spacing: -0.7px;
+    line-height: 1.2;
+    margin: 0 0 22px;
+}
+
+.col2-lead {
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    font-weight: 300;
+}
+
+.col2-section {
+    margin-top: 32px;
+    padding-top: 28px;
+    border-top: 1px solid var(--border);
+}
+
+.col2-section-title {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0 0 12px;
+    letter-spacing: -0.2px;
+}
+
+.col2-section-content {
+    font-size: 15px;
+    line-height: 1.75;
+    color: var(--text-secondary);
+    font-weight: 300;
+}
+
+.col2-media {
+    position: sticky;
+    top: 96px;
+}
+
+.col2-media-inner {
+    position: relative;
+}
+
+.col2-media-img {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    border-radius: 20px;
+    box-shadow: 0 24px 64px rgba(44, 38, 32, 0.12);
+    display: block;
+}
+
+.col2-media-frame {
+    position: absolute;
+    inset: -10px;
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* TEXT blocks on about page */
+.about-text-block {
+    max-width: 720px;
+    padding-bottom: 64px;
+    margin-bottom: 64px;
+    border-bottom: 1px solid var(--border);
+    animation: about-fade-in 0.5s ease both;
+    animation-delay: 0.1s;
+}
+
+.about-text-block:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.about-text-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 18px;
+}
+
+.about-text-title {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 30px;
+    font-weight: 400;
+    color: var(--text-primary);
+    letter-spacing: -0.5px;
+    line-height: 1.25;
+    margin: 0 0 18px;
+}
+
+.about-text-content {
+    font-size: 15.5px;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    font-weight: 300;
+}
+
+.about-text-section {
+    margin-top: 28px;
+    padding-top: 24px;
+    padding-left: 20px;
+    border-top: none;
+    border-left: 2px solid var(--border);
+}
+
+.about-text-section-title {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0 0 10px;
+    letter-spacing: -0.2px;
+}
+
+.about-text-section-content {
+    font-size: 15px;
+    line-height: 1.75;
+    color: var(--text-secondary);
+    font-weight: 300;
+}
+
+@media (max-width: 1024px) {
+    .col2-block--with-image {
+        grid-template-columns: 1fr 1fr;
+        gap: 48px;
+    }
+}
+
+@media (max-width: 900px) {
+    .about-feed {
+        padding: 48px 32px 0;
+    }
+
+    .col2-block--with-image {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .col2-media {
+        position: static;
+        order: -1;
+    }
+
+    .col2-media-img {
+        aspect-ratio: 4 / 3;
+    }
+
+    .col2-title {
+        font-size: 30px;
+    }
+
+    .about-text-title {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 768px) {
+    .about-feed {
+        padding: 40px 24px 0;
+    }
+
+    .col2-block {
+        padding-bottom: 48px;
+        margin-bottom: 48px;
+    }
+
+    .about-text-block {
+        padding-bottom: 48px;
+        margin-bottom: 48px;
+    }
+
+    .col2-title {
+        font-size: 26px;
+    }
+}
