@@ -65,7 +65,8 @@
   "footer": {
     "privacy": "Конфиденциальность",
     "imprint": "Impressum",
-    "contact": "Контакт"
+    "contact": "Контакт",
+    "language": "Язык"
   },
   "article": {
     "management": "Управление статьями",

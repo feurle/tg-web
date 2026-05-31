@@ -81,7 +81,8 @@
   "footer": {
     "privacy": "Datenschutz",
     "imprint": "Impressum",
-    "contact": "Kontakt"
+    "contact": "Kontakt",
+    "language": "Sprache"
   },
   "section": {
     "add": "Abschnitt hinzufügen",

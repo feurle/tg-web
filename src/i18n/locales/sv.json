@@ -65,7 +65,8 @@
   "footer": {
     "privacy": "Integritet",
     "imprint": "Impressum",
-    "contact": "Kontakt"
+    "contact": "Kontakt",
+    "language": "Språk"
   },
   "article": {
     "management": "Artikelhantering",
