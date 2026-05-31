@@ -75,7 +75,8 @@
   "footer": {
     "privacy": "Privacy",
     "imprint": "Imprint",
-    "contact": "Contact"
+    "contact": "Contact",
+    "language": "Language"
   },
   "article": {
     "management": "Article Management",
