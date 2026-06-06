@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ROUTES } from '../router/routes';
 import logoImg from '../assets/logo.png';
-import { useAuth } from '../features/auth/authStore';
 import LoginModal from '../features/auth/components/LoginModal';
 
 const LANGUAGES = [
@@ -15,7 +14,6 @@ const LANGUAGES = [
 
 export default function Footer() {
     const { t, i18n: i18nInstance } = useTranslation();
-    const { isAuthenticated, logout } = useAuth();
     const [showLogin, setShowLogin] = useState(false);
     const [showLangMenu, setShowLangMenu] = useState(false);
     const langRef = useRef<HTMLDivElement>(null);
@@ -96,11 +94,6 @@ export default function Footer() {
 
                 <div className="footer-bottom">
                     <span className="footer-copy">© {new Date().getFullYear()} {t('app.name')}</span>
-                    {isAuthenticated ? (
-                        <button className="footer-auth-link" onClick={logout}>{t('nav.logout')}</button>
-                    ) : (
-                        <button className="footer-auth-link" onClick={() => setShowLogin(true)}>{t('nav.login')}</button>
-                    )}
                 </div>
             </footer>
 
