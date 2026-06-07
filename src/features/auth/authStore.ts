@@ -41,8 +41,8 @@ export const authStore = {
 
   async init() {
     try {
-      const data = await apiClient.get<MeResponse>('/api/auth/me');
-      _user = { username: data.login, roles: data.authorities };
+      const data = await apiClient.get<MeResponse | undefined>('/api/auth/me');
+      _user = data ? { username: data.login, roles: data.authorities } : null;
     } catch {
       _user = null;
     } finally {

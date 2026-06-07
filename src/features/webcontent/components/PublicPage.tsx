@@ -51,10 +51,12 @@ export default function PublicPage({ pageSlug }: Props) {
                 if (article.articleType === 'TEXT') return <ArticleBlock key={article.id} article={article} />;
                 return null;
             })}
-            <div className="cta-section">
-                <p className="cta-tagline">{t('home.contact.sub')}</p>
-                <ContactButton />
-            </div>
+            {!loading && (
+                <div className="cta-section">
+                    <p className="cta-tagline">{t('home.contact.sub')}</p>
+                    <ContactButton />
+                </div>
+            )}
         </div>
     );
 }

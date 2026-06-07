@@ -42,7 +42,7 @@ export default function Footer() {
             <footer className="footer">
                 <div className="footer-brand-col">
                     <Link to={ROUTES.HOME} className="footer-brand-name">
-                        <img src={logoImg} alt="" className="footer-brand-img" />
+                        <img src={logoImg} alt="" className="footer-brand-img" width="32" height="32" />
                         {t('app.name')}
                     </Link>
                     <p className="footer-tagline">{t('home.tagline')}</p>
