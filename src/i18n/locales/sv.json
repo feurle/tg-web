@@ -4,10 +4,13 @@
   },
   "nav": {
     "home": "Hem",
+    "forPetOwners": "För djurägare",
+    "forVets": "För veterinärer",
     "news": "Fackartiklar",
     "administration": "Förvaltning",
     "customers": "Kunder",
     "users": "Användare",
+    "questionnaires": "Frågeformulär",
     "articles": "Artiklar",
     "images": "Bilder",
     "tags": "Taggar",
@@ -25,6 +28,7 @@
     "cancel": "Avbryt",
     "delete": "Ta bort",
     "edit": "Redigera",
+    "view": "Visa",
     "loading": "Laddar…",
     "saveError": "Sparandet misslyckades.",
     "deleteError": "Borttagningen misslyckades.",
@@ -57,6 +61,68 @@
   },
   "about": {
     "subtitle": "Läs mer om oss och vårt team."
+  },
+  "questionnaire": {
+    "page": {
+      "title": "Frågeformulär för beteenderådgivning",
+      "subtitle": "Vänligen svara på följande frågor så noggrant som möjligt.",
+      "intro": "Dina uppgifter är ett viktigt hjälpmedel för att diagnostisera och behandla ditt djurs problem och behandlas naturligtvis konfidentiellt."
+    },
+    "section": {
+      "owner": "Frågor om djurägaren",
+      "pet": "Allmänna frågor om ditt djur"
+    },
+    "form": {
+      "owner": {
+        "name": "Namn, förnamn",
+        "email": "E-post",
+        "firstPet": "Är detta ditt första djur?",
+        "reasonForChoosing": "Varför valde du just detta djur?"
+      },
+      "pet": {
+        "name": "Djurets namn",
+        "origin": "Var kommer ditt djur ifrån?",
+        "breederRearing": "Om från en uppfödare: beskriv hållning och uppfödning. Såg du föräldradjuren?",
+        "historyBeforeOwner": "Om du inte är den första ägaren: vet du något om djurets förflutna innan det kom till dig?",
+        "ageWhenAcquired": "Hur gammalt var ditt djur när det kom till dig?",
+        "ownedSince": "Sedan när bor djuret hos dig?",
+        "neutered": "Är ditt djur kastrerat?",
+        "neuteredAge": "Vid vilken ålder kastrerades ditt djur?",
+        "neuteringReason": "Fanns det en särskild anledning till kastreringen?",
+        "behaviorChangesAfterNeutering": "Uppstod beteendeförändringar efter kastreringen? Om ja, vilka?",
+        "school": "Har du gått på hundskola eller tränat djuret själv? Använder du hjälpmedel som en klicker?",
+        "knownCommands": "Vilka kommandon kan ditt djur (t.ex. sitt, ligg, släpp)?",
+        "feeding": "Vad och hur ofta äter ditt djur?",
+        "supplements": "Får ditt djur kosttillskott?",
+        "digestion": "Hur ofta bajsar ditt djur per dag? Har det mag-tarmproblem? Om ja, vilka symtom?",
+        "lastDeworming": "När avmaskades ditt djur senast?",
+        "bloodTest": "Har en blodanalys gjorts nyligen? Fanns det några avvikelser?"
+      }
+    },
+    "yes": "Ja",
+    "no": "Nej",
+    "submit": "Skicka",
+    "submitting": "Skickar…",
+    "error": "Det gick inte att skicka. Försök igen.",
+    "success": {
+      "title": "Tack!",
+      "body": "Ditt frågeformulär har skickats. Vi hör av oss till dig."
+    },
+    "cta": {
+      "title": "Fyll i frågeformuläret",
+      "text": "Förbered ditt besök för beteenderådgivning och fyll i frågeformuläret bekvämt online.",
+      "button": "Öppna frågeformuläret"
+    },
+    "management": "Frågeformulär",
+    "subtitle": "Granska inkomna frågeformulär",
+    "empty": "Inga frågeformulär ännu.",
+    "loadError": "Frågeformulären kunde inte laddas.",
+    "deleteConfirm": "Vill du verkligen ta bort frågeformuläret från ”{{owner}}” ({{pet}})?",
+    "col": {
+      "owner": "Djurägare",
+      "pet": "Djur",
+      "submittedAt": "Inkom"
+    }
   },
   "contact": {
     "appointment": "Boka tid",

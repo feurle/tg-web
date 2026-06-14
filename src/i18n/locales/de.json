@@ -4,10 +4,13 @@
   },
   "nav": {
     "home": "Home",
+    "forPetOwners": "Für Tierhalter",
+    "forVets": "Für Tierärzte",
     "news": "Aktuelles",
     "administration": "Verwaltung",
     "customers": "Kunden",
     "users": "Benutzer",
+    "questionnaires": "Erhebungsbögen",
     "articles": "Artikel",
     "images": "Bilder",
     "tags": "Tags",
@@ -67,6 +70,68 @@
   },
   "about": {
     "subtitle": "Erfahre mehr über uns und unser Team."
+  },
+  "questionnaire": {
+    "page": {
+      "title": "Erhebungsbogen für die Verhaltensberatung",
+      "subtitle": "Bitte beantworten Sie die folgenden Fragen so genau wie möglich.",
+      "intro": "Ihre Angaben sind ein wichtiges Hilfsmittel für die Diagnostik und Behandlung des Problems Ihres Tieres und werden selbstverständlich vertraulich behandelt."
+    },
+    "section": {
+      "owner": "Fragen zum Tierhalter",
+      "pet": "Allgemeine Fragen zu Ihrem Tier"
+    },
+    "form": {
+      "owner": {
+        "name": "Name, Vorname",
+        "email": "E-Mail",
+        "firstPet": "Ist das Ihr erstes Tier?",
+        "reasonForChoosing": "Warum haben Sie sich gerade für dieses Tier entschieden?"
+      },
+      "pet": {
+        "name": "Name des Tieres",
+        "origin": "Herkunft des Tieres",
+        "breederRearing": "Falls vom Züchter: Beschreiben Sie Haltung und Aufzucht. Haben Sie die Elterntiere gesehen?",
+        "historyBeforeOwner": "Falls Sie nicht der erste Besitzer sind: Wissen Sie etwas aus der Vergangenheit Ihres Tieres, bevor es zu Ihnen kam?",
+        "ageWhenAcquired": "Wie alt war Ihr Tier, als es zu Ihnen kam?",
+        "ownedSince": "Seit wann lebt das Tier bei Ihnen?",
+        "neutered": "Ist Ihr Tier kastriert?",
+        "neuteredAge": "In welchem Alter wurde Ihr Tier kastriert?",
+        "neuteringReason": "Gab es einen speziellen Grund für die Kastration?",
+        "behaviorChangesAfterNeutering": "Traten Verhaltensänderungen nach der Kastration auf? Wenn ja, welche?",
+        "school": "Haben Sie eine Hundeschule besucht oder Ihr Tier selbst ausgebildet? Benutzen Sie Hilfsmittel wie z. B. einen Clicker?",
+        "knownCommands": "Welche Kommandos kennt Ihr Tier (z. B. Sitz, Platz, Aus)?",
+        "feeding": "Was bekommt Ihr Tier, wie oft zu fressen?",
+        "supplements": "Bekommt Ihr Tier Nahrungsergänzungsmittel?",
+        "digestion": "Wie oft setzt Ihr Tier am Tag Kot ab? Hat es Magen-Darm-Probleme? Wenn ja, welche Symptome?",
+        "lastDeworming": "Wann wurde Ihr Tier das letzte Mal entwurmt?",
+        "bloodTest": "Ist in letzter Zeit eine Blutuntersuchung erfolgt? Gab es Auffälligkeiten?"
+      }
+    },
+    "yes": "Ja",
+    "no": "Nein",
+    "submit": "Absenden",
+    "submitting": "Senden…",
+    "error": "Senden fehlgeschlagen. Bitte versuchen Sie es erneut.",
+    "success": {
+      "title": "Vielen Dank!",
+      "body": "Ihr Erhebungsbogen wurde übermittelt. Wir melden uns bei Ihnen."
+    },
+    "cta": {
+      "title": "Erhebungsbogen ausfüllen",
+      "text": "Bereiten Sie Ihren Termin zur Verhaltensberatung vor und füllen Sie den Erhebungsbogen bequem online aus.",
+      "button": "Zum Erhebungsbogen"
+    },
+    "management": "Erhebungsbögen",
+    "subtitle": "Eingegangene Erhebungsbögen ansehen",
+    "empty": "Keine Erhebungsbögen vorhanden.",
+    "loadError": "Erhebungsbögen konnten nicht geladen werden.",
+    "deleteConfirm": "Erhebungsbogen von „{{owner}}“ ({{pet}}) wirklich löschen?",
+    "col": {
+      "owner": "Tierhalter",
+      "pet": "Tier",
+      "submittedAt": "Eingegangen am"
+    }
   },
   "contact": {
     "appointment": "Termin vereinbaren",

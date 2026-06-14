@@ -1,5 +1,8 @@
 export const ROUTES = {
   HOME: '/',
+  FOR_PET_OWNERS: '/for-pet-owners',
+  FOR_VETS: '/for-vets',
+  QUESTIONNAIRE: '/questionnaire',
   NEWS: '/news',
   ABOUT: '/about',
   PRIVACY: '/privacy',
@@ -7,6 +10,7 @@ export const ROUTES = {
   CONTACT: '/contact',
   CUSTOMERS: '/customers',
   USERS: '/users',
+  QUESTIONNAIRES: '/questionnaires',
   PAGE_HOME: '/webcontent/page/home',
   PAGE_NEWS: '/webcontent/page/news',
   PAGE_ABOUT: '/webcontent/page/about',

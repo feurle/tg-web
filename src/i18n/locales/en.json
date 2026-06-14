@@ -4,10 +4,13 @@
   },
   "nav": {
     "home": "Home",
+    "forPetOwners": "For Pet Owners",
+    "forVets": "For Vets",
     "news": "Articles",
     "administration": "Administration",
     "customers": "Customers",
     "users": "Users",
+    "questionnaires": "Questionnaires",
     "articles": "Articles",
     "images": "Images",
     "tags": "Tags",
@@ -25,6 +28,7 @@
     "cancel": "Cancel",
     "delete": "Delete",
     "edit": "Edit",
+    "view": "View",
     "loading": "Loading…",
     "saveError": "Saving failed.",
     "deleteError": "Deletion failed.",
@@ -61,6 +65,68 @@
   },
   "about": {
     "subtitle": "Learn more about us and our team."
+  },
+  "questionnaire": {
+    "page": {
+      "title": "Behaviour Consultation Questionnaire",
+      "subtitle": "Please answer the following questions as precisely as possible.",
+      "intro": "Your answers are an important aid for diagnosing and treating your pet's problem and will of course be treated confidentially."
+    },
+    "section": {
+      "owner": "About the pet owner",
+      "pet": "General questions about your pet"
+    },
+    "form": {
+      "owner": {
+        "name": "Name, first name",
+        "email": "Email",
+        "firstPet": "Is this your first pet?",
+        "reasonForChoosing": "Why did you choose this particular pet?"
+      },
+      "pet": {
+        "name": "Pet's name",
+        "origin": "Where does your pet come from?",
+        "breederRearing": "If from a breeder: describe the keeping and rearing. Did you see the parent animals?",
+        "historyBeforeOwner": "If you are not the first owner: do you know anything about your pet's past before it came to you?",
+        "ageWhenAcquired": "How old was your pet when it came to you?",
+        "ownedSince": "Since when has the pet lived with you?",
+        "neutered": "Is your pet neutered?",
+        "neuteredAge": "At what age was your pet neutered?",
+        "neuteringReason": "Was there a particular reason for neutering?",
+        "behaviorChangesAfterNeutering": "Did any behavioural changes occur after neutering? If so, which?",
+        "school": "Did you attend a dog school or train your pet yourself? Do you use aids such as a clicker?",
+        "knownCommands": "Which commands does your pet know (e.g. sit, down, leave)?",
+        "feeding": "What and how often does your pet eat?",
+        "supplements": "Does your pet receive any food supplements?",
+        "digestion": "How often does your pet defecate per day? Does it have digestive problems? If so, which symptoms?",
+        "lastDeworming": "When was your pet last dewormed?",
+        "bloodTest": "Has a blood test been done recently? Were there any abnormalities?"
+      }
+    },
+    "yes": "Yes",
+    "no": "No",
+    "submit": "Submit",
+    "submitting": "Submitting…",
+    "error": "Submission failed. Please try again.",
+    "success": {
+      "title": "Thank you!",
+      "body": "Your questionnaire has been submitted. We will get in touch with you."
+    },
+    "cta": {
+      "title": "Fill out the questionnaire",
+      "text": "Prepare for your behaviour consultation appointment and complete the questionnaire conveniently online.",
+      "button": "Open questionnaire"
+    },
+    "management": "Questionnaires",
+    "subtitle": "Review submitted questionnaires",
+    "empty": "No questionnaires yet.",
+    "loadError": "Questionnaires could not be loaded.",
+    "deleteConfirm": "Really delete the questionnaire from \"{{owner}}\" ({{pet}})?",
+    "col": {
+      "owner": "Pet owner",
+      "pet": "Pet",
+      "submittedAt": "Submitted at"
+    }
   },
   "contact": {
     "appointment": "Book Appointment",

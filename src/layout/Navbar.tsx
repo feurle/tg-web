@@ -29,6 +29,12 @@ export default function Navbar() {
           <NavLink to={ROUTES.HOME} className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
             {t('nav.home')}
           </NavLink>
+          <NavLink to={ROUTES.FOR_PET_OWNERS} className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
+            {t('nav.forPetOwners')}
+          </NavLink>
+          <NavLink to={ROUTES.FOR_VETS} className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
+            {t('nav.forVets')}
+          </NavLink>
           <NavLink to={ROUTES.NEWS} className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
             {t('nav.news')}
           </NavLink>
@@ -79,6 +85,12 @@ export default function Navbar() {
           <nav className="mobile-overlay-links">
             <NavLink to={ROUTES.HOME} onClick={() => setMenuOpen(false)} className={({ isActive }) => isActive ? 'mobile-overlay-link active' : 'mobile-overlay-link'}>
               {t('nav.home')}
+            </NavLink>
+            <NavLink to={ROUTES.FOR_PET_OWNERS} onClick={() => setMenuOpen(false)} className={({ isActive }) => isActive ? 'mobile-overlay-link active' : 'mobile-overlay-link'}>
+              {t('nav.forPetOwners')}
+            </NavLink>
+            <NavLink to={ROUTES.FOR_VETS} onClick={() => setMenuOpen(false)} className={({ isActive }) => isActive ? 'mobile-overlay-link active' : 'mobile-overlay-link'}>
+              {t('nav.forVets')}
             </NavLink>
             <NavLink to={ROUTES.NEWS} onClick={() => setMenuOpen(false)} className={({ isActive }) => isActive ? 'mobile-overlay-link active' : 'mobile-overlay-link'}>
               {t('nav.news')}
