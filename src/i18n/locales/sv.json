@@ -14,6 +14,7 @@
     "articles": "Artiklar",
     "images": "Bilder",
     "tags": "Taggar",
+    "contactInfo": "Kontaktuppgifter",
     "login": "Logga in",
     "logout": "Logga ut",
     "sidebar": {
@@ -127,6 +128,37 @@
   "contact": {
     "appointment": "Boka tid",
     "message": "Skicka meddelande"
+  },
+  "contactInfoAdmin": {
+    "management": "Kontaktuppgifter",
+    "subtitle": "Hantera kontaktuppgifter och öppettider",
+    "primary": "Primär",
+    "new": "Ny post",
+    "newHeading": "Skapa kontaktuppgifter",
+    "editHeading": "Redigera kontaktuppgifter",
+    "deleteConfirm": "Vill du verkligen ta bort kontaktuppgifterna för \"{{city}}\"?",
+    "loadError": "Det gick inte att läsa in kontaktuppgifter.",
+    "empty": "Inga kontaktuppgifter hittades.",
+    "col": {
+      "name": "Namn",
+      "phone": "Telefon",
+      "email": "E-post",
+      "city": "Stad",
+      "actions": "Åtgärder"
+    },
+    "form": {
+      "name": "Namn *",
+      "primary": "Ange som primär",
+      "phone": "Telefon *",
+      "email": "E-post *",
+      "street": "Gata *",
+      "zip": "Postnummer *",
+      "city": "Stad *",
+      "officeHours": "Öppettider",
+      "addHour": "Lägg till öppettid",
+      "hourLabel": "Beteckning (t.ex. Mån–Fre)",
+      "hourTime": "Tid (t.ex. 09:00–17:00)"
+    }
   },
   "footer": {
     "privacy": "Integritet",

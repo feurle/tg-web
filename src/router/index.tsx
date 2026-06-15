@@ -17,6 +17,7 @@ import UsersPage from '../pages/protected/UsersPage';
 import ArticlesPage from '../pages/protected/ArticlesPage.tsx'; 
 import ImagesPage from '../pages/protected/ImagesPage';
 import TagsPage from '../pages/protected/TagsPage';
+import ContactInfoPage from '../pages/protected/ContactInfoPage';
 import { ROUTES } from './routes';
 
 const router = createBrowserRouter([
@@ -51,6 +52,7 @@ const router = createBrowserRouter([
           { path: ROUTES.PAGE_CONTACT, element: <ArticlesPage slug="contact" /> },
           { path: ROUTES.IMAGES, element: <ImagesPage /> },
           { path: ROUTES.TAGS, element: <TagsPage /> },
+          { path: ROUTES.CONTACT_INFO, element: <ContactInfoPage /> },
         ],
       },
     ],

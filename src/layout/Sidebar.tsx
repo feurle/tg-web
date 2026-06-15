@@ -41,6 +41,13 @@ export default function Sidebar() {
                 <span className="sidebar-icon">📋</span>
                 {t('nav.questionnaires')}
             </NavLink>
+            <NavLink
+                to={ROUTES.CONTACT_INFO}
+                className={({isActive}) => isActive ? 'sidebar-item active' : 'sidebar-item'}
+            >
+                <span className="sidebar-icon">📇</span>
+                {t('nav.contactInfo')}
+            </NavLink>
 
             <div className="sidebar-section-label">{t('nav.sidebar.webcontent')}</div>
             <NavLink

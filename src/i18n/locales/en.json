@@ -14,6 +14,7 @@
     "articles": "Articles",
     "images": "Images",
     "tags": "Tags",
+    "contactInfo": "Contact Info",
     "login": "Sign In",
     "logout": "Sign Out",
     "sidebar": {
@@ -131,6 +132,37 @@
   "contact": {
     "appointment": "Book Appointment",
     "message": "Send Message"
+  },
+  "contactInfoAdmin": {
+    "management": "Contact Info",
+    "subtitle": "Manage contact information and office hours",
+    "primary": "Primary",
+    "new": "New Entry",
+    "newHeading": "Create Contact Info",
+    "editHeading": "Edit Contact Info",
+    "deleteConfirm": "Really delete contact info for “{{city}}”?",
+    "loadError": "Failed to load contact info.",
+    "empty": "No contact info found.",
+    "col": {
+      "name": "Name",
+      "phone": "Phone",
+      "email": "Email",
+      "city": "City",
+      "actions": "Actions"
+    },
+    "form": {
+      "name": "Name *",
+      "primary": "Set as primary",
+      "phone": "Phone *",
+      "email": "Email *",
+      "street": "Street *",
+      "zip": "ZIP *",
+      "city": "City *",
+      "officeHours": "Office Hours",
+      "addHour": "Add office hour",
+      "hourLabel": "Label (e.g. Mon–Fri)",
+      "hourTime": "Time (e.g. 09:00–17:00)"
+    }
   },
   "contactInfo": {
     "phone": "Phone",

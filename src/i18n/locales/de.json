@@ -18,6 +18,7 @@
     "privacy": "Datenschutz",
     "imprint": "Impressum",
     "contact": "Kontakt",
+    "contactInfo": "Kontaktdaten",
     "login": "Anmelden",
     "logout": "Abmelden",
     "sidebar": {
@@ -136,6 +137,37 @@
   "contact": {
     "appointment": "Termin vereinbaren",
     "message": "Nachricht schreiben"
+  },
+  "contactInfoAdmin": {
+    "management": "Kontaktdaten",
+    "subtitle": "Kontaktinformationen und Sprechzeiten verwalten",
+    "primary": "Primär",
+    "new": "Neuer Eintrag",
+    "newHeading": "Kontaktdaten anlegen",
+    "editHeading": "Kontaktdaten bearbeiten",
+    "deleteConfirm": "Kontaktdaten für „{{city}}“ wirklich löschen?",
+    "loadError": "Kontaktdaten konnten nicht geladen werden.",
+    "empty": "Keine Kontaktdaten vorhanden.",
+    "col": {
+      "name": "Name",
+      "phone": "Telefon",
+      "email": "E-Mail",
+      "city": "Ort",
+      "actions": "Aktionen"
+    },
+    "form": {
+      "name": "Name *",
+      "primary": "Als primär festlegen",
+      "phone": "Telefon *",
+      "email": "E-Mail *",
+      "street": "Straße *",
+      "zip": "PLZ *",
+      "city": "Ort *",
+      "officeHours": "Sprechzeiten",
+      "addHour": "Sprechzeit hinzufügen",
+      "hourLabel": "Bezeichnung (z. B. Mo–Fr)",
+      "hourTime": "Uhrzeit (z. B. 09:00–17:00)"
+    }
   },
   "contactInfo": {
     "phone": "Telefon",

@@ -19,4 +19,5 @@ export const ROUTES = {
   PAGE_CONTACT: '/webcontent/page/contact',
   IMAGES: '/webcontent/images',
   TAGS: '/webcontent/tags',
+  CONTACT_INFO: '/contact-info',
 } as const;
