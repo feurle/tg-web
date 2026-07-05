@@ -70,7 +70,7 @@ style.textContent = `
     z-index: 10;
   }
   .nav-logo {
-    font-size: 17px;
+    font-size: 24px;
     font-weight: 600;
     color: var(--text-primary);
     letter-spacing: -0.3px;

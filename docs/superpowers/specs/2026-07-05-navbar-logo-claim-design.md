@@ -59,6 +59,14 @@ No separate mobile override is needed for the claim — since the logo image
 size is unchanged, raising the base `.navbar` height applies uniformly across
 breakpoints, so the claim stays visible on mobile as well as desktop.
 
+### 4. Mobile-nav breakpoint fix (found during verification)
+The larger 20px `.nav-link` text made the nav-links row wide enough that, in
+the roughly 769–1200px range, the logo column got squeezed and "Tier.
+Gesund." wrapped onto two lines. Fix: raise the breakpoint that switches to
+the mobile hamburger nav from `max-width: 768px` to `max-width: 1240px` (split
+out of the shared media query that previously also held unrelated footer
+rules, which stay at `768px`).
+
 ## Verification
 Run the dev server and check both desktop and mobile widths (particularly
 ≤768px and ≤480px):

@@ -1,11 +1,13 @@
 {
   "app": {
-    "name": "Tier. Gesund."
+    "name": "Tier. Gesund.",
+    "claim": "Ganzheitlich-integrative Tiermedizin"
   },
   "nav": {
     "home": "Home",
     "forPetOwners": "Für Tierhalter",
     "forVets": "Für Tierärzte",
+    "requests": "Anfragen",
     "news": "Aktuelles",
     "administration": "Verwaltung",
     "customers": "Kunden",
