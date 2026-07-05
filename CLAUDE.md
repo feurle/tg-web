@@ -13,6 +13,8 @@ npm run preview  # Preview production build
 
 No test runner is configured yet.
 
+The Java backend lives in a sibling repo (`../tg-web`).
+
 ## Architecture
 
 **Stack:** React 19, TypeScript, Vite, React Router v7, react-i18next
