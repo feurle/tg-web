@@ -20,9 +20,13 @@ export default function Navbar() {
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? 'hidden' : '';
-    if (!menuOpen) setMobileRequestsOpen(false);
     return () => { document.body.style.overflow = ''; };
   }, [menuOpen]);
+
+  function closeMenu() {
+    setMenuOpen(false);
+    setMobileRequestsOpen(false);
+  }
 
   useEffect(() => {
     if (!showRequests) return;
@@ -112,7 +116,7 @@ export default function Navbar() {
           )}
           <button
             className="nav-hamburger"
-            onClick={() => setMenuOpen((o) => !o)}
+            onClick={() => (menuOpen ? closeMenu() : setMenuOpen(true))}
             aria-label={menuOpen ? 'Menü schließen' : 'Menü öffnen'}
             aria-expanded={menuOpen}
           >
@@ -135,13 +139,13 @@ export default function Navbar() {
       {menuOpen && (
         <div className="mobile-overlay" role="dialog" aria-modal="true" aria-label="Navigation">
           <nav className="mobile-overlay-links">
-            <NavLink to={ROUTES.HOME} onClick={() => setMenuOpen(false)} className={({ isActive }) => isActive ? 'mobile-overlay-link active' : 'mobile-overlay-link'}>
+            <NavLink to={ROUTES.HOME} onClick={closeMenu} className={({ isActive }) => isActive ? 'mobile-overlay-link active' : 'mobile-overlay-link'}>
               {t('nav.home')}
             </NavLink>
-            <NavLink to={ROUTES.NEWS} onClick={() => setMenuOpen(false)} className={({ isActive }) => isActive ? 'mobile-overlay-link active' : 'mobile-overlay-link'}>
+            <NavLink to={ROUTES.NEWS} onClick={closeMenu} className={({ isActive }) => isActive ? 'mobile-overlay-link active' : 'mobile-overlay-link'}>
               {t('nav.news')}
             </NavLink>
-            <NavLink to={ROUTES.ABOUT} onClick={() => setMenuOpen(false)} className={({ isActive }) => isActive ? 'mobile-overlay-link active' : 'mobile-overlay-link'}>
+            <NavLink to={ROUTES.ABOUT} onClick={closeMenu} className={({ isActive }) => isActive ? 'mobile-overlay-link active' : 'mobile-overlay-link'}>
               {t('pages.about')}
             </NavLink>
             <div className="mobile-overlay-group">
@@ -166,14 +170,14 @@ export default function Navbar() {
                 <div className="mobile-overlay-subitems">
                   <NavLink
                     to={ROUTES.FOR_PET_OWNERS}
-                    onClick={() => setMenuOpen(false)}
+                    onClick={closeMenu}
                     className={({ isActive }) => isActive ? 'mobile-overlay-sublink active' : 'mobile-overlay-sublink'}
                   >
                     {t('nav.forPetOwners')}
                   </NavLink>
                   <NavLink
                     to={ROUTES.FOR_VETS}
-                    onClick={() => setMenuOpen(false)}
+                    onClick={closeMenu}
                     className={({ isActive }) => isActive ? 'mobile-overlay-sublink active' : 'mobile-overlay-sublink'}
                   >
                     {t('nav.forVets')}
@@ -182,7 +186,7 @@ export default function Navbar() {
               )}
             </div>
             {isAuthenticated && (
-              <NavLink to={ROUTES.CUSTOMERS} onClick={() => setMenuOpen(false)} className={({ isActive }) => isActive ? 'mobile-overlay-link active' : 'mobile-overlay-link'}>
+              <NavLink to={ROUTES.CUSTOMERS} onClick={closeMenu} className={({ isActive }) => isActive ? 'mobile-overlay-link active' : 'mobile-overlay-link'}>
                 {t('nav.administration')}
               </NavLink>
             )}
