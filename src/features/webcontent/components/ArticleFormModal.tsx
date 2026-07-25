@@ -46,9 +46,15 @@ export default function ArticleFormModal(props: Props) {
 
   const [title, setTitle] = useState(initial?.title ?? '');
   const [content, setContent] = useState(initial?.content ?? '');
-  const [pageType, setPageType] = useState<ArticleType>(initial?.articleType ?? 'DEFAULT');
+  const [articleType, setArticleType] = useState<ArticleType>(initial?.articleType ?? 'DEFAULT');
   const [language, setLanguage] = useState<Language>(initial?.language ?? 'GERMAN');
   const [state, setState] = useState<ArticleState>(initial?.state ?? 'CREATED');
+  // Empty means "let the backend decide": append at the end on create, keep the
+  // current position on edit. Orders below 1 predate the sort-order feature and
+  // would fail the server's @Min(1), so they start out empty rather than invalid.
+  const [order, setOrder] = useState<number | ''>(
+    initial?.order && initial.order > 0 ? initial.order : '',
+  );
   const [selectedImageIds, setSelectedImageIds] = useState<Set<number>>(
     new Set(initial?.images.map((i) => i.id) ?? []),
   );
@@ -76,10 +82,11 @@ export default function ArticleFormModal(props: Props) {
     e.preventDefault();
     const imageIds = Array.from(selectedImageIds);
     const tagIds = Array.from(selectedTagIds);
+    const orderField = order === '' ? {} : { order };
     if (mode === 'create') {
-      props.onSave({ title, content, pageType, language, imageIds, tagIds, ...(props.pageId !== undefined && { pageId: props.pageId }) });
+      props.onSave({ title, content, articleType, language, imageIds, tagIds, ...orderField, ...(props.pageId !== undefined && { pageId: props.pageId }) });
     } else {
-      props.onSave({ title, content, state, language, imageIds, tagIds });
+      props.onSave({ title, content, state, language, imageIds, tagIds, ...orderField });
     }
   }
 
@@ -111,8 +118,8 @@ export default function ArticleFormModal(props: Props) {
               {t('article.form.pageType')}
               <select
                 className="form-input"
-                value={pageType}
-                onChange={(e) => setPageType(e.target.value as ArticleType)}
+                value={articleType}
+                onChange={(e) => setArticleType(e.target.value as ArticleType)}
                 disabled={mode === 'edit'}
               >
                 {PAGE_TYPE_VALUES.map((v) => (
@@ -148,6 +155,19 @@ export default function ArticleFormModal(props: Props) {
                 </select>
               </label>
             )}
+
+            <label className="form-label" style={{ maxWidth: 120 }}>
+              {t('article.form.order')}
+              <input
+                className="form-input"
+                type="number"
+                min={1}
+                value={order}
+                placeholder={t('article.form.orderPlaceholder')}
+                title={mode === 'create' ? t('article.form.orderHint') : undefined}
+                onChange={(e) => setOrder(e.target.value === '' ? '' : Number(e.target.value))}
+              />
+            </label>
           </div>
 
           {images.length > 0 && (

@@ -39,14 +39,22 @@ export interface ArticleResponse {
   pageId: string;
 }
 
+export type MoveDirection = 'UP' | 'DOWN';
+
+export interface MoveArticleRequest {
+  direction: MoveDirection;
+}
+
 export interface CreateArticleRequest {
   title: string;
   content: string;
-  pageType: ArticleType;
+  articleType: ArticleType;
   language: Language;
   imageIds: number[];
   tagIds: number[];
   pageId?: number;
+  /** Omit to append the article at the end of its page + language. */
+  order?: number;
 }
 
 export interface UpdateArticleRequest {
@@ -56,6 +64,8 @@ export interface UpdateArticleRequest {
   language: Language;
   imageIds: number[];
   tagIds: number[];
+  /** Omit to keep the current order. */
+  order?: number;
 }
 
 export interface UpdateImageRequest {

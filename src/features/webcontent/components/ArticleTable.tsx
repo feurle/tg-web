@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { Fragment, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import type { ArticleResponse, SectionResponse } from '../types';
+import type { ArticleResponse, MoveDirection, SectionResponse } from '../types';
 
 interface Props {
   articles: ArticleResponse[];
@@ -10,9 +10,11 @@ interface Props {
   onAddSection?: (article: ArticleResponse) => void;
   onEditSection?: (article: ArticleResponse, section: SectionResponse) => void;
   onDeleteSection?: (article: ArticleResponse, section: SectionResponse) => void;
+  onMove?: (article: ArticleResponse, direction: MoveDirection) => void;
+  moving?: boolean;
 }
 
-export default function ArticleTable({ articles, onView, onEdit, onDelete, onAddSection, onEditSection, onDeleteSection }: Props) {
+export default function ArticleTable({ articles, onView, onEdit, onDelete, onAddSection, onEditSection, onDeleteSection, onMove, moving }: Props) {
   const { t } = useTranslation();
   const [expanded, setExpanded] = useState<Set<number>>(new Set());
 
@@ -23,6 +25,20 @@ export default function ArticleTable({ articles, onView, onEdit, onDelete, onAdd
       return next;
     });
   }
+
+  // Articles are ordered per page + language, so sort by language first to keep each
+  // language's 1..N sequence contiguous.
+  const sorted = [...articles].sort(
+    (a, b) => a.language.localeCompare(b.language) || a.order - b.order || a.id - b.id,
+  );
+
+  // ↑/↓ must be disabled at the edges of the language group, not of the whole table.
+  const firstOfLanguage = new Map<string, number>();
+  const lastOfLanguage = new Map<string, number>();
+  sorted.forEach((a) => {
+    if (!firstOfLanguage.has(a.language)) firstOfLanguage.set(a.language, a.id);
+    lastOfLanguage.set(a.language, a.id);
+  });
 
   if (articles.length === 0) {
     return (
@@ -37,6 +53,7 @@ export default function ArticleTable({ articles, onView, onEdit, onDelete, onAdd
       <table>
         <thead>
           <tr>
+            <th>{t('article.col.order')}</th>
             <th>{t('article.col.title')}</th>
             <th>{t('article.col.pageType')}</th>
             <th>{t('article.col.language')}</th>
@@ -46,9 +63,10 @@ export default function ArticleTable({ articles, onView, onEdit, onDelete, onAdd
           </tr>
         </thead>
         <tbody>
-          {articles.map((a) => (
-            <>
-              <tr key={a.id} className="tr-expandable" onClick={() => toggle(a.id)}>
+          {sorted.map((a) => (
+            <Fragment key={a.id}>
+              <tr className="tr-expandable" onClick={() => toggle(a.id)}>
+                <td className="section-order">{a.order}</td>
                 <td style={{ fontWeight: 500 }}>
                   <span className="expand-chevron">{expanded.has(a.id) ? '▾' : '▸'}</span>
                   {a.title}
@@ -63,6 +81,26 @@ export default function ArticleTable({ articles, onView, onEdit, onDelete, onAdd
                 </td>
                 <td onClick={(e) => e.stopPropagation()}>
                   <div className="row-actions">
+                    {onMove && (
+                      <>
+                        <button
+                          onClick={() => onMove(a, 'UP')}
+                          className="icon-btn"
+                          disabled={moving || firstOfLanguage.get(a.language) === a.id}
+                          title={t('article.moveUp')}
+                        >
+                          ↑
+                        </button>
+                        <button
+                          onClick={() => onMove(a, 'DOWN')}
+                          className="icon-btn"
+                          disabled={moving || lastOfLanguage.get(a.language) === a.id}
+                          title={t('article.moveDown')}
+                        >
+                          ↓
+                        </button>
+                      </>
+                    )}
                     <button onClick={() => onView(a)} className="icon-btn" title={t('common.view')}>
                       👁️
                     </button>
@@ -81,8 +119,8 @@ export default function ArticleTable({ articles, onView, onEdit, onDelete, onAdd
                 </td>
               </tr>
               {expanded.has(a.id) && (
-                <tr key={`${a.id}-sections`} className="tr-sections">
-                  <td colSpan={6}>
+                <tr className="tr-sections">
+                  <td colSpan={7}>
                     {a.sections.length === 0 ? (
                       <p className="sections-empty">{t('section.empty')}</p>
                     ) : (
@@ -129,7 +167,7 @@ export default function ArticleTable({ articles, onView, onEdit, onDelete, onAdd
                   </td>
                 </tr>
               )}
-            </>
+            </Fragment>
           ))}
         </tbody>
       </table>

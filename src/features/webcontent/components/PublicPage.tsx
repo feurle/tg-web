@@ -26,7 +26,7 @@ export default function PublicPage({ pageSlug }: Props) {
         articleApi.getPublishedByPage(pageSlug, language)
             .then((data) => {
                 if (!cancelled) {
-                    setArticles([...data].sort((a, b) => a.order - b.order));
+                    setArticles(data);
                     setFetchedLanguage(language);
                 }
             })

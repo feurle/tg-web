@@ -178,6 +178,7 @@
     "loadError": "Det gick inte att läsa in artiklar.",
     "empty": "Inga artiklar hittades.",
     "col": {
+      "order": "Nr.",
       "title": "Titel",
       "page": "Sida",
       "language": "Språk",
@@ -191,9 +192,14 @@
       "page": "Sida",
       "language": "Språk",
       "status": "Status",
+      "order": "Ordning",
+      "orderPlaceholder": "auto",
+      "orderHint": "Lämna tomt för att lägga artikeln sist.",
       "images": "Bilder",
       "tags": "Taggar"
     },
+    "moveUp": "Flytta upp",
+    "moveDown": "Flytta ner",
     "page": {
       "HOME_TEASER": "Startsida teaser",
       "HOME_PAGE": "Startsida",
