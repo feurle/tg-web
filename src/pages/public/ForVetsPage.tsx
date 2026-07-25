@@ -56,7 +56,7 @@ export default function ForVetsPage() {
         articleApi.getPublishedByPage('for-vets', language)
             .then((data) => {
                 if (!cancelled) {
-                    setArticles([...data].sort((a, b) => a.order - b.order));
+                    setArticles(data);
                     setFetchedLanguage(language);
                 }
             })

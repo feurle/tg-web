@@ -6,6 +6,7 @@ import type {
   CreateTagRequest,
   ImageResponse,
   Language,
+  MoveDirection,
   PageResponse,
   ArticleType,
   SectionResponse,
@@ -52,6 +53,10 @@ export const articleApi = {
 
   update: (id: number, data: UpdateArticleRequest) =>
     apiClient.put<ArticleResponse>(`${ARTICLES}/${id}`, data),
+
+  /** Swaps the article with its neighbour; returns its whole page + language group, reordered. */
+  move: (id: number, direction: MoveDirection) =>
+    apiClient.put<ArticleResponse[]>(`${ARTICLES}/${id}/move`, { direction }),
 
   delete: (id: number) => apiClient.delete<void>(`${ARTICLES}/${id}`),
 };

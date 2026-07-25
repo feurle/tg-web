@@ -60,7 +60,7 @@ export default function AboutPage() {
         articleApi.getPublishedByPage('about', language)
             .then((data) => {
                 if (!cancelled) {
-                    setArticles([...data].sort((a, b) => a.order - b.order));
+                    setArticles(data);
                     setFetchedLanguage(language);
                 }
             })

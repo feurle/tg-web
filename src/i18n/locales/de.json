@@ -219,6 +219,7 @@
     "loadError": "Artikel konnten nicht geladen werden.",
     "empty": "Keine Artikel vorhanden.",
     "col": {
+      "order": "Nr.",
       "title": "Titel",
       "pageType": "Seiten Typ",
       "language": "Sprache",
@@ -232,9 +233,14 @@
       "pageType": "Seiten Typ",
       "language": "Sprache",
       "status": "Status",
+      "order": "Reihenfolge",
+      "orderPlaceholder": "auto",
+      "orderHint": "Leer lassen, um den Artikel am Ende einzufügen.",
       "images": "Bilder",
       "tags": "Tags"
     },
+    "moveUp": "Nach oben",
+    "moveDown": "Nach unten",
     "pageType": {
       "DEFAULT": "Standard",
       "HERO": "Hero (teaser) Komponente",

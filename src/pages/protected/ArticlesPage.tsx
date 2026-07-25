@@ -8,6 +8,7 @@ import type {
   CreateSectionRequest,
   ImageResponse,
   Language,
+  MoveDirection,
   SectionResponse,
   TagResponse,
   UpdateArticleRequest,
@@ -53,6 +54,7 @@ export default function ArticlesPage({ slug }: Readonly<Props>) {
   const [error, setError] = useState<string | null>(null);
   const [modal, setModal] = useState<Modal>(null);
   const [saving, setSaving] = useState(false);
+  const [moving, setMoving] = useState(false);
   const [languageFilter, setLanguageFilter] = useState<Language | null>(null);
   const { t } = useTranslation();
 
@@ -169,6 +171,21 @@ export default function ArticlesPage({ slug }: Readonly<Props>) {
     }
   }
 
+  async function handleMove(article: ArticleResponse, direction: MoveDirection) {
+    setMoving(true);
+    try {
+      // The response is the article's whole page + language group, already reordered.
+      const reordered = await articleApi.move(article.id, direction);
+      const byId = new Map(reordered.map((a) => [a.id, a]));
+      setArticles((prev) => prev.map((a) => byId.get(a.id) ?? a));
+    } catch (err) {
+      const message = err instanceof ApiError ? err.message : t('common.saveError');
+      setError(message);
+    } finally {
+      setMoving(false);
+    }
+  }
+
   async function handleDelete() {
     if (modal?.kind !== 'delete') return;
     setSaving(true);
@@ -249,6 +266,8 @@ export default function ArticlesPage({ slug }: Readonly<Props>) {
           onAddSection={(a) => setModal({ kind: 'addSection', article: a })}
           onEditSection={(a, s) => setModal({ kind: 'editSection', article: a, section: s })}
           onDeleteSection={(a, s) => setModal({ kind: 'deleteSection', article: a, section: s })}
+          onMove={handleMove}
+          moving={moving}
         />
       )}
 

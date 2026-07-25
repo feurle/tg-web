@@ -188,6 +188,7 @@
     "loadError": "Failed to load articles.",
     "empty": "No articles found.",
     "col": {
+      "order": "No.",
       "title": "Title",
       "page": "Page",
       "language": "Language",
@@ -201,9 +202,14 @@
       "page": "Page",
       "language": "Language",
       "status": "Status",
+      "order": "Order",
+      "orderPlaceholder": "auto",
+      "orderHint": "Leave empty to append the article at the end.",
       "images": "Images",
       "tags": "Tags"
     },
+    "moveUp": "Move up",
+    "moveDown": "Move down",
     "page": {
       "HOME_TEASER": "Home Teaser",
       "HOME_PAGE": "Home",
