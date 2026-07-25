@@ -107,8 +107,8 @@ jobs:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script_stop: true
           script: |
+            set -e
             docker pull ${{ env.IMAGE_NAME }}:snapshot
             docker compose -f /appbase/tg-app/test-compose.yml up tg-web-test -d
             docker image prune -f
@@ -134,8 +134,8 @@ jobs:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script_stop: true
           script: |
+            set -e
             docker pull ${{ env.IMAGE_NAME }}:latest
             docker compose -f /appbase/tg-app/prod-compose.yml up tg-web-prod -d
             docker image prune -f
