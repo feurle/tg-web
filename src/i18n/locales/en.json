@@ -135,6 +135,27 @@
     "appointment": "Book Appointment",
     "message": "Send Message"
   },
+  "contactForm": {
+    "message": {
+      "heading": "Send a message",
+      "text": "Your message"
+    },
+    "appointment": {
+      "heading": "Book an appointment"
+    },
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone (optional)",
+    "subject": "Subject",
+    "preferredDate": "Preferred date",
+    "preferredTime": "Time (optional)",
+    "note": "Reason for visit (optional)",
+    "submit": "Send",
+    "sending": "Sending…",
+    "success": "Thank you! We will get back to you as soon as possible.",
+    "error": "Sending failed. Please try again later.",
+    "close": "Close"
+  },
   "contactInfoAdmin": {
     "management": "Contact Info",
     "subtitle": "Manage contact information and office hours",

@@ -140,6 +140,27 @@
     "appointment": "Termin vereinbaren",
     "message": "Nachricht schreiben"
   },
+  "contactForm": {
+    "message": {
+      "heading": "Nachricht schreiben",
+      "text": "Ihre Nachricht"
+    },
+    "appointment": {
+      "heading": "Termin vereinbaren"
+    },
+    "name": "Name",
+    "email": "E-Mail",
+    "phone": "Telefon (optional)",
+    "subject": "Betreff",
+    "preferredDate": "Wunschtermin",
+    "preferredTime": "Uhrzeit (optional)",
+    "note": "Anliegen (optional)",
+    "submit": "Absenden",
+    "sending": "Wird gesendet…",
+    "success": "Vielen Dank! Wir melden uns so bald wie möglich bei Ihnen.",
+    "error": "Senden fehlgeschlagen. Bitte versuchen Sie es später erneut.",
+    "close": "Schließen"
+  },
   "contactInfoAdmin": {
     "management": "Kontaktdaten",
     "subtitle": "Kontaktinformationen und Sprechzeiten verwalten",

@@ -131,6 +131,27 @@
     "appointment": "Boka tid",
     "message": "Skicka meddelande"
   },
+  "contactForm": {
+    "message": {
+      "heading": "Skicka meddelande",
+      "text": "Ditt meddelande"
+    },
+    "appointment": {
+      "heading": "Boka tid"
+    },
+    "name": "Namn",
+    "email": "E-post",
+    "phone": "Telefon (valfritt)",
+    "subject": "Ämne",
+    "preferredDate": "Önskat datum",
+    "preferredTime": "Tid (valfritt)",
+    "note": "Ärende (valfritt)",
+    "submit": "Skicka",
+    "sending": "Skickar…",
+    "success": "Tack! Vi återkommer så snart som möjligt.",
+    "error": "Det gick inte att skicka. Försök igen senare.",
+    "close": "Stäng"
+  },
   "contactInfoAdmin": {
     "management": "Kontaktuppgifter",
     "subtitle": "Hantera kontaktuppgifter och öppettider",
